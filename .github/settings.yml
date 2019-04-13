@@ -28,6 +28,8 @@ labels:
     color: e0fc28
   - name: greenkeeper
     color: 00c775
+  - name: semantic-release
+    color: ededed
 branches:
   - name: master
     protection:
