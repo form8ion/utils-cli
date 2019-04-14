@@ -3,7 +3,9 @@
   "description": "cli for various tools for the organization",
   "license": "MIT",
   "version": "0.0.0-semantically-released",
-  "bin": "bin/form8ion-utils.js",
+  "bin": {
+    "form8ion-utils": "bin/form8ion-utils.js"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
