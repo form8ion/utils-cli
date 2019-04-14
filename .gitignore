@@ -1,5 +1,5 @@
 /node_modules/
-/lib/
+/bin/
 /coverage/
 /.nyc_output/
 
