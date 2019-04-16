@@ -1,5 +1,5 @@
 repository:
-  name: cli
+  name: utils-cli
   description: cli for various tools for the organization
-  homepage: https://npm.im/@form8ion/cli
+  homepage: 'https://npm.im/@form8ion/cli'
   private: false
