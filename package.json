@@ -63,6 +63,10 @@
     "travis-lint": "1.0.0"
   },
   "dependencies": {
+    "@travi/github-scaffolder": "3.2.0",
+    "@travi/javascript-scaffolder": "6.8.1",
+    "@travi/project-scaffolder": "6.1.4",
+    "@travi/travis-scaffolder-javascript": "1.11.0",
     "update-notifier": "2.5.0",
     "yargs": "13.2.2"
   }
