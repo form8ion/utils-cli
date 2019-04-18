@@ -1,5 +1,7 @@
 # cli
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/form8ion/utils-cli.svg)](https://greenkeeper.io/)
+
 cli for various tools for the organization
 
 <!-- status badges -->
