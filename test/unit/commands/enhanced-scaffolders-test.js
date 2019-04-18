@@ -24,6 +24,7 @@ suite('enhanced scaffolders', () => {
     javascriptScaffolder.scaffold
       .withArgs({
         ...options,
+        configs: {remark: '@form8ion/remark-preset-lint'},
         overrides: {npmAccount: 'form8ion'},
         ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}}
       })
