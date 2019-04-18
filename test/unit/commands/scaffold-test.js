@@ -1,8 +1,9 @@
 import * as projectScaffolder from '@travi/project-scaffolder';
-import {prompt as githubPrompt, scaffold as scaffoldGithub} from '@travi/github-scaffolder';
+import {scaffold as scaffoldGithub} from '@travi/github-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
+import {githubPrompt, javascript} from '../../../src/enhanced-scaffolders';
 import {command, describe, handler} from '../../../src/commands/scaffold';
 
 suite('scaffold command', () => {
@@ -20,7 +21,7 @@ suite('scaffold command', () => {
     const scaffoldingResults = any.simpleObject();
     projectScaffolder.scaffold
       .withArgs({
-        languages: {JavaScript: {}},
+        languages: {JavaScript: javascript},
         vcsHosts: {GitHub: {scaffolder: scaffoldGithub, prompt: githubPrompt, public: true}},
         overrides: {copyrightHolder: 'Matt Travi'}
       })

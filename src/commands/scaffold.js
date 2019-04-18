@@ -1,9 +1,10 @@
 import {scaffold} from '@travi/project-scaffolder';
-import {prompt as githubPrompt, scaffold as scaffoldGithub} from '@travi/github-scaffolder';
+import {scaffold as scaffoldGithub} from '@travi/github-scaffolder';
+import {githubPrompt, javascript} from '../enhanced-scaffolders';
 
 export function handler() {
   return scaffold({
-    languages: {JavaScript: {}},
+    languages: {JavaScript: javascript},
     vcsHosts: {GitHub: {scaffolder: scaffoldGithub, prompt: githubPrompt, public: true}},
     overrides: {copyrightHolder: 'Matt Travi'}
   });
