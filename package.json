@@ -1,20 +1,21 @@
 {
-  "name": "@form8ion/cli",
+  "name": "@form8ion/utils-cli",
   "description": "cli for various tools for the organization",
   "license": "MIT",
   "version": "0.0.0-semantically-released",
-  "main": "lib/index.cjs.js",
-  "module": "lib/index.es.js",
+  "bin": {
+    "form8ion-utils": "bin/form8ion-utils.js"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "files": [
-    "lib/"
+    "bin/"
   ],
-  "repository": "form8ion/cli",
-  "bugs": "https://github.com/form8ion/cli/issues",
-  "homepage": "https://npm.im/@form8ion/cli",
+  "repository": "form8ion/utils-cli",
+  "bugs": "https://github.com/form8ion/utils-cli/issues",
+  "homepage": "https://npm.im/@form8ion/utils-cli",
   "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
   "scripts": {
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
@@ -29,7 +30,7 @@
     "lint:md": "remark . --frail",
     "lint:sensitive": "ban",
     "lint:travis": "travis-lint .travis.yml",
-    "clean": "rimraf ./lib",
+    "clean": "rimraf ./bin",
     "prebuild": "run-s clean",
     "build": "npm-run-all --print-label --parallel build:*",
     "build:js": "rollup --config",
@@ -56,7 +57,17 @@
     "rimraf": "2.6.3",
     "rollup": "1.9.3",
     "rollup-plugin-auto-external": "2.0.0",
+    "rollup-plugin-executable": "1.4.5",
+    "rollup-plugin-json": "4.0.0",
     "sinon": "7.3.1",
     "travis-lint": "1.0.0"
+  },
+  "dependencies": {
+    "@travi/github-scaffolder": "3.2.0",
+    "@travi/javascript-scaffolder": "6.8.1",
+    "@travi/project-scaffolder": "6.1.4",
+    "@travi/travis-scaffolder-javascript": "1.11.0",
+    "update-notifier": "2.5.0",
+    "yargs": "13.2.2"
   }
 }
