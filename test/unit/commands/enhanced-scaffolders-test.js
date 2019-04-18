@@ -22,7 +22,11 @@ suite('enhanced scaffolders', () => {
   test('that the custom properties are passed along with the provided options to the js scaffolder', async () => {
     const options = any.simpleObject();
     javascriptScaffolder.scaffold
-      .withArgs({...options, ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}}})
+      .withArgs({
+        ...options,
+        overrides: {npmAccount: 'form8ion'},
+        ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}}
+      })
       .resolves(output);
 
     assert.equal(await javascript(options), output);
