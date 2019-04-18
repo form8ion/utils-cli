@@ -1,7 +1,5 @@
 # cli
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/form8ion/utils-cli.svg)](https://greenkeeper.io/)
-
 cli for various tools for the organization
 
 <!-- status badges -->
@@ -27,6 +25,7 @@ $ npm install @form8ion/cli --global
 [![Commitizen friendly][commitizen-badge]][commitizen-link]
 [![semantic-release][semantic-release-badge]][semantic-release-link]
 [![PRs Welcome][PRs-badge]][PRs-link]
+[![Greenkeeper badge](https://badges.greenkeeper.io/form8ion/utils-cli.svg)](https://greenkeeper.io/)
 
 ### Dependencies
 
