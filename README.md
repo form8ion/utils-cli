@@ -15,7 +15,7 @@ cli for various tools for the organization
 ### Installation
 
 ```sh
-$ npm install @form8ion/cli --global
+$ npm install @form8ion/utils-cli --global
 ```
 
 ## Contributing
@@ -40,14 +40,14 @@ $ npm install
 $ npm test
 ```
 
-[npm-link]: https://www.npmjs.com/package/@form8ion/cli
-[npm-badge]: https://img.shields.io/npm/v/@form8ion/cli.svg
+[npm-link]: https://www.npmjs.com/package/@form8ion/utils-cli
+[npm-badge]: https://img.shields.io/npm/v/@form8ion/utils-cli.svg
 [license-link]: LICENSE
-[license-badge]: https://img.shields.io/github/license/form8ion/cli.svg
-[ci-link]: https://travis-ci.com/form8ion/cli
-[ci-badge]: https://img.shields.io/travis/com/form8ion/cli/master.svg
-[coverage-link]: https://codecov.io/github/form8ion/cli
-[coverage-badge]: https://img.shields.io/codecov/c/github/form8ion/cli.svg
+[license-badge]: https://img.shields.io/github/license/form8ion/utils-cli.svg
+[ci-link]: https://travis-ci.com/form8ion/utils-cli
+[ci-badge]: https://img.shields.io/travis/com/form8ion/utils-cli/master.svg
+[coverage-link]: https://codecov.io/github/form8ion/utils-cli
+[coverage-badge]: https://img.shields.io/codecov/c/github/form8ion/utils-cli.svg
 [commit-convention-link]: https://conventionalcommits.org
 [commit-convention-badge]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [commitizen-link]: http://commitizen.github.io/cz-cli/
