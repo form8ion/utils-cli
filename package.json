@@ -1,5 +1,5 @@
 {
-  "name": "@form8ion/cli",
+  "name": "@form8ion/utils-cli",
   "description": "cli for various tools for the organization",
   "license": "MIT",
   "version": "0.0.0-semantically-released",
@@ -13,9 +13,9 @@
   "files": [
     "bin/"
   ],
-  "repository": "form8ion/cli",
-  "bugs": "https://github.com/form8ion/cli/issues",
-  "homepage": "https://npm.im/@form8ion/cli",
+  "repository": "form8ion/utils-cli",
+  "bugs": "https://github.com/form8ion/utils-cli/issues",
+  "homepage": "https://npm.im/@form8ion/utils-cli",
   "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
   "scripts": {
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
