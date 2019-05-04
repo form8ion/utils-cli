@@ -39,10 +39,10 @@
   },
   "devDependencies": {
     "@babel/register": "7.4.4",
+    "@form8ion/babel-preset": "1.0.0-alpha.2",
     "@form8ion/commitlint-config": "1.0.0",
     "@form8ion/remark-lint-preset": "1.0.0",
     "@travi/any": "2.0.0",
-    "@travi/babel-preset": "3.0.0",
     "@travi/eslint-config-travi": "1.8.0",
     "ban-sensitive-files": "1.9.2",
     "chai": "4.2.0",
