@@ -56,7 +56,7 @@
     "remark-cli": "6.0.1",
     "remark-preset-lint-travi": "1.2.0",
     "rimraf": "2.6.3",
-    "rollup": "1.11.0",
+    "rollup": "1.11.2",
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-executable": "1.4.5",
     "rollup-plugin-json": "4.0.0",
