@@ -68,7 +68,7 @@
     "@travi/javascript-scaffolder": "6.17.1",
     "@travi/project-scaffolder": "6.3.3",
     "@travi/travis-scaffolder-javascript": "1.12.0",
-    "update-notifier": "2.5.0",
+    "update-notifier": "2.6.0",
     "yargs": "13.2.2"
   }
 }
