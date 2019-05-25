@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@travi/github-scaffolder": "4.0.1",
-    "@travi/javascript-scaffolder": "6.21.0",
+    "@travi/javascript-scaffolder": "6.21.1",
     "@travi/project-scaffolder": "6.4.0",
     "@travi/travis-scaffolder-javascript": "1.12.0",
     "update-notifier": "3.0.0",
