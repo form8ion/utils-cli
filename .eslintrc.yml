@@ -1,1 +1,1 @@
-extends: '@travi/travi/rules/es6'
+extends: '@form8ion'
