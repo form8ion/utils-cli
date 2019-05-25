@@ -1,1 +1,1 @@
-extends: '@travi/travi/rules/tests/mocha'
+extends: '@form8ion/mocha'
