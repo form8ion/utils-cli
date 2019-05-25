@@ -1,1 +1,1 @@
-module.exports = {extends: ['@form8ion/commitlint-config']};
+module.exports = {extends: ['@form8ion']};
