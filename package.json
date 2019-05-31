@@ -57,7 +57,7 @@
     "remark-cli": "6.0.1",
     "remark-preset-lint-travi": "1.2.0",
     "rimraf": "2.6.3",
-    "rollup": "1.12.5",
+    "rollup": "1.13.0",
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-executable": "1.4.5",
     "rollup-plugin-json": "4.0.0",
@@ -67,7 +67,7 @@
   "dependencies": {
     "@travi/github-scaffolder": "4.0.1",
     "@travi/javascript-scaffolder": "6.21.4",
-    "@travi/project-scaffolder": "6.4.3",
+    "@travi/project-scaffolder": "6.4.4",
     "@travi/travis-scaffolder-javascript": "1.12.0",
     "update-notifier": "3.0.0",
     "yargs": "13.2.4"
