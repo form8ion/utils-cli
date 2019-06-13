@@ -65,7 +65,7 @@
     "travis-lint": "1.0.0"
   },
   "dependencies": {
-    "@travi/github-scaffolder": "4.1.0",
+    "@travi/github-scaffolder": "4.1.1",
     "@travi/javascript-scaffolder": "7.0.0",
     "@travi/project-scaffolder": "7.0.0",
     "@travi/travis-scaffolder-javascript": "1.12.0",
