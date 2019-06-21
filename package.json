@@ -59,7 +59,7 @@
     "rimraf": "2.6.3",
     "rollup": "1.16.1",
     "rollup-plugin-auto-external": "2.0.0",
-    "rollup-plugin-executable": "1.4.6",
+    "rollup-plugin-executable": "1.5.0",
     "rollup-plugin-json": "4.0.0",
     "sinon": "7.3.2",
     "travis-lint": "1.0.0"
