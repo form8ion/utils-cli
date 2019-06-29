@@ -6,6 +6,7 @@ branches:
   except:
     - /^v\d+\.\d+\.\d+(-(alpha|beta)\.\d+(@(alpha|beta))?)?$/
 before_script:
+  - npm whoami
   - npm ls --production >/dev/null
 after_success: 'npm run coverage:report'
 deploy:
