@@ -33,6 +33,12 @@ $ npm install @form8ion/utils-cli --global
 $ nvm install
 $ npm install
 ```
+ 
+### Executing Locally Without Bundling
+ 
+```sh
+$ npx babel-node src/index.js <command>
+```
 
 ### Verification
 
