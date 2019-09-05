@@ -66,6 +66,7 @@
     "travis-lint": "1.0.0"
   },
   "dependencies": {
+    "@form8ion/hapi-scaffolder": "1.1.2",
     "@travi/github-scaffolder": "4.1.2",
     "@travi/javascript-scaffolder": "7.8.0",
     "@travi/project-scaffolder": "7.0.8",

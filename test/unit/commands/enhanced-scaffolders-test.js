@@ -1,6 +1,7 @@
 import * as javascriptScaffolder from '@travi/javascript-scaffolder';
 import * as githubScaffolder from '@travi/github-scaffolder';
 import {scaffold as scaffoldTravisForJavaScript} from '@travi/travis-scaffolder-javascript';
+import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
@@ -31,7 +32,8 @@ suite('enhanced scaffolders', () => {
           commitlint: {name: '@form8ion', packageName: '@form8ion/commitlint-config'}
         },
         overrides: {npmAccount: 'form8ion'},
-        ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}}
+        ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}},
+        applicationTypes: {Hapi: {scaffolder: scaffoldHapi}}
       })
       .resolves(output);
 

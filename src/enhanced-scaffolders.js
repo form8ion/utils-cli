@@ -1,6 +1,7 @@
 import {scaffold as scaffoldJavaScript} from '@travi/javascript-scaffolder';
 import {scaffold as scaffoldTravisForJavaScript} from '@travi/travis-scaffolder-javascript';
 import {prompt} from '@travi/github-scaffolder';
+import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 
 export function javascript(options) {
   return scaffoldJavaScript({
@@ -12,7 +13,8 @@ export function javascript(options) {
       commitlint: {name: '@form8ion', packageName: '@form8ion/commitlint-config'}
     },
     overrides: {npmAccount: 'form8ion'},
-    ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}}
+    ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}},
+    applicationTypes: {Hapi: {scaffolder: scaffoldHapi}}
   });
 }
 
