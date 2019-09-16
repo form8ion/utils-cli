@@ -41,7 +41,7 @@
     "@babel/node": "7.6.1",
     "@babel/register": "7.6.0",
     "@form8ion/babel-preset": "1.5.7",
-    "@form8ion/commitlint-config": "1.0.6",
+    "@form8ion/commitlint-config": "1.0.7",
     "@form8ion/eslint-config": "1.6.3",
     "@form8ion/eslint-config-mocha": "1.2.4",
     "@form8ion/remark-lint-preset": "1.0.1",
