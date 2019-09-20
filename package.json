@@ -48,7 +48,7 @@
     "@travi/any": "2.0.4",
     "ban-sensitive-files": "1.9.2",
     "chai": "4.2.0",
-    "codecov": "3.5.0",
+    "codecov": "3.6.0",
     "cucumber": "5.1.0",
     "cz-conventional-changelog": "3.0.2",
     "husky": "3.0.5",
