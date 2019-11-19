@@ -72,6 +72,6 @@
     "@travi/travis-scaffolder-javascript": "2.0.0",
     "travis-token-updater": "1.6.9",
     "update-notifier": "3.0.1",
-    "yargs": "15.0.1"
+    "yargs": "15.0.2"
   }
 }
