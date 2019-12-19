@@ -70,7 +70,7 @@
     "@travi/javascript-scaffolder": "8.4.1",
     "@travi/project-scaffolder": "7.2.3",
     "@travi/travis-scaffolder-javascript": "2.0.0",
-    "travis-token-updater": "1.6.9",
+    "travis-token-updater": "1.6.10",
     "update-notifier": "4.0.0",
     "yargs": "15.0.2"
   }
