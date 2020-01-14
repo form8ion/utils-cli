@@ -38,7 +38,7 @@
     "prepack": "run-s build"
   },
   "devDependencies": {
-    "@babel/node": "7.8.0",
+    "@babel/node": "7.8.3",
     "@babel/register": "7.8.0",
     "@form8ion/babel-preset": "1.6.9",
     "@form8ion/commitlint-config": "1.0.8",
