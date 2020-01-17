@@ -10,6 +10,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "files": [
     "bin/"
   ],
@@ -30,6 +33,7 @@
     "lint:md": "remark . --frail",
     "lint:sensitive": "ban",
     "lint:travis": "travis-lint .travis.yml",
+    "lint:engines": "check-engine",
     "clean": "rimraf ./bin",
     "prebuild": "run-s clean",
     "build": "npm-run-all --print-label --parallel build:*",
@@ -48,6 +52,7 @@
     "@travi/any": "2.0.7",
     "ban-sensitive-files": "1.9.2",
     "chai": "4.2.0",
+    "check-engine": "1.8.1",
     "codecov": "3.6.1",
     "cucumber": "6.0.5",
     "cz-conventional-changelog": "3.0.2",
