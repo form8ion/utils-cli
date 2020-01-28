@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "@form8ion/hapi-scaffolder": "1.3.3",
-    "@travi/github-scaffolder": "4.2.1",
+    "@travi/github-scaffolder": "4.4.0",
     "@travi/javascript-scaffolder": "10.6.3",
     "@travi/project-scaffolder": "8.3.2",
     "@travi/travis-scaffolder-javascript": "3.0.3",
