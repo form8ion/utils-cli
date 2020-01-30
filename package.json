@@ -73,7 +73,7 @@
     "@form8ion/hapi-scaffolder": "1.3.3",
     "@travi/github-scaffolder": "4.4.1",
     "@travi/javascript-scaffolder": "10.7.1",
-    "@travi/project-scaffolder": "8.3.2",
+    "@travi/project-scaffolder": "8.3.3",
     "@travi/travis-scaffolder-javascript": "3.0.3",
     "travis-token-updater": "1.6.10",
     "update-notifier": "4.0.0",
