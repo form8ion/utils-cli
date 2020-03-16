@@ -72,7 +72,7 @@
   "dependencies": {
     "@form8ion/hapi-scaffolder": "2.0.0",
     "@travi/github-scaffolder": "5.0.2",
-    "@travi/javascript-scaffolder": "10.18.1",
+    "@travi/javascript-scaffolder": "10.18.2",
     "@travi/project-scaffolder": "8.6.1",
     "@travi/travis-scaffolder-javascript": "3.2.0",
     "travis-token-updater": "1.6.10",
