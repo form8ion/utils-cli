@@ -44,7 +44,7 @@
   "devDependencies": {
     "@babel/node": "7.8.7",
     "@babel/register": "7.9.0",
-    "@form8ion/babel-preset": "1.6.17",
+    "@form8ion/babel-preset": "1.6.18",
     "@form8ion/commitlint-config": "1.0.9",
     "@form8ion/eslint-config": "1.6.15",
     "@form8ion/eslint-config-mocha": "1.2.8",
