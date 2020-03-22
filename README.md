@@ -18,6 +18,28 @@ cli for various tools for the organization
 $ npm install @form8ion/utils-cli --global
 ```
 
+### Commands
+
+#### `scaffold`
+
+Scaffolds a new project
+
+```sh
+$ form8ion-utils scaffold
+```
+
+#### `travis-tokens`
+
+Roll the `NPM_TOKEN` or `GH_TOKEN` across multiple repositories
+
+```sh
+$ form8ion-utils travis-tokens
+```
+
+Find additional details for this command in the [travis-token-updater](https://github.com/travis-token-updater)
+repository
+
+
 ## Contributing
 
 <!-- contribution badges -->
