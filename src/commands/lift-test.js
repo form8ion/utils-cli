@@ -19,7 +19,7 @@ suite('lift command', () => {
   test('that the lift command is defined', async () => {
     const liftingResults = any.simpleObject();
     lifter.lift
-      .withArgs({Renovate: scaffoldRenovate})
+      .withArgs({scaffolders: {Renovate: scaffoldRenovate}})
       .resolves(liftingResults);
 
     assert.equal(await handler(), liftingResults);
