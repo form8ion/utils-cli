@@ -4,8 +4,8 @@ import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
-import {githubPrompt, javascript} from '../../../src/enhanced-scaffolders';
-import {command, describe, handler} from '../../../src/commands/scaffold';
+import {githubPrompt, javascript} from './enhanced-scaffolders';
+import {command, describe, handler} from './scaffold';
 
 suite('scaffold command', () => {
   let sandbox;

@@ -23,7 +23,7 @@
   "scripts": {
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
     "test:unit": "nyc run-s test:unit:base",
-    "test:unit:base": "DEBUG=any mocha --recursive test/unit",
+    "test:unit:base": "DEBUG=any mocha 'src/**/*-test.js'",
     "coverage:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "test:integration": "run-s 'test:integration:base -- --profile noWip'",
     "test:integration:base": "DEBUG=any cucumber-js test/integration --profile base",

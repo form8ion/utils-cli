@@ -3,7 +3,7 @@ import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
-import {command, describe, handler} from '../../../src/commands/lift';
+import {command, describe, handler} from './lift';
 
 suite('lift command', () => {
   let sandbox;

@@ -5,7 +5,7 @@ import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
-import {javascript, githubPrompt} from '../../../src/enhanced-scaffolders';
+import {javascript, githubPrompt} from './enhanced-scaffolders';
 
 suite('enhanced scaffolders', () => {
   let sandbox;

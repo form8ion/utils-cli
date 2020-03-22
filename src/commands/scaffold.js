@@ -1,7 +1,7 @@
 import {scaffold} from '@travi/project-scaffolder';
 import {scaffold as scaffoldGithub} from '@travi/github-scaffolder';
 import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
-import {githubPrompt, javascript} from '../enhanced-scaffolders';
+import {githubPrompt, javascript} from './enhanced-scaffolders';
 
 export function handler() {
   return scaffold({
