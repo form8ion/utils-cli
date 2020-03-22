@@ -28,6 +28,14 @@ Scaffolds a new project
 $ form8ion-utils scaffold
 ```
 
+#### `lift`
+
+Lifts an existing project by configuring new functionality
+
+```sh
+$ form8ion-utils lift
+```
+
 #### `travis-tokens`
 
 Roll the `NPM_TOKEN` or `GH_TOKEN` across multiple repositories

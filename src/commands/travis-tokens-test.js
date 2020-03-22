@@ -2,7 +2,7 @@ import * as tokenUpdater from 'travis-token-updater';
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
-import {command, describe, handler} from '../../../src/commands/travis-tokens';
+import {command, describe, handler} from './travis-tokens';
 
 suite('travis-tokens command', () => {
   let sandbox;
