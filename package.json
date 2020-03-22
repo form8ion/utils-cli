@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "@form8ion/hapi-scaffolder": "2.0.0",
+    "@form8ion/lift": "1.0.0-alpha.1",
     "@form8ion/renovate-scaffolder": "1.1.0",
     "@travi/github-scaffolder": "5.0.2",
     "@travi/javascript-scaffolder": "10.18.3",
