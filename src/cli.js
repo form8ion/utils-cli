@@ -1,3 +1,4 @@
+import 'source-map-support/register';
 import * as scaffoldCommand from './commands/scaffold';
 import * as liftCommand from './commands/lift';
 import * as travisTokensCommand from './commands/travis-tokens';
