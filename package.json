@@ -74,7 +74,7 @@
     "@form8ion/lift": "1.1.4",
     "@form8ion/renovate-scaffolder": "1.1.0",
     "@travi/github-scaffolder": "5.0.3",
-    "@travi/javascript-scaffolder": "10.20.0",
+    "@travi/javascript-scaffolder": "10.20.1",
     "@travi/project-scaffolder": "8.9.0",
     "@travi/travis-scaffolder-javascript": "3.2.0",
     "source-map-support": "0.5.16",
