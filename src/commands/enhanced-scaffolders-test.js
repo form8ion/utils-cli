@@ -2,6 +2,7 @@ import * as javascriptScaffolder from '@travi/javascript-scaffolder';
 import * as githubScaffolder from '@travi/github-scaffolder';
 import {scaffold as scaffoldTravisForJavaScript} from '@travi/travis-scaffolder-javascript';
 import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
+import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
@@ -33,7 +34,8 @@ suite('enhanced scaffolders', () => {
         },
         overrides: {npmAccount: 'form8ion'},
         ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}},
-        applicationTypes: {Hapi: {scaffolder: scaffoldHapi}}
+        applicationTypes: {Hapi: {scaffolder: scaffoldHapi}},
+        packageTypes: {'Remark Plugin': {scaffolder: scaffoldRemarkPlugin}}
       })
       .resolves(output);
 
