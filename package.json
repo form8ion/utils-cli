@@ -75,7 +75,7 @@
     "@form8ion/remark-plugin-scaffolder": "1.0.0-alpha.5",
     "@form8ion/remove-greenkeeper": "1.0.0-alpha.2",
     "@form8ion/renovate-scaffolder": "1.1.0",
-    "@travi/github-scaffolder": "5.0.4",
+    "@travi/github-scaffolder": "5.1.0",
     "@travi/javascript-scaffolder": "10.21.0",
     "@travi/project-scaffolder": "8.10.0",
     "@travi/travis-scaffolder-javascript": "3.2.0",
