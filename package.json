@@ -76,7 +76,7 @@
     "@form8ion/remove-greenkeeper": "1.0.0-alpha.2",
     "@form8ion/renovate-scaffolder": "1.1.0",
     "@travi/github-scaffolder": "5.1.0",
-    "@travi/javascript-scaffolder": "10.21.0",
+    "@travi/javascript-scaffolder": "10.22.0",
     "@travi/project-scaffolder": "8.10.0",
     "@travi/travis-scaffolder-javascript": "3.2.0",
     "source-map-support": "0.5.16",
