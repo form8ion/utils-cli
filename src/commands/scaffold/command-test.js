@@ -5,7 +5,7 @@ import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
 import {githubPrompt, javascript} from './enhanced-scaffolders';
-import {command, describe, handler} from './scaffold';
+import {command, describe, handler} from '.';
 
 suite('scaffold command', () => {
   let sandbox;

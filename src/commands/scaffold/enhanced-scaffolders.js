@@ -3,16 +3,12 @@ import {scaffold as scaffoldTravisForJavaScript} from '@travi/travis-scaffolder-
 import {prompt} from '@travi/github-scaffolder';
 import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
+import {configs} from '../common';
 
 export function javascript(options) {
   return scaffoldJavaScript({
     ...options,
-    configs: {
-      eslint: {scope: '@form8ion'},
-      remark: '@form8ion/remark-lint-preset',
-      babelPreset: {name: '@form8ion', packageName: '@form8ion/babel-preset'},
-      commitlint: {name: '@form8ion', packageName: '@form8ion/commitlint-config'}
-    },
+    configs,
     overrides: {npmAccount: 'form8ion'},
     ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}},
     applicationTypes: {Hapi: {scaffolder: scaffoldHapi}},
