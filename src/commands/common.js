@@ -1,4 +1,4 @@
-export const configs = {
+export const javascriptConfigs = {
   eslint: {scope: '@form8ion'},
   remark: '@form8ion/remark-lint-preset',
   babelPreset: {
