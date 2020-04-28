@@ -77,7 +77,7 @@
   "dependencies": {
     "@form8ion/cucumber-scaffolder": "1.1.0",
     "@form8ion/hapi-scaffolder": "2.0.0",
-    "@form8ion/lift": "1.6.1",
+    "@form8ion/lift": "1.7.0",
     "@form8ion/lift-javascript": "1.0.0",
     "@form8ion/remark-plugin-scaffolder": "1.1.0",
     "@form8ion/remove-greenkeeper": "1.1.4",
