@@ -81,7 +81,7 @@
     "@form8ion/lift-javascript": "1.1.0",
     "@form8ion/remark-plugin-scaffolder": "1.1.0",
     "@form8ion/remove-greenkeeper": "1.1.4",
-    "@form8ion/renovate-scaffolder": "1.2.0",
+    "@form8ion/renovate-scaffolder": "1.3.0",
     "@travi/github-scaffolder": "5.1.1",
     "@travi/javascript-scaffolder": "10.22.1",
     "@travi/project-scaffolder": "8.10.3",
