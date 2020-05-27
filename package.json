@@ -44,8 +44,8 @@
     "prepack": "run-s build"
   },
   "devDependencies": {
-    "@babel/node": "7.8.7",
-    "@babel/register": "7.9.0",
+    "@babel/node": "7.10.1",
+    "@babel/register": "7.10.1",
     "@form8ion/babel-preset": "1.6.22",
     "@form8ion/commitlint-config": "1.0.9",
     "@form8ion/eslint-config": "1.6.17",
