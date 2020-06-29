@@ -3,14 +3,16 @@ import * as githubScaffolder from '@travi/github-scaffolder';
 import {scaffold as scaffoldTravisForJavaScript} from '@travi/travis-scaffolder-javascript';
 import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
+import {scaffold as scaffoldMocha} from '@form8ion/mocha-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
-import {javascript, githubPrompt} from './enhanced-scaffolders';
+import {javascriptScaffolderFactory, githubPromptFactory} from './enhanced-scaffolders';
 
 suite('enhanced scaffolders', () => {
   let sandbox;
   const output = any.simpleObject();
+  const decisions = any.simpleObject();
 
   setup(() => {
     sandbox = sinon.createSandbox();
@@ -35,16 +37,18 @@ suite('enhanced scaffolders', () => {
         overrides: {npmAccount: 'form8ion'},
         ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}},
         applicationTypes: {Hapi: {scaffolder: scaffoldHapi}},
-        packageTypes: {'Remark Plugin': {scaffolder: scaffoldRemarkPlugin}}
+        packageTypes: {'Remark Plugin': {scaffolder: scaffoldRemarkPlugin}},
+        unitTestFrameworks: {mocha: {scaffolder: scaffoldMocha}},
+        decisions
       })
       .resolves(output);
 
-    assert.equal(await javascript(options), output);
+    assert.equal(await javascriptScaffolderFactory(decisions)(options), output);
   });
 
   test('that the owner account is passed to the github prompts', async () => {
-    githubScaffolder.prompt.withArgs({account: 'form8ion'}).resolves(output);
+    githubScaffolder.prompt.withArgs({account: 'form8ion', decisions}).resolves(output);
 
-    assert.equal(await githubPrompt(), output);
+    assert.equal(await githubPromptFactory(decisions)(), output);
   });
 });
