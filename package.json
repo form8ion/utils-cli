@@ -36,6 +36,7 @@
     "lint:travis": "travis-lint .travis.yml",
     "lint:engines": "check-engine",
     "lint:gherkin": "gherkin-lint",
+    "lint:peer": "npm ls >/dev/null",
     "clean": "rimraf ./bin",
     "prebuild": "run-s clean",
     "build": "npm-run-all --print-label --parallel build:*",
