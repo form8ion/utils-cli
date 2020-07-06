@@ -28,7 +28,8 @@ suite('scaffold command', () => {
       ...decisions,
       [projectScaffolder.questionNames.REPO_HOST]: 'GitHub',
       [projectScaffolder.questionNames.REPO_OWNER]: 'form8ion',
-      [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha'
+      [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
+      [jsQuestionNames.SCOPE]: 'form8ion'
     };
     const jsScaffolder = () => undefined;
     const githubPrompt = () => undefined;

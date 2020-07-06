@@ -5,11 +5,13 @@ import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
 import {githubPromptFactory, javascriptScaffolderFactory} from './enhanced-scaffolders';
 
 export function handler(decisions) {
+  const orgName = 'form8ion';
   const decisionsWithEnhancements = {
     ...decisions,
     [projectQuestionNames.REPO_HOST]: 'GitHub',
-    [projectQuestionNames.REPO_OWNER]: 'form8ion',
-    [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha'
+    [projectQuestionNames.REPO_OWNER]: orgName,
+    [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
+    [jsQuestionNames.SCOPE]: orgName
   };
 
   return scaffold({
