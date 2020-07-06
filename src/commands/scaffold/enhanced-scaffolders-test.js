@@ -4,6 +4,7 @@ import {scaffold as scaffoldTravisForJavaScript} from '@travi/travis-scaffolder-
 import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
 import {scaffold as scaffoldMocha} from '@form8ion/mocha-scaffolder';
+import {scaffold as scaffoldScaffolder} from '@form8ion/scaffolder-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
@@ -37,7 +38,10 @@ suite('enhanced scaffolders', () => {
         overrides: {npmAccount: 'form8ion'},
         ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}},
         applicationTypes: {Hapi: {scaffolder: scaffoldHapi}},
-        packageTypes: {'Remark Plugin': {scaffolder: scaffoldRemarkPlugin}},
+        packageTypes: {
+          'Scaffolder Plugin': {scaffolder: scaffoldScaffolder},
+          'Remark Plugin': {scaffolder: scaffoldRemarkPlugin}
+        },
         unitTestFrameworks: {mocha: {scaffolder: scaffoldMocha}},
         decisions
       })
