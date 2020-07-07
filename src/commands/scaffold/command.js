@@ -6,10 +6,15 @@ import {githubPromptFactory, javascriptScaffolderFactory} from './enhanced-scaff
 
 export function handler(decisions) {
   const orgName = 'form8ion';
+  const traviName = 'Matt Travi';
   const decisionsWithEnhancements = {
     ...decisions,
+    [projectQuestionNames.COPYRIGHT_HOLDER]: traviName,
     [projectQuestionNames.REPO_HOST]: 'GitHub',
     [projectQuestionNames.REPO_OWNER]: orgName,
+    [jsQuestionNames.AUTHOR_NAME]: traviName,
+    [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
+    [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
     [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
     [jsQuestionNames.SCOPE]: orgName
   };
@@ -19,7 +24,7 @@ export function handler(decisions) {
     vcsHosts: {
       GitHub: {scaffolder: scaffoldGithub, prompt: githubPromptFactory(decisionsWithEnhancements), public: true}
     },
-    overrides: {copyrightHolder: 'Matt Travi'},
+    overrides: {copyrightHolder: traviName},
     dependencyUpdaters: {Renovate: {scaffolder: scaffoldRenovate}},
     decisions: decisionsWithEnhancements
   });

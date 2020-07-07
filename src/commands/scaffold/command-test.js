@@ -26,8 +26,12 @@ suite('scaffold command', () => {
     const decisions = any.simpleObject();
     const decisionsWithEnhancements = {
       ...decisions,
+      [projectScaffolder.questionNames.COPYRIGHT_HOLDER]: 'Matt Travi',
       [projectScaffolder.questionNames.REPO_HOST]: 'GitHub',
       [projectScaffolder.questionNames.REPO_OWNER]: 'form8ion',
+      [jsQuestionNames.AUTHOR_NAME]: 'Matt Travi',
+      [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
+      [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
       [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
       [jsQuestionNames.SCOPE]: 'form8ion'
     };
