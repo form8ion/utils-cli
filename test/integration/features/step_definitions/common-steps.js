@@ -98,7 +98,6 @@ When(/^the project is scaffolded$/, async function () {
     [projectQuestionNames.DEPENDENCY_UPDATER]: any.word(),
     ...'Public' === visibility && {
       [projectQuestionNames.LICENSE]: 'MIT',
-      [projectQuestionNames.COPYRIGHT_HOLDER]: any.word(),
       [projectQuestionNames.COPYRIGHT_YEAR]: 2000
     },
     ...'Private' === visibility && {[projectQuestionNames.UNLICENSED]: true},
@@ -106,17 +105,12 @@ When(/^the project is scaffolded$/, async function () {
     [projectQuestionNames.PROJECT_TYPE]: projectType,
     ...'JavaScript' === projectType && {
       [javascriptQuestionNames.NODE_VERSION_CATEGORY]: 'LTS',
-      [javascriptQuestionNames.AUTHOR_NAME]: any.word(),
-      [javascriptQuestionNames.AUTHOR_EMAIL]: any.email(),
-      [javascriptQuestionNames.AUTHOR_URL]: any.url(),
       [javascriptQuestionNames.PROJECT_TYPE]: 'Package',
       [javascriptQuestionNames.UNIT_TESTS]: true,
       [javascriptQuestionNames.INTEGRATION_TESTS]: true,
       [javascriptQuestionNames.CI_SERVICE]: 'Travis',
       [javascriptQuestionNames.TRANSPILE_LINT]: true,
-      [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: 'Other',
-      [javascriptQuestionNames.SCOPE]: any.word(),
-      unitTestFramework: 'mocha'
+      [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: 'Other'
     }
   });
 });
