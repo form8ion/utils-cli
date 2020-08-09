@@ -92,7 +92,7 @@
     "@form8ion/renovate-scaffolder": "1.3.0",
     "@form8ion/scaffolder-scaffolder": "1.0.0",
     "@travi/github-scaffolder": "5.2.0",
-    "@travi/javascript-scaffolder": "11.1.4",
+    "@travi/javascript-scaffolder": "11.1.5",
     "@travi/project-scaffolder": "8.10.4",
     "@travi/travis-scaffolder-javascript": "3.2.2",
     "source-map-support": "0.5.19",
