@@ -97,7 +97,7 @@
     "@travi/travis-scaffolder-javascript": "3.2.2",
     "source-map-support": "0.5.19",
     "travis-token-updater": "1.6.12",
-    "update-notifier": "4.1.0",
+    "update-notifier": "4.1.1",
     "yargs": "15.4.1"
   }
 }
