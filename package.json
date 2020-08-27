@@ -71,7 +71,7 @@
     "nyc": "15.1.0",
     "remark-cli": "8.0.1",
     "rimraf": "3.0.2",
-    "rollup": "2.26.5",
+    "rollup": "2.26.6",
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-executable": "1.6.0",
     "rollup-plugin-json": "4.0.0",
