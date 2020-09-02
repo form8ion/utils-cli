@@ -29,6 +29,7 @@ suite('scaffold command', () => {
       [projectScaffolder.questionNames.COPYRIGHT_HOLDER]: 'Matt Travi',
       [projectScaffolder.questionNames.REPO_HOST]: 'GitHub',
       [projectScaffolder.questionNames.REPO_OWNER]: 'form8ion',
+      [projectScaffolder.questionNames.DEPENDENCY_UPDATER]: 'Renovate',
       [jsQuestionNames.AUTHOR_NAME]: 'Matt Travi',
       [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
       [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',

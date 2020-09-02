@@ -12,6 +12,7 @@ export function handler(decisions) {
     [projectQuestionNames.COPYRIGHT_HOLDER]: traviName,
     [projectQuestionNames.REPO_HOST]: 'GitHub',
     [projectQuestionNames.REPO_OWNER]: orgName,
+    [projectQuestionNames.DEPENDENCY_UPDATER]: 'Renovate',
     [jsQuestionNames.AUTHOR_NAME]: traviName,
     [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
     [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
