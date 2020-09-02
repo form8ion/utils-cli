@@ -1,6 +1,7 @@
 import * as javascriptScaffolder from '@travi/javascript-scaffolder';
 import * as githubScaffolder from '@travi/github-scaffolder';
 import {scaffold as scaffoldTravisForJavaScript} from '@travi/travis-scaffolder-javascript';
+import {scaffold as scaffoldGithubActions} from '@form8ion/github-actions-node-ci';
 import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
 import {scaffold as scaffoldMocha} from '@form8ion/mocha-scaffolder';
@@ -36,7 +37,10 @@ suite('enhanced scaffolders', () => {
           commitlint: {name: '@form8ion', packageName: '@form8ion/commitlint-config'}
         },
         overrides: {npmAccount: 'form8ion'},
-        ciServices: {Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}},
+        ciServices: {
+          'GitHub Actions': {scaffolder: scaffoldGithubActions, public: true},
+          Travis: {scaffolder: scaffoldTravisForJavaScript, public: true}
+        },
         applicationTypes: {Hapi: {scaffolder: scaffoldHapi}},
         packageTypes: {
           'Scaffolder Plugin': {scaffolder: scaffoldScaffolder},
