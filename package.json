@@ -33,7 +33,7 @@
     "lint:js": "eslint . --cache",
     "lint:md": "remark . --frail",
     "lint:sensitive": "ban",
-    "lint:travis": "travis-lint .travis.yml",
+    "disabled:lint:travis": "travis-lint .travis.yml",
     "lint:engines": "check-engine",
     "lint:gherkin": "gherkin-lint",
     "lint:peer": "npm ls >/dev/null",
