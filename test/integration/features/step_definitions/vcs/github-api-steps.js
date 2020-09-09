@@ -1,7 +1,7 @@
 import {After, Before, Given} from 'cucumber';
 import any from '@travi/any';
 import nock from 'nock';
-import {OK} from 'http-status-codes';
+import {StatusCodes} from 'http-status-codes';
 
 let githubScope;
 export const githubToken = any.word();
@@ -21,16 +21,16 @@ Given(/^the GitHub token is valid$/, async function () {
   githubScope
     .matchHeader('Authorization', `token ${githubToken}`)
     .post('/user/repos')
-    .reply(OK, {
+    .reply(StatusCodes.OK, {
       ssh_url: any.url(),
       html_url: any.url()
     });
   githubScope
     .matchHeader('Authorization', `token ${githubToken}`)
     .get(`/users/${this.githubUser}/repos`)
-    .reply(OK, []);
+    .reply(StatusCodes.OK, []);
   githubScope
     .matchHeader('Authorization', `token ${githubToken}`)
     .get('/user')
-    .reply(OK, {login: this.githubUser});
+    .reply(StatusCodes.OK, {login: this.githubUser});
 });
