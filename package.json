@@ -33,7 +33,6 @@
     "lint:js": "eslint . --cache",
     "lint:md": "remark . --frail",
     "lint:sensitive": "ban",
-    "disabled:lint:travis": "travis-lint .travis.yml",
     "lint:engines": "check-engine",
     "lint:gherkin": "gherkin-lint",
     "lint:peer": "npm ls >/dev/null",
@@ -77,8 +76,7 @@
     "rollup-plugin-json": "4.0.0",
     "rollup-plugin-node-resolve": "5.2.0",
     "sinon": "9.2.1",
-    "testdouble": "3.16.1",
-    "travis-lint": "1.0.0"
+    "testdouble": "3.16.1"
   },
   "dependencies": {
     "@form8ion/cucumber-scaffolder": "1.4.0",
