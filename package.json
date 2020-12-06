@@ -98,6 +98,6 @@
     "source-map-support": "0.5.19",
     "travis-token-updater": "1.6.12",
     "update-notifier": "5.0.1",
-    "yargs": "16.1.1"
+    "yargs": "16.2.0"
   }
 }
