@@ -75,7 +75,7 @@
     "rollup-plugin-executable": "1.6.1",
     "rollup-plugin-json": "4.0.0",
     "rollup-plugin-node-resolve": "5.2.0",
-    "sinon": "9.2.1",
+    "sinon": "9.2.2",
     "testdouble": "3.16.1"
   },
   "dependencies": {
