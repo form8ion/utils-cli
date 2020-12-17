@@ -28,7 +28,7 @@ Given(/^the project language should be JavaScript$/, async function () {
 
   td.when(this.shell.exec('npm run generate:md && npm test', {silent: false})).thenCallback(0);
   td.when(this.execa('npm', ['whoami'])).thenResolve(any.word());
-  td.when(this.execa('npm', ['ls', 'husky', '--json'])).thenResolve(JSON.stringify({}));
+  td.when(this.execa('npm', ['ls', 'husky', '--json'])).thenResolve({stdout: JSON.stringify({})});
 });
 
 Given(/^nvm is properly configured$/, function () {
