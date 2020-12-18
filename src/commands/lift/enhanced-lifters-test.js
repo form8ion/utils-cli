@@ -17,20 +17,25 @@ suite('enhanced lifters', () => {
 
   test('that the custom properties are passed along with the provided options to the js lifter', async () => {
     const options = any.simpleObject();
-
-    await javascript(options);
-
-    assert.calledWith(
-      jsLifter.lift,
-      {
+    const results = any.simpleObject();
+    jsLifter.lift
+      .withArgs({
         ...options,
         configs: {
           eslint: {scope: '@form8ion'},
           remark: '@form8ion/remark-lint-preset',
-          babelPreset: {name: '@form8ion', packageName: '@form8ion/babel-preset'},
-          commitlint: {name: '@form8ion', packageName: '@form8ion/commitlint-config'}
+          babelPreset: {
+            name: '@form8ion',
+            packageName: '@form8ion/babel-preset'
+          },
+          commitlint: {
+            name: '@form8ion',
+            packageName: '@form8ion/commitlint-config'
+          }
         }
-      }
-    );
+      })
+      .resolves(results);
+
+    assert.equal(await javascript(options), results);
   });
 });
