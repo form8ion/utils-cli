@@ -9,7 +9,7 @@ Before(() => {
 });
 
 Given(/^the project language should be Other$/, async function () {
-  this.setAnswerFor(questionNames.PROJECT_TYPE, 'Other');
+  this.setAnswerFor(questionNames.PROJECT_LANGUAGE, 'Other');
 });
 
 Then(/^core ignores are defined$/, async function () {
