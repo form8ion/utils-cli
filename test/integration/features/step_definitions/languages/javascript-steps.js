@@ -19,14 +19,12 @@ let questionNames;
 
 Before(function () {
   questionNames = require('@travi/project-scaffolder').questionNames;
-
-  this.shell.exec = td.func();
 });
 
 Given(/^the project language should be JavaScript$/, async function () {
   this.setAnswerFor(questionNames.PROJECT_LANGUAGE, 'JavaScript');
 
-  td.when(this.shell.exec('npm run generate:md && npm test', {silent: false})).thenCallback(0);
+  td.when(this.execa('npm run generate:md && npm test', {shell: true})).thenReturn({stdout: {pipe: () => undefined}});
   td.when(this.execa('npm', ['whoami'])).thenResolve(any.word());
   td.when(this.execa('npm', ['ls', 'husky', '--json'])).thenResolve({stdout: JSON.stringify({})});
 });
@@ -34,9 +32,9 @@ Given(/^the project language should be JavaScript$/, async function () {
 Given(/^nvm is properly configured$/, function () {
   const latestLtsVersion = semverStringFactory();
 
-  td.when(this.shell.exec('. ~/.nvm/nvm.sh && nvm ls-remote --lts', {silent: true}))
-    .thenCallback(0, [...any.listOf(semverStringFactory), latestLtsVersion, ''].join('\n'));
-  td.when(this.shell.exec('. ~/.nvm/nvm.sh && nvm install', {silent: false})).thenCallback(0);
+  td.when(this.execa('. ~/.nvm/nvm.sh && nvm ls-remote --lts', {shell: true}))
+    .thenResolve({stdout: [...any.listOf(semverStringFactory), latestLtsVersion, ''].join('\n')});
+  td.when(this.execa('. ~/.nvm/nvm.sh && nvm install', {shell: true})).thenReturn({stdout: {pipe: () => undefined}});
 });
 
 Then(/^JavaScript ignores are defined$/, async function () {

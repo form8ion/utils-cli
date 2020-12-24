@@ -27,7 +27,6 @@ Before(async function () {
   require('validate-npm-package-name'); // eslint-disable-line import/no-extraneous-dependencies
   require('color-convert'); // eslint-disable-line import/no-extraneous-dependencies
 
-  this.shell = td.replace('shelljs');
   this.execa = td.replace('execa');
   projectQuestionNames = require('@travi/project-scaffolder').questionNames;
   javascriptQuestionNames = require('@travi/javascript-scaffolder').questionNames;
