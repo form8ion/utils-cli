@@ -1,5 +1,6 @@
 import * as projectScaffolder from '@travi/project-scaffolder';
 import {questionNames as jsQuestionNames} from '@travi/javascript-scaffolder';
+import {packageManagers} from '@form8ion/javascript-core';
 import {scaffold as scaffoldGithub} from '@travi/github-scaffolder';
 import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
 import {assert} from 'chai';
@@ -34,7 +35,8 @@ suite('scaffold command', () => {
       [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
       [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
       [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
-      [jsQuestionNames.SCOPE]: 'form8ion'
+      [jsQuestionNames.SCOPE]: 'form8ion',
+      [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
     };
     const jsScaffolder = () => undefined;
     const githubPrompt = () => undefined;

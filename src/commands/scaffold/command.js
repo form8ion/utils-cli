@@ -1,4 +1,5 @@
 import {scaffold, questionNames as projectQuestionNames} from '@travi/project-scaffolder';
+import {packageManagers} from '@form8ion/javascript-core';
 import {questionNames as jsQuestionNames} from '@travi/javascript-scaffolder';
 import {scaffold as scaffoldGithub} from '@travi/github-scaffolder';
 import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
@@ -17,7 +18,8 @@ export function handler(decisions) {
     [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
     [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
     [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
-    [jsQuestionNames.SCOPE]: orgName
+    [jsQuestionNames.SCOPE]: orgName,
+    [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
   };
 
   return scaffold({
