@@ -23,10 +23,14 @@ Before(function () {
 
 Given(/^the project language should be JavaScript$/, async function () {
   this.setAnswerFor(questionNames.PROJECT_LANGUAGE, 'JavaScript');
+  const huskyVersionError = new Error();
+  huskyVersionError.stdout = JSON.stringify({});
+  huskyVersionError.command = 'npm ls husky --json';
+  huskyVersionError.exitCode = 1;
 
   td.when(this.execa('npm run generate:md && npm test', {shell: true})).thenReturn({stdout: {pipe: () => undefined}});
   td.when(this.execa('npm', ['whoami'])).thenResolve(any.word());
-  td.when(this.execa('npm', ['ls', 'husky', '--json'])).thenResolve({stdout: JSON.stringify({})});
+  td.when(this.execa('npm', ['ls', 'husky', '--json'])).thenReject(huskyVersionError);
 });
 
 Given(/^nvm is properly configured$/, function () {
