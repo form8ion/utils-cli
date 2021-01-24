@@ -93,7 +93,7 @@
     "@form8ion/scaffolder-scaffolder": "1.5.2",
     "@travi/github-scaffolder": "5.3.2",
     "@travi/javascript-scaffolder": "12.2.0",
-    "@travi/project-scaffolder": "9.0.3",
+    "@travi/project-scaffolder": "9.0.4",
     "@travi/travis-scaffolder-javascript": "4.0.1",
     "source-map-support": "0.5.19",
     "travis-token-updater": "1.6.12",
