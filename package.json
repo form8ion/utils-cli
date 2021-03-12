@@ -54,7 +54,7 @@
     "@form8ion/remark-lint-preset": "1.0.12",
     "@travi/any": "2.0.16",
     "ban-sensitive-files": "1.9.15",
-    "chai": "4.3.3",
+    "chai": "4.3.4",
     "check-engine": "1.10.0",
     "codecov": "3.8.1",
     "cucumber": "6.0.5",
