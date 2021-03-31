@@ -92,7 +92,7 @@
     "@form8ion/replace-travis-ci-with-github-actions": "1.2.5",
     "@form8ion/scaffolder-scaffolder": "1.5.2",
     "@travi/github-scaffolder": "5.3.3",
-    "@travi/javascript-scaffolder": "12.2.4",
+    "@travi/javascript-scaffolder": "12.2.5",
     "@travi/project-scaffolder": "9.0.8",
     "@travi/travis-scaffolder-javascript": "4.0.1",
     "source-map-support": "0.5.19",
