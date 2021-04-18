@@ -41,7 +41,8 @@
     "build": "npm-run-all --print-label --parallel build:*",
     "build:js": "rollup --config",
     "watch": "run-s 'build:js -- --watch'",
-    "prepack": "run-s build"
+    "prepack": "run-s build",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/node": "7.13.13",
