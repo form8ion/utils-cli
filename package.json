@@ -90,7 +90,7 @@
     "@form8ion/remark-plugin-scaffolder": "1.2.1",
     "@form8ion/remove-greenkeeper": "1.1.8",
     "@form8ion/renovate-scaffolder": "1.5.0",
-    "@form8ion/replace-travis-ci-with-github-actions": "1.2.5",
+    "@form8ion/replace-travis-ci-with-github-actions": "1.2.6",
     "@form8ion/scaffolder-scaffolder": "1.5.2",
     "@travi/github-scaffolder": "5.3.3",
     "@travi/javascript-scaffolder": "12.2.5",
