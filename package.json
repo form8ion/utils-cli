@@ -93,7 +93,7 @@
     "@form8ion/replace-travis-ci-with-github-actions": "1.2.6",
     "@form8ion/scaffolder-scaffolder": "1.5.4",
     "@travi/github-scaffolder": "6.0.0",
-    "@travi/javascript-scaffolder": "13.0.3",
+    "@travi/javascript-scaffolder": "13.1.0",
     "@travi/project-scaffolder": "10.0.0",
     "source-map-support": "0.5.19",
     "travis-token-updater": "1.6.12",
