@@ -1,6 +1,6 @@
 import {promises} from 'fs';
 import {resolve} from 'path';
-import {After, Before, setWorldConstructor, When} from 'cucumber';
+import {After, Before, setWorldConstructor, When} from '@cucumber/cucumber';
 import any from '@travi/any';
 
 import stubbedFs from 'mock-fs';

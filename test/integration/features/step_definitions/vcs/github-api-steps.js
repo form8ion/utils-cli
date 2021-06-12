@@ -1,4 +1,4 @@
-import {After, Before, Given} from 'cucumber';
+import {After, Before, Given} from '@cucumber/cucumber';
 import any from '@travi/any';
 import nock from 'nock';
 import {StatusCodes} from 'http-status-codes';

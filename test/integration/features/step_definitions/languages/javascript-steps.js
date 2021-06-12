@@ -1,7 +1,7 @@
 import {promises as fs} from 'fs';
 import {load} from 'js-yaml';
 import {fileExists} from '@form8ion/core';
-import {Before, Given, Then} from 'cucumber';
+import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
 import any from '@travi/any';
 import td from 'testdouble';

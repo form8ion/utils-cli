@@ -1,6 +1,6 @@
 import {promises} from 'fs';
 import {fileExists} from '@form8ion/core';
-import {Before, Given, Then} from 'cucumber';
+import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
 // import toml from '@iarna/toml';
 
