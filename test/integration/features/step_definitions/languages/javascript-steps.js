@@ -1,4 +1,5 @@
-import {promises} from 'fs';
+import {promises as fs} from 'fs';
+import {load} from 'js-yaml';
 import {exists} from 'mz/fs';
 import {Before, Given, Then} from 'cucumber';
 import {assert} from 'chai';
@@ -42,7 +43,7 @@ Given(/^nvm is properly configured$/, function () {
 });
 
 Then(/^JavaScript ignores are defined$/, async function () {
-  const gitIgnore = await promises.readFile(`${process.cwd()}/.gitignore`);
+  const gitIgnore = await fs.readFile(`${process.cwd()}/.gitignore`);
 
   assert.equal(gitIgnore.toString(), `/node_modules/
 /lib/
@@ -53,5 +54,8 @@ Then(/^JavaScript ignores are defined$/, async function () {
 });
 
 Then(/^the core JavaScript files are present$/, async function () {
+  const config = load(await fs.readFile(`${process.cwd()}/.eslintrc.yml`));
+
   assert.isTrue(await exists(`${process.cwd()}/package.json`));
+  assert.deepEqual(config.extends, ['@form8ion', '@form8ion/mocha']);
 });
