@@ -1,6 +1,6 @@
+import {fileExists} from '@form8ion/core';
 import {Before, Given, Then} from 'cucumber';
 import {assert} from 'chai';
-import {exists} from 'mz/fs';
 
 let questionNames;
 
@@ -13,6 +13,6 @@ Given(/^the project language should be Other$/, async function () {
 });
 
 Then(/^core ignores are defined$/, async function () {
-  assert.isTrue(await exists(`${process.cwd()}/.editorconfig`));
-  assert.isTrue(await exists(`${process.cwd()}/README.md`));
+  assert.isTrue(await fileExists(`${process.cwd()}/.editorconfig`));
+  assert.isTrue(await fileExists(`${process.cwd()}/README.md`));
 });

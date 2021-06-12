@@ -1,5 +1,5 @@
-import {exists} from 'mz/fs';
 import {promises} from 'fs';
+import {fileExists} from '@form8ion/core';
 import {Before, Given, Then} from 'cucumber';
 import {assert} from 'chai';
 // import toml from '@iarna/toml';
@@ -27,7 +27,7 @@ Then(/^the base git files should be present$/, async function () {
 });
 
 Then('the base git files should not be present', async function () {
-  assert.isFalse(await exists(`${process.cwd()}/.git`));
-  assert.isFalse(await exists(`${process.cwd()}/.gitattributes`));
-  assert.isFalse(await exists(`${process.cwd()}/.gitignore`));
+  assert.isFalse(await fileExists(`${process.cwd()}/.git`));
+  assert.isFalse(await fileExists(`${process.cwd()}/.gitattributes`));
+  assert.isFalse(await fileExists(`${process.cwd()}/.gitignore`));
 });
