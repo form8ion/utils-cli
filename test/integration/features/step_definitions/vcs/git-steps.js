@@ -2,12 +2,11 @@ import {promises} from 'fs';
 import {fileExists} from '@form8ion/core';
 import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
-// import toml from '@iarna/toml';
 
 let questionNames;
 
 Before(() => {
-  questionNames = require('@travi/project-scaffolder').questionNames;
+  questionNames = require('@form8ion/project').questionNames;
 });
 
 Given(/^the project should be versioned in git$/, async function () {

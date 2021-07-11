@@ -28,7 +28,7 @@ Before(async function () {
   require('color-convert'); // eslint-disable-line import/no-extraneous-dependencies
 
   this.execa = td.replace('execa');
-  projectQuestionNames = require('@travi/project-scaffolder').questionNames;
+  projectQuestionNames = require('@form8ion/project').questionNames;
   javascriptQuestionNames = require('@travi/javascript-scaffolder').questionNames;
   action = require('../../../../src/commands/scaffold/command').handler;
 
@@ -37,18 +37,6 @@ Before(async function () {
     [`${process.env.HOME}/.gitconfig`]: `[github]\n\tuser = ${this.githubUser}`,
     node_modules: {
       '@travi': {
-        'project-scaffolder': {
-          templates: {
-            'editorconfig.txt': await promises.readFile(resolve(
-              ...pathToNodeModules,
-              '@travi/project-scaffolder/templates/editorconfig.txt'
-            )),
-            'README.mustache': await promises.readFile(resolve(
-              ...pathToNodeModules,
-              '@travi/project-scaffolder/templates/README.mustache'
-            ))
-          }
-        },
         'javascript-scaffolder': {
           templates: {
             'rollup.config.js': await promises.readFile(resolve(
@@ -63,6 +51,18 @@ Before(async function () {
         }
       },
       '@form8ion': {
+        project: {
+          templates: {
+            'editorconfig.txt': await promises.readFile(resolve(
+              ...pathToNodeModules,
+              '@form8ion/project/templates/editorconfig.txt'
+            )),
+            'README.mustache': await promises.readFile(resolve(
+              ...pathToNodeModules,
+              '@form8ion/project/templates/README.mustache'
+            ))
+          }
+        },
         'mocha-scaffolder': {
           templates: {
             'canary-test.txt': await promises.readFile(resolve(

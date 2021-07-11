@@ -1,4 +1,4 @@
-import * as projectScaffolder from '@travi/project-scaffolder';
+import * as projectScaffolder from '@form8ion/project';
 import {questionNames as jsQuestionNames} from '@travi/javascript-scaffolder';
 import {packageManagers} from '@form8ion/javascript-core';
 import {scaffold as scaffoldGithub} from '@travi/github-scaffolder';
