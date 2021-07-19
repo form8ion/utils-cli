@@ -59,7 +59,7 @@
     "ban-sensitive-files": "1.9.16",
     "chai": "4.3.4",
     "check-engine": "1.10.0",
-    "codecov": "3.8.2",
+    "codecov": "3.8.3",
     "cz-conventional-changelog": "3.3.0",
     "gherkin-lint": "4.2.2",
     "http-status-codes": "2.1.4",
