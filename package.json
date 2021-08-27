@@ -78,7 +78,7 @@
     "rollup-plugin-json": "4.0.0",
     "rollup-plugin-node-resolve": "5.2.0",
     "sinon": "11.1.2",
-    "testdouble": "3.16.1"
+    "testdouble": "3.16.2"
   },
   "dependencies": {
     "@form8ion/cucumber-scaffolder": "1.5.0",
