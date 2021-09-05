@@ -1,12 +1,15 @@
+const packageScope = '@form8ion';
+
 export const javascriptConfigs = {
-  eslint: {scope: '@form8ion'},
-  remark: '@form8ion/remark-lint-preset',
+  eslint: {scope: packageScope},
+  remark: `${packageScope}/remark-lint-preset`,
   babelPreset: {
-    name: '@form8ion',
-    packageName: '@form8ion/babel-preset'
+    name: packageScope,
+    packageName: `${packageScope}/babel-preset`
   },
+  typescript: {scope: packageScope},
   commitlint: {
-    name: '@form8ion',
-    packageName: '@form8ion/commitlint-config'
+    name: packageScope,
+    packageName: `${packageScope}/commitlint-config`
   }
 };

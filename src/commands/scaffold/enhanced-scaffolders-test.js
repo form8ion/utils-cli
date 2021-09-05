@@ -26,14 +26,16 @@ suite('enhanced scaffolders', () => {
 
   test('that the custom properties are passed along with the provided options to the js scaffolder', async () => {
     const options = any.simpleObject();
+    const packageScope = '@form8ion';
     javascriptScaffolder.scaffold
       .withArgs({
         ...options,
         configs: {
-          eslint: {scope: '@form8ion'},
-          remark: '@form8ion/remark-lint-preset',
-          babelPreset: {name: '@form8ion', packageName: '@form8ion/babel-preset'},
-          commitlint: {name: '@form8ion', packageName: '@form8ion/commitlint-config'}
+          eslint: {scope: packageScope},
+          remark: `${packageScope}/remark-lint-preset`,
+          babelPreset: {name: packageScope, packageName: `${packageScope}/babel-preset`},
+          typescript: {scope: packageScope},
+          commitlint: {name: packageScope, packageName: `${packageScope}/commitlint-config`}
         },
         overrides: {npmAccount: 'form8ion'},
         ciServices: {

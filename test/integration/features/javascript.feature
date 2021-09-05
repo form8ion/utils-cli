@@ -1,5 +1,6 @@
 Feature: JavaScript Project
 
+  @wip
   Scenario: simple
     Given the project should be versioned in git
     And the GitHub token is valid

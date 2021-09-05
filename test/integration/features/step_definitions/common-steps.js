@@ -2,17 +2,15 @@ import {promises} from 'fs';
 import {resolve} from 'path';
 import {After, Before, setWorldConstructor, When} from '@cucumber/cucumber';
 import any from '@travi/any';
+import importFresh from 'import-fresh';
+import clearModule from 'clear-module';
 
 import stubbedFs from 'mock-fs';
 import td from 'testdouble';
 import {World} from '../support/world';
 import {githubToken} from './vcs/github-api-steps';
 
-let action,
-  dialects,
-  javascriptQuestionNames,
-  projectQuestionNames;
-
+let action, javascriptQuestionNames, projectQuestionNames;
 const pathToNodeModules = [__dirname, '../../../../', 'node_modules/'];
 
 export const projectNameAnswer = 'project-name';
@@ -29,10 +27,11 @@ Before(async function () {
   require('color-convert'); // eslint-disable-line import/no-extraneous-dependencies
 
   this.execa = td.replace('execa');
-  ({questionNames: projectQuestionNames} = require('@form8ion/project'));
-  ({questionNames: javascriptQuestionNames} = require('@travi/javascript-scaffolder'));
-  ({dialects} = require('@form8ion/javascript-core'));
-  action = require('../../../../src/commands/scaffold/command').handler;
+  this.nodegit = td.replace('nodegit');
+
+  ({questionNames: projectQuestionNames} = importFresh('@form8ion/project'));
+  ({questionNames: javascriptQuestionNames} = importFresh('@travi/javascript-scaffolder'));
+  action = importFresh('../../../../src/commands/scaffold/command').handler;
 
   stubbedFs({
     [`${process.env.HOME}/.netrc`]: `machine github.com\n  login ${githubToken}`,
@@ -85,6 +84,16 @@ Before(async function () {
 After(function () {
   stubbedFs.restore();
   td.reset();
+
+  clearModule('@travi/javascript-scaffolder');
+  clearModule('@form8ion/lift-javascript');
+  clearModule('@form8ion/javascript-core');
+  clearModule('@form8ion/replace-travis-ci-with-github-action');
+  clearModule('travis-token-updater');
+  clearModule('@form8ion/husky');
+  clearModule('@form8ion/project');
+  clearModule('execa');
+  clearModule('../../../../src/commands/scaffold/command');
 });
 
 When(/^the project is scaffolded$/, async function () {
@@ -115,7 +124,7 @@ When(/^the project is scaffolded$/, async function () {
       [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: 'Other',
       [javascriptQuestionNames.SHOULD_BE_SCOPED]: shouldBeScoped,
       [javascriptQuestionNames.SCOPE]: scope,
-      [javascriptQuestionNames.DIALECT]: dialects.BABEL
+      [javascriptQuestionNames.DIALECT]: this.dialect
     }
   });
 });
