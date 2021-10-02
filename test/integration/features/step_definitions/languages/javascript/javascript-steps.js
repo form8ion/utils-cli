@@ -74,7 +74,10 @@ Then('the package will have repository details defined', async function () {
 
 Then('the project will have linting configured', async function () {
   assert.equal(load(await fs.readFile(`${process.cwd()}/.eslintrc.yml`, 'utf-8')).extends, '@form8ion');
-  assert.include(await fs.readFile(`${process.cwd()}/.remarkrc.js`, 'utf-8'), '@form8ion/remark-preset');
+  assert.include(
+    JSON.parse(await fs.readFile(`${process.cwd()}/.remarkrc.json`, 'utf-8')).plugins,
+    '@form8ion/remark-lint-preset'
+  );
 });
 
 Then('the package will have linting configured', async function () {
@@ -85,7 +88,10 @@ Then('the package will have linting configured', async function () {
   if (dialects.TYPESCRIPT === this.dialect) {
     assert.include(extendedEslintConfigs, '@form8ion/typescript');
   }
-  assert.include(await fs.readFile(`${process.cwd()}/.remarkrc.js`, 'utf-8'), '@form8ion/remark-lint-preset');
+  assert.include(
+    JSON.parse(await fs.readFile(`${process.cwd()}/.remarkrc.json`, 'utf-8')).plugins,
+    '@form8ion/remark-lint-preset'
+  );
 });
 
 Then('npm is used for the package manager', async function () {
