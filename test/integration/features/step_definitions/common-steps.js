@@ -40,10 +40,6 @@ Before(async function () {
       '@travi': {
         'javascript-scaffolder': {
           templates: {
-            'rollup.config.js': await promises.readFile(resolve(
-              ...pathToNodeModules,
-              '@travi/javascript-scaffolder/templates/rollup.config.js'
-            )),
             'example.mustache': await promises.readFile(resolve(
               ...pathToNodeModules,
               '@travi/javascript-scaffolder/templates/example.mustache'
@@ -73,6 +69,14 @@ Before(async function () {
             'mocha-setup.txt': await promises.readFile(resolve(
               ...pathToNodeModules,
               '@form8ion/mocha-scaffolder/templates/mocha-setup.txt'
+            ))
+          }
+        },
+        rollup: {
+          templates: {
+            'rollup.config.js': await promises.readFile(resolve(
+              ...pathToNodeModules,
+              '@form8ion/rollup/templates/rollup.config.js'
             ))
           }
         }
