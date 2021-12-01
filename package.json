@@ -78,7 +78,7 @@
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-executable": "1.6.3",
     "rollup-plugin-json": "4.0.0",
-    "rollup-plugin-node-resolve": "5.2.0",
+    "@rollup/plugin-node-resolve": "6.0.0",
     "sinon": "12.0.1",
     "testdouble": "3.16.3"
   },
