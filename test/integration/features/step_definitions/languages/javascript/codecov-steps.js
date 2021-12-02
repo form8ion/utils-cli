@@ -3,6 +3,7 @@ import stubbedFs from 'mock-fs';
 import importFresh from 'import-fresh';
 
 import {stubbedNodeModules} from '../../common-steps';
+import {assertGroupContainsBadge} from '../../documentation-steps';
 
 let lift, liftQuestionNames;
 
@@ -18,13 +19,28 @@ When('codecov is configured for an existing project', async function () {
 
 <!--status-badges start -->
 <!--status-badges end -->
+
+<!--consumer-badges start -->
+<!--consumer-badges end -->
+
+<!--contribution-badges start -->
+<!--contribution-badges end -->
 `
   });
 
-  await lift({decisions: {[liftQuestionNames.SCAFFOLDER]: 'General Maintenance'}});
+  await lift({decisions: {[liftQuestionNames.SCAFFOLDER]: 'Codecov'}});
 });
 
 Then('the coverage badge is added to the readme', async function () {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+  const {repoName, repoOwner} = this;
+
+  await assertGroupContainsBadge(
+    {
+      image: `https://img.shields.io/codecov/c/github/${repoOwner}/${repoName}.svg`,
+      link: `https://codecov.io/github/${repoOwner}/${repoName}`,
+      name: 'coverage'
+    },
+    'status',
+    process.cwd()
+  );
 });

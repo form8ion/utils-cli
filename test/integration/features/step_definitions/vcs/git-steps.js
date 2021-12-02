@@ -23,6 +23,20 @@ Given(/^the project should not be versioned in git$/, async function () {
   this.setAnswerFor(questionNames.GIT_REPO, false);
 });
 
+Given('the repository is initialized', async function () {
+  this.repoName = any.word();
+  this.repoOwner = any.word();
+  this.repoExists = true;
+  const nodegitRemote = {
+    ...any.simpleObject(),
+    url: () => `git@github.com:${this.repoOwner}/${this.repoName}.git`
+  };
+
+  td.when(this.nodegit.Repository.open(process.cwd())).thenResolve(nodegitRepository);
+  td.when(this.nodegit.Remote.list(nodegitRepository)).thenResolve(['origin']);
+  td.when(this.nodegit.Remote.lookup(nodegitRepository, 'origin')).thenResolve(nodegitRemote);
+});
+
 Then(/^the base git files should be present$/, async function () {
   const gitAttributes = await promises.readFile(`${process.cwd()}/.gitattributes`);
 
