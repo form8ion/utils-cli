@@ -1,17 +1,19 @@
 import {promises} from 'fs';
 import {resolve} from 'path';
+
 import {After, Before, setWorldConstructor, When} from '@cucumber/cucumber';
 import any from '@travi/any';
 import importFresh from 'import-fresh';
 import clearModule from 'clear-module';
-
 import stubbedFs from 'mock-fs';
 import td from 'testdouble';
+
 import {World} from '../support/world';
 import {githubToken} from './vcs/github-api-steps';
 
 let action, javascriptQuestionNames, projectQuestionNames;
 const pathToNodeModules = [__dirname, '../../../../', 'node_modules/'];
+export const stubbedNodeModules = stubbedFs.load(resolve(__dirname, '..', '..', '..', '..', 'node_modules'));
 
 export const projectNameAnswer = 'project-name';
 export const projectDescriptionAnswer = 'some project description';
@@ -32,6 +34,29 @@ Before(async function () {
   ({questionNames: projectQuestionNames} = importFresh('@form8ion/project'));
   ({questionNames: javascriptQuestionNames} = importFresh('@travi/javascript-scaffolder'));
   action = importFresh('../../../../src/commands/scaffold/command').handler;
+});
+
+After(function () {
+  stubbedFs.restore();
+  td.reset();
+
+  clearModule('@travi/javascript-scaffolder');
+  clearModule('@form8ion/lift-javascript');
+  clearModule('@form8ion/javascript-core');
+  clearModule('@form8ion/replace-travis-ci-with-github-action');
+  clearModule('travis-token-updater');
+  clearModule('@form8ion/husky');
+  clearModule('@form8ion/project');
+  clearModule('execa');
+  clearModule('../../../../src/commands/scaffold/command');
+});
+
+When(/^the project is scaffolded$/, async function () {
+  const visibility = any.fromList(['Public', 'Private']);
+  const repoShouldBeCreated = this.getAnswerFor(projectQuestionNames.GIT_REPO);
+  const projectType = this.getAnswerFor(projectQuestionNames.PROJECT_LANGUAGE);
+  const shouldBeScoped = any.boolean();
+  const scope = shouldBeScoped || 'Private' === visibility ? any.word() : undefined;
 
   stubbedFs({
     [`${process.env.HOME}/.netrc`]: `machine github.com\n  login ${githubToken}`,
@@ -83,29 +108,6 @@ Before(async function () {
       }
     }
   });
-});
-
-After(function () {
-  stubbedFs.restore();
-  td.reset();
-
-  clearModule('@travi/javascript-scaffolder');
-  clearModule('@form8ion/lift-javascript');
-  clearModule('@form8ion/javascript-core');
-  clearModule('@form8ion/replace-travis-ci-with-github-action');
-  clearModule('travis-token-updater');
-  clearModule('@form8ion/husky');
-  clearModule('@form8ion/project');
-  clearModule('execa');
-  clearModule('../../../../src/commands/scaffold/command');
-});
-
-When(/^the project is scaffolded$/, async function () {
-  const visibility = any.fromList(['Public', 'Private']);
-  const repoShouldBeCreated = this.getAnswerFor(projectQuestionNames.GIT_REPO);
-  const projectType = this.getAnswerFor(projectQuestionNames.PROJECT_LANGUAGE);
-  const shouldBeScoped = any.boolean();
-  const scope = shouldBeScoped || 'Private' === visibility ? any.word() : undefined;
 
   await action({
     [projectQuestionNames.PROJECT_NAME]: projectNameAnswer,

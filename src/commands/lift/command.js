@@ -11,8 +11,9 @@ import {lift as liftGithubActionsCI, test as githubActionsCiApplicabilityTest} f
 import {replace as replaceTravisCiWithGithubActions} from '@form8ion/replace-travis-ci-with-github-actions';
 import {javascript as liftJavascript} from './enhanced-lifters';
 
-export function handler() {
+export function handler({decisions}) {
   return lift({
+    decisions,
     scaffolders: {
       Renovate: scaffoldRenovate,
       'Remove Greenkeeper': removeGreenkeeper,

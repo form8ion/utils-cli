@@ -28,8 +28,10 @@ suite('lift command', () => {
 
   test('that the lift command is defined', async () => {
     const liftingResults = any.simpleObject();
+    const decisions = any.simpleObject();
     lifter.lift
       .withArgs({
+        decisions,
         scaffolders: {
           Renovate: scaffoldRenovate,
           'Remove Greenkeeper': removeGreenkeeper,
@@ -44,7 +46,7 @@ suite('lift command', () => {
       })
       .resolves(liftingResults);
 
-    assert.equal(await handler(), liftingResults);
+    assert.equal(await handler({decisions}), liftingResults);
     assert.equal(command, 'lift');
     assert.equal(describe, 'Lift an existing project with additional functionality');
   });
