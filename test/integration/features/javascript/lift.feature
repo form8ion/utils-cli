@@ -1,6 +1,5 @@
 Feature: Lift
 
-  @wip
   Scenario: project without codecov configured
     Given the repository is initialized
     When codecov is configured for an existing project

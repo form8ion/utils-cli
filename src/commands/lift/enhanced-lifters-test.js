@@ -1,8 +1,11 @@
 import * as jsLifter from '@form8ion/lift-javascript';
+import * as codecovPlugin from '@form8ion/codecov';
+
 import sinon from 'sinon';
 import any from '@travi/any';
 import {assert} from 'chai';
-import {javascript} from './enhanced-lifters';
+
+import {getEnhancedCodecovScaffolder, javascript} from './enhanced-lifters';
 
 suite('enhanced lifters', () => {
   let sandbox;
@@ -11,6 +14,7 @@ suite('enhanced lifters', () => {
     sandbox = sinon.createSandbox();
 
     sandbox.stub(jsLifter, 'lift');
+    sandbox.stub(codecovPlugin, 'scaffold');
   });
 
   teardown(() => sandbox.restore());
@@ -39,5 +43,14 @@ suite('enhanced lifters', () => {
       .resolves(results);
 
     assert.equal(await javascript(options), results);
+  });
+
+  test('that visibility is set to `Public` for Codecov since all projects in this org are public', async () => {
+    const results = any.simpleObject();
+    const options = any.simpleObject();
+    const scaffolder = getEnhancedCodecovScaffolder();
+    codecovPlugin.scaffold.withArgs({...options, visibility: 'Public'}).resolves(results);
+
+    assert.equal(await scaffolder(options), results);
   });
 });

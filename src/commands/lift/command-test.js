@@ -5,15 +5,16 @@ import {
   scaffold as scaffoldRenovate
 } from '@form8ion/renovate-scaffolder';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
-import {scaffold as codecovScaffolder} from '@form8ion/codecov';
 import {test as jsApplicabilityTest} from '@form8ion/lift-javascript';
 import {removeGreenkeeper} from '@form8ion/remove-greenkeeper';
 import {lift as liftGithubActionsCI, test as githubActionsCiApplicabilityTest} from '@form8ion/github-actions-node-ci';
 import {replace as replaceTravisCiWithGithubActions} from '@form8ion/replace-travis-ci-with-github-actions';
+
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
-import {javascript as liftJavascript} from './enhanced-lifters';
+
+import * as enhancedLifters from './enhanced-lifters';
 import {command, describe, handler} from '.';
 
 suite('lift command', () => {
@@ -23,6 +24,7 @@ suite('lift command', () => {
     sandbox = sinon.createSandbox();
 
     sandbox.stub(lifter, 'lift');
+    sandbox.stub(enhancedLifters, 'getEnhancedCodecovScaffolder');
   });
 
   teardown(() => sandbox.restore());
@@ -30,6 +32,8 @@ suite('lift command', () => {
   test('that the lift command is defined', async () => {
     const liftingResults = any.simpleObject();
     const decisions = any.simpleObject();
+    const codecovScaffolder = () => undefined;
+    enhancedLifters.getEnhancedCodecovScaffolder.returns(codecovScaffolder);
     lifter.lift
       .withArgs({
         decisions,
@@ -41,7 +45,7 @@ suite('lift command', () => {
           'Replace Travis CI with GitHub Actions': replaceTravisCiWithGithubActions
         },
         enhancers: {
-          JavaScript: {test: jsApplicabilityTest, lift: liftJavascript},
+          JavaScript: {test: jsApplicabilityTest, lift: enhancedLifters.javascript},
           Renovate: {test: renovatePredicate, lift: liftRenovate},
           'GitHub Actions CI': {test: githubActionsCiApplicabilityTest, lift: liftGithubActionsCI}
         }
