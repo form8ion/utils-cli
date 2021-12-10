@@ -32,7 +32,7 @@ Before(async function () {
   this.nodegit = td.replace('nodegit');
 
   ({questionNames: projectQuestionNames} = importFresh('@form8ion/project'));
-  ({questionNames: javascriptQuestionNames} = importFresh('@travi/javascript-scaffolder'));
+  ({questionNames: javascriptQuestionNames} = importFresh('@form8ion/javascript'));
   action = importFresh('../../../../src/commands/scaffold/command').handler;
 });
 
@@ -40,7 +40,7 @@ After(function () {
   stubbedFs.restore();
   td.reset();
 
-  clearModule('@travi/javascript-scaffolder');
+  clearModule('@form8ion/javascript');
   clearModule('@form8ion/lift-javascript');
   clearModule('@form8ion/javascript-core');
   clearModule('@form8ion/replace-travis-ci-with-github-action');
@@ -62,16 +62,6 @@ When(/^the project is scaffolded$/, async function () {
     [`${process.env.HOME}/.netrc`]: `machine github.com\n  login ${githubToken}`,
     [`${process.env.HOME}/.gitconfig`]: `[github]\n\tuser = ${this.githubUser}`,
     node_modules: {
-      '@travi': {
-        'javascript-scaffolder': {
-          templates: {
-            'example.mustache': await promises.readFile(resolve(
-              ...pathToNodeModules,
-              '@travi/javascript-scaffolder/templates/example.mustache'
-            ))
-          }
-        }
-      },
       '@form8ion': {
         project: {
           templates: {
@@ -82,6 +72,14 @@ When(/^the project is scaffolded$/, async function () {
             'README.mustache': await promises.readFile(resolve(
               ...pathToNodeModules,
               '@form8ion/project/templates/README.mustache'
+            ))
+          }
+        },
+        javascript: {
+          templates: {
+            'example.mustache': await promises.readFile(resolve(
+              ...pathToNodeModules,
+              '@form8ion/javascript/templates/example.mustache'
             ))
           }
         },
