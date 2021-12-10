@@ -32,15 +32,17 @@ When('codecov is configured for an existing project', async function () {
 });
 
 Then('the coverage badge is added to the readme', async function () {
-  const {repoName, repoOwner} = this;
+  const {repoName, repoOwner, visibility} = this;
 
-  await assertGroupContainsBadge(
-    {
-      image: `https://img.shields.io/codecov/c/github/${repoOwner}/${repoName}?logo=codecov`,
-      link: `https://codecov.io/github/${repoOwner}/${repoName}`,
-      name: 'coverage'
-    },
-    'status',
-    process.cwd()
-  );
+  if ('Public' === visibility) {
+    await assertGroupContainsBadge(
+      {
+        image: `https://img.shields.io/codecov/c/github/${repoOwner}/${repoName}?logo=codecov`,
+        link: `https://codecov.io/github/${repoOwner}/${repoName}`,
+        name: 'coverage'
+      },
+      'status',
+      process.cwd()
+    );
+  }
 });

@@ -12,6 +12,7 @@ Feature: JavaScript Package
     And transpilation will be configured
     And mocha has been configured for unit tests
     And npm is used for the package manager
+    And the coverage badge is added to the readme
 
   Scenario: TypeScript package
     Given the project should be versioned in git
@@ -22,3 +23,4 @@ Feature: JavaScript Package
     When the project is scaffolded
     Then the package will have linting configured
     And the package will have typescript configured
+    And the coverage badge is added to the readme

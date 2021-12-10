@@ -22,6 +22,8 @@ setWorldConstructor(World);
 
 Before(async function () {
   this.githubUser = any.word();
+  this.repoName = projectNameAnswer;
+  this.repoOwner = 'form8ion';
 
   // work around for overly aggressive mock-fs, see:
   // https://github.com/tschaub/mock-fs/issues/213#issuecomment-347002795
@@ -52,11 +54,11 @@ After(function () {
 });
 
 When(/^the project is scaffolded$/, async function () {
-  const visibility = any.fromList(['Public', 'Private']);
+  this.visibility = any.fromList(['Public', 'Private']);
   const repoShouldBeCreated = this.getAnswerFor(projectQuestionNames.GIT_REPO);
   const projectType = this.getAnswerFor(projectQuestionNames.PROJECT_LANGUAGE);
   const shouldBeScoped = any.boolean();
-  const scope = shouldBeScoped || 'Private' === visibility ? any.word() : undefined;
+  const scope = shouldBeScoped || 'Private' === this.visibility ? any.word() : undefined;
 
   stubbedFs({
     [`${process.env.HOME}/.netrc`]: `machine github.com\n  login ${githubToken}`,
@@ -110,12 +112,12 @@ When(/^the project is scaffolded$/, async function () {
   await action({
     [projectQuestionNames.PROJECT_NAME]: projectNameAnswer,
     [projectQuestionNames.DESCRIPTION]: projectDescriptionAnswer,
-    [projectQuestionNames.VISIBILITY]: visibility,
-    ...'Public' === visibility && {
+    [projectQuestionNames.VISIBILITY]: this.visibility,
+    ...'Public' === this.visibility && {
       [projectQuestionNames.LICENSE]: 'MIT',
       [projectQuestionNames.COPYRIGHT_YEAR]: 2000
     },
-    ...'Private' === visibility && {[projectQuestionNames.UNLICENSED]: true},
+    ...'Private' === this.visibility && {[projectQuestionNames.UNLICENSED]: true},
     [projectQuestionNames.GIT_REPO]: repoShouldBeCreated,
     [projectQuestionNames.PROJECT_LANGUAGE]: projectType,
     ...'JavaScript' === projectType && {
