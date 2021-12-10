@@ -36,7 +36,7 @@ Then('the coverage badge is added to the readme', async function () {
 
   await assertGroupContainsBadge(
     {
-      image: `https://img.shields.io/codecov/c/github/${repoOwner}/${repoName}.svg`,
+      image: `https://img.shields.io/codecov/c/github/${repoOwner}/${repoName}?logo=codecov`,
       link: `https://codecov.io/github/${repoOwner}/${repoName}`,
       name: 'coverage'
     },
