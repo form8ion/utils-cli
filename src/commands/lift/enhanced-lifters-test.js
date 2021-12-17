@@ -1,4 +1,4 @@
-import * as jsLifter from '@form8ion/lift-javascript';
+import * as jsLifter from '@form8ion/javascript';
 import * as codecovPlugin from '@form8ion/codecov';
 
 import sinon from 'sinon';

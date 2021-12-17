@@ -5,7 +5,7 @@ import {
   scaffold as scaffoldRenovate
 } from '@form8ion/renovate-scaffolder';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
-import {test as jsApplicabilityTest} from '@form8ion/lift-javascript';
+import {test as jsApplicabilityTest} from '@form8ion/javascript';
 import {removeGreenkeeper} from '@form8ion/remove-greenkeeper';
 import {lift as liftGithubActionsCI, test as githubActionsCiApplicabilityTest} from '@form8ion/github-actions-node-ci';
 import {replace as replaceTravisCiWithGithubActions} from '@form8ion/replace-travis-ci-with-github-actions';
