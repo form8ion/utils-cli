@@ -24,7 +24,7 @@
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
     "test:unit": "cross-env NODE_ENV=test c8 run-s test:unit:base",
     "test:unit:base": "DEBUG=any mocha 'src/**/*-test.js'",
-    "coverage:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "coverage:report": "c8 report --reporter=text-lcov > coverage.lcov && codecov",
     "test:integration": "run-s 'test:integration:base -- --profile noWip'",
     "test:integration:base": "NODE_OPTIONS=--enable-source-maps DEBUG=any cucumber-js test/integration --profile base",
     "test:integration:debug": "DEBUG=nock.* run-s test:integration",
