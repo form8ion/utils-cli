@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - alpha
-  workflow_dispatch:
+  repository_dispatch:
     types:
       - release
 
