@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - alpha
+  workflow_dispatch:
+    types:
+      - release
 
 env:
   FORCE_COLOR: 1
