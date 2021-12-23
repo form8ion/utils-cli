@@ -13,7 +13,7 @@ env:
   FORCE_COLOR: 1
   NPM_CONFIG_COLOR: always
 jobs:
-  build:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
