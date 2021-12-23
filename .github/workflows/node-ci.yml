@@ -36,6 +36,5 @@ jobs:
           owner: form8ion
           repo: utils-cli
           event_type: release,
-          ref: ${{ github.ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
