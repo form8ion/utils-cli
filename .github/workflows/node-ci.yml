@@ -32,9 +32,10 @@ jobs:
     steps:
       - uses: octokit/request-action@v2.x
         with:
-          route: POST /repos/{owner}/{repo}/dispatches
+          route: POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches
           owner: form8ion
           repo: utils-cli
-          event_type: release
+          ref: ${{ github.ref }}
+          workflow_id: release.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
