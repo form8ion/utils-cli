@@ -4,9 +4,7 @@ on:
   push:
     branches:
       - alpha
-  repository_dispatch:
-    types:
-      - release
+  repository_dispatch
 
 env:
   FORCE_COLOR: 1
