@@ -35,6 +35,6 @@ jobs:
           route: POST /repos/{owner}/{repo}/dispatches
           owner: form8ion
           repo: utils-cli
-          event_type: release,
+          event_type: release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
