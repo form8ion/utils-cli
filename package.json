@@ -87,7 +87,7 @@
     "unist-util-find": "1.0.2"
   },
   "dependencies": {
-    "@form8ion/codecov": "2.0.0",
+    "@form8ion/codecov": "2.0.1",
     "@form8ion/cucumber-scaffolder": "1.5.0",
     "@form8ion/github-actions-node-ci": "2.0.1",
     "@form8ion/hapi-scaffolder": "4.0.0",
