@@ -100,7 +100,7 @@
     "@form8ion/remove-greenkeeper": "1.1.8",
     "@form8ion/renovate-scaffolder": "1.7.0",
     "@form8ion/replace-travis-ci-with-github-actions": "3.0.2",
-    "@form8ion/scaffolder-scaffolder": "2.0.0",
+    "@form8ion/scaffolder-scaffolder": "2.1.0",
     "@travi/github-scaffolder": "7.0.0",
     "source-map-support": "0.5.21",
     "travis-token-updater": "1.6.14",
