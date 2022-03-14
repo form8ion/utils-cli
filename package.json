@@ -48,7 +48,7 @@
     "@babel/node": "7.16.8",
     "@babel/register": "7.17.7",
     "@cucumber/cucumber": "7.3.2",
-    "@form8ion/babel-preset": "1.6.83",
+    "@form8ion/babel-preset": "1.6.84",
     "@form8ion/commitlint-config": "1.0.29",
     "@form8ion/core": "1.5.0",
     "@form8ion/eslint-config": "2.0.3",
