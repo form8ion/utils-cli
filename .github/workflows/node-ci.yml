@@ -4,7 +4,7 @@ name: Node.js CI
     branches:
       - master
       - beta
-      - 'renovate/**'
+      - renovate/**
   pull_request:
     types:
       - opened
@@ -19,20 +19,22 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: .nvmrc
           cache: npm
       - run: npm clean-install
       - run: npm test
-      - name: Upload coverage data to Codecov
-        run: 'npm run coverage:report'
+      - uses: codecov/codecov-action@v3
   trigger-release:
-    needs: verify
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
+    needs:
+      - verify
     steps:
       - uses: octokit/request-action@v2.x
         with:
-          route: POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches
+          route: >-
+            POST
+            /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches
           owner: form8ion
           repo: utils-cli
           ref: ${{ github.ref }}
