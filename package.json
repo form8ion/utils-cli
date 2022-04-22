@@ -91,7 +91,7 @@
     "@form8ion/hapi-scaffolder": "4.0.0",
     "@form8ion/javascript": "4.0.0",
     "@form8ion/javascript-core": "4.2.1",
-    "@form8ion/lift": "2.5.0",
+    "@form8ion/lift": "3.0.0",
     "@form8ion/mocha-scaffolder": "1.2.0",
     "@form8ion/project": "11.1.1",
     "@form8ion/remark-plugin-scaffolder": "2.0.0",
