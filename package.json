@@ -99,7 +99,7 @@
     "@form8ion/renovate-scaffolder": "1.7.0",
     "@form8ion/replace-travis-ci-with-github-actions": "4.0.0",
     "@form8ion/scaffolder-scaffolder": "2.1.0",
-    "@travi/github-scaffolder": "8.0.0",
+    "@travi/github-scaffolder": "8.0.1",
     "source-map-support": "0.5.21",
     "travis-token-updater": "1.6.14",
     "update-notifier": "5.1.0",
