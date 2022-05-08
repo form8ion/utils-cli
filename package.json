@@ -64,7 +64,7 @@
     "cz-conventional-changelog": "3.3.0",
     "gherkin-lint": "4.2.2",
     "http-status-codes": "2.2.0",
-    "husky": "7.0.4",
+    "husky": "8.0.0",
     "import-fresh": "3.3.0",
     "js-yaml": "4.1.0",
     "ls-engines": "0.6.5",
