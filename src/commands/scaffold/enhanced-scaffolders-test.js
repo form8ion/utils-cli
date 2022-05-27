@@ -4,10 +4,15 @@ import {scaffold as scaffoldGithubActions} from '@form8ion/github-actions-node-c
 import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
 import {scaffold as scaffoldMocha} from '@form8ion/mocha-scaffolder';
+import {scaffold as scaffoldVitest} from '@form8ion/vitest';
 import {scaffold as scaffoldScaffolder} from '@form8ion/scaffolder-scaffolder';
+import {scaffold as scaffoldRollup} from '@form8ion/rollup';
+import {scaffold as scaffoldVite} from '@form8ion/vite';
+
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
+
 import {javascriptScaffolderFactory, githubPromptFactory} from './enhanced-scaffolders';
 
 suite('enhanced scaffolders', () => {
@@ -46,7 +51,14 @@ suite('enhanced scaffolders', () => {
           'Scaffolder Plugin': {scaffolder: scaffoldScaffolder},
           'Remark Plugin': {scaffolder: scaffoldRemarkPlugin}
         },
-        unitTestFrameworks: {mocha: {scaffolder: scaffoldMocha}},
+        unitTestFrameworks: {
+          mocha: {scaffolder: scaffoldMocha},
+          vitest: {scaffolder: scaffoldVitest}
+        },
+        packageBundlers: {
+          Rollup: {scaffolder: scaffoldRollup},
+          Vite: {scaffolder: scaffoldVite}
+        },
         decisions
       })
       .resolves(output);

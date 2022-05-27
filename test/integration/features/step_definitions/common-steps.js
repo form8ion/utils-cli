@@ -55,8 +55,10 @@ After(function () {
 
 When(/^the project is scaffolded$/, async function () {
   this.visibility = any.fromList(['Public', 'Private']);
+  const {projectTypes} = require('@form8ion/javascript-core');
   const repoShouldBeCreated = this.getAnswerFor(projectQuestionNames.GIT_REPO);
-  const projectType = this.getAnswerFor(projectQuestionNames.PROJECT_LANGUAGE);
+  const projectLanguage = this.getAnswerFor(projectQuestionNames.PROJECT_LANGUAGE);
+  const jsProjectType = this.getAnswerFor(javascriptQuestionNames.PROJECT_TYPE) || projectTypes.PACKAGE;
   const shouldBeScoped = any.boolean();
   const scope = shouldBeScoped || 'Private' === this.visibility ? any.word() : undefined;
 
@@ -119,15 +121,18 @@ When(/^the project is scaffolded$/, async function () {
     },
     ...'Private' === this.visibility && {[projectQuestionNames.UNLICENSED]: true},
     [projectQuestionNames.GIT_REPO]: repoShouldBeCreated,
-    [projectQuestionNames.PROJECT_LANGUAGE]: projectType,
-    ...'JavaScript' === projectType && {
+    [projectQuestionNames.PROJECT_LANGUAGE]: projectLanguage,
+    ...'JavaScript' === projectLanguage && {
       [javascriptQuestionNames.NODE_VERSION_CATEGORY]: 'LTS',
-      [javascriptQuestionNames.PROJECT_TYPE]: 'Package',
+      [javascriptQuestionNames.PROJECT_TYPE]: jsProjectType,
       [javascriptQuestionNames.UNIT_TESTS]: true,
       [javascriptQuestionNames.INTEGRATION_TESTS]: true,
       [javascriptQuestionNames.CI_SERVICE]: 'Travis',
       [javascriptQuestionNames.CONFIGURE_LINTING]: true,
       [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: 'Other',
+      ...projectTypes.PACKAGE === jsProjectType && {
+        [javascriptQuestionNames.PACKAGE_BUNDLER]: this.getAnswerFor(javascriptQuestionNames.PACKAGE_BUNDLER)
+      },
       [javascriptQuestionNames.SHOULD_BE_SCOPED]: shouldBeScoped,
       [javascriptQuestionNames.SCOPE]: scope,
       [javascriptQuestionNames.DIALECT]: this.dialect

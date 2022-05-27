@@ -5,6 +5,10 @@ import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
 import {scaffold as scaffoldMocha} from '@form8ion/mocha-scaffolder';
 import {scaffold as scaffoldScaffolder} from '@form8ion/scaffolder-scaffolder';
+import {scaffold as scaffoldVitest} from '@form8ion/vitest';
+import {scaffold as scaffoldRollup} from '@form8ion/rollup';
+import {scaffold as scaffoldVite} from '@form8ion/vite';
+
 import {javascriptConfigs} from '../common';
 
 export function javascriptScaffolderFactory(decisions) {
@@ -20,7 +24,14 @@ export function javascriptScaffolderFactory(decisions) {
       'Scaffolder Plugin': {scaffolder: scaffoldScaffolder},
       'Remark Plugin': {scaffolder: scaffoldRemarkPlugin}
     },
-    unitTestFrameworks: {mocha: {scaffolder: scaffoldMocha}},
+    unitTestFrameworks: {
+      mocha: {scaffolder: scaffoldMocha},
+      vitest: {scaffolder: scaffoldVitest}
+    },
+    packageBundlers: {
+      Rollup: {scaffolder: scaffoldRollup},
+      Vite: {scaffolder: scaffoldVite}
+    },
     decisions
   });
 }
