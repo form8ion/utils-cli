@@ -14,5 +14,5 @@ Then('the package will have typescript configured', async function () {
 });
 
 Then('transpilation will be configured', async function () {
-  assert.isTrue(await fileExists(`${process.cwd()}/.babelrc`));
+  assert.isTrue(await fileExists(`${process.cwd()}/.babelrc.json`));
 });
