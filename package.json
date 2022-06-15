@@ -44,7 +44,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@babel/node": "7.17.10",
+    "@babel/node": "7.18.5",
     "@babel/register": "7.17.7",
     "@cucumber/cucumber": "8.2.2",
     "@form8ion/babel-preset": "1.6.91",
