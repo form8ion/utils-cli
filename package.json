@@ -99,7 +99,7 @@
     "@form8ion/renovate-scaffolder": "1.7.0",
     "@form8ion/replace-travis-ci-with-github-actions": "5.0.3",
     "@form8ion/rollup": "1.1.2",
-    "@form8ion/scaffolder-scaffolder": "3.0.1",
+    "@form8ion/scaffolder-scaffolder": "3.0.2",
     "@form8ion/vite": "1.0.2",
     "@form8ion/vitest": "1.1.0",
     "@travi/github-scaffolder": "8.0.1",
