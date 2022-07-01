@@ -95,7 +95,7 @@
     "@form8ion/mocha-scaffolder": "2.0.2",
     "@form8ion/project": "13.2.1",
     "@form8ion/remark-plugin-scaffolder": "2.0.2",
-    "@form8ion/remove-greenkeeper": "1.1.9",
+    "@form8ion/remove-greenkeeper": "1.1.10",
     "@form8ion/renovate-scaffolder": "1.7.0",
     "@form8ion/replace-travis-ci-with-github-actions": "5.0.3",
     "@form8ion/rollup": "1.1.2",
