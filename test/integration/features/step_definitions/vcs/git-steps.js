@@ -32,7 +32,9 @@ Given('the repository is initialized', async function () {
     url: () => `git@github.com:${this.repoOwner}/${this.repoName}.git`
   };
 
-  td.when(this.nodegit.Repository.open(process.cwd())).thenResolve(nodegitRepository);
+  const repositoryPath = any.string();
+  td.when(this.nodegit.Repository.discover(process.cwd(), 0)).thenResolve(repositoryPath);
+  td.when(this.nodegit.Repository.open(repositoryPath)).thenResolve(nodegitRepository);
   td.when(this.nodegit.Remote.list(nodegitRepository)).thenResolve(['origin']);
   td.when(this.nodegit.Remote.lookup(nodegitRepository, 'origin')).thenResolve(nodegitRemote);
 });
