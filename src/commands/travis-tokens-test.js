@@ -1,23 +1,21 @@
-import * as tokenUpdater from 'travis-token-updater';
-import sinon from 'sinon';
+import td from 'testdouble';
 import {assert} from 'chai';
 import any from '@travi/any';
-import {command, describe, handler} from './travis-tokens';
 
 suite('travis-tokens command', () => {
-  let sandbox;
+  let tokenUpdater, command, describe, handler;
 
   setup(() => {
-    sandbox = sinon.createSandbox();
+    tokenUpdater = td.replace('travis-token-updater');
 
-    sandbox.stub(tokenUpdater, 'update');
+    ({command, describe, handler} = require('./travis-tokens'));
   });
 
-  teardown(() => sandbox.restore());
+  teardown(() => td.reset());
 
   test('that the travis-tokens command is defined', async () => {
     const tokenUpdateResults = any.simpleObject();
-    tokenUpdater.update.withArgs({githubAccount: 'form8ion'}).resolves(tokenUpdateResults);
+    td.when(tokenUpdater.update({githubAccount: 'form8ion'})).thenResolve(tokenUpdateResults);
 
     assert.equal(await handler(), tokenUpdateResults);
     assert.equal(command, 'travis-tokens');

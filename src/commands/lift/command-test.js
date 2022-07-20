@@ -1,4 +1,3 @@
-import * as lifter from '@form8ion/lift';
 import {
   lift as liftRenovate,
   predicate as renovatePredicate,
@@ -11,46 +10,41 @@ import {lift as liftGithubActionsCI, test as githubActionsCiApplicabilityTest} f
 import {replace as replaceTravisCiWithGithubActions} from '@form8ion/replace-travis-ci-with-github-actions';
 
 import {assert} from 'chai';
-import sinon from 'sinon';
+import td from 'testdouble';
 import any from '@travi/any';
 
-import * as enhancedLifters from './enhanced-lifters';
-import {command, describe, handler} from '.';
-
 suite('lift command', () => {
-  let sandbox;
+  let lifter, enhancedLifters, command, describe, handler;
 
   setup(() => {
-    sandbox = sinon.createSandbox();
+    lifter = td.replace('@form8ion/lift');
+    enhancedLifters = td.replace('./enhanced-lifters');
 
-    sandbox.stub(lifter, 'lift');
-    sandbox.stub(enhancedLifters, 'getEnhancedCodecovScaffolder');
+    ({command, describe, handler} = require('.'));
   });
 
-  teardown(() => sandbox.restore());
+  teardown(() => td.reset());
 
   test('that the lift command is defined', async () => {
     const liftingResults = any.simpleObject();
     const decisions = any.simpleObject();
     const codecovScaffolder = () => undefined;
-    enhancedLifters.getEnhancedCodecovScaffolder.returns(codecovScaffolder);
-    lifter.lift
-      .withArgs({
-        decisions,
-        scaffolders: {
-          Renovate: scaffoldRenovate,
-          'Remove Greenkeeper': removeGreenkeeper,
-          Cucumber: scaffoldCucumber,
-          Codecov: codecovScaffolder,
-          'Replace Travis CI with GitHub Actions': replaceTravisCiWithGithubActions
-        },
-        enhancers: {
-          JavaScript: {test: jsApplicabilityTest, lift: enhancedLifters.javascript},
-          Renovate: {test: renovatePredicate, lift: liftRenovate},
-          'GitHub Actions CI': {test: githubActionsCiApplicabilityTest, lift: liftGithubActionsCI}
-        }
-      })
-      .resolves(liftingResults);
+    td.when(enhancedLifters.getEnhancedCodecovScaffolder()).thenReturn(codecovScaffolder);
+    td.when(lifter.lift({
+      decisions,
+      scaffolders: {
+        Renovate: scaffoldRenovate,
+        'Remove Greenkeeper': removeGreenkeeper,
+        Cucumber: scaffoldCucumber,
+        Codecov: codecovScaffolder,
+        'Replace Travis CI with GitHub Actions': replaceTravisCiWithGithubActions
+      },
+      enhancers: {
+        JavaScript: {test: jsApplicabilityTest, lift: enhancedLifters.javascript},
+        Renovate: {test: renovatePredicate, lift: liftRenovate},
+        'GitHub Actions CI': {test: githubActionsCiApplicabilityTest, lift: liftGithubActionsCI}
+      }
+    })).thenResolve(liftingResults);
 
     assert.equal(await handler({decisions}), liftingResults);
     assert.equal(command, 'lift');

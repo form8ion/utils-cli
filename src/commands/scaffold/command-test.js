@@ -1,26 +1,23 @@
-import * as projectScaffolder from '@form8ion/project';
 import {questionNames as jsQuestionNames} from '@form8ion/javascript';
 import {packageManagers} from '@form8ion/javascript-core';
 import {scaffold as scaffoldGithub} from '@travi/github-scaffolder';
 import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
+
 import {assert} from 'chai';
-import sinon from 'sinon';
+import td from 'testdouble';
 import any from '@travi/any';
-import * as enhancedScaffolders from './enhanced-scaffolders';
-import {command, describe, handler} from '.';
 
 suite('scaffold command', () => {
-  let sandbox;
+  let projectScaffolder, enhancedScaffolders, command, describe, handler;
 
   setup(() => {
-    sandbox = sinon.createSandbox();
+    projectScaffolder = td.replace('@form8ion/project');
+    enhancedScaffolders = td.replace('./enhanced-scaffolders');
 
-    sandbox.stub(projectScaffolder, 'scaffold');
-    sandbox.stub(enhancedScaffolders, 'javascriptScaffolderFactory');
-    sandbox.stub(enhancedScaffolders, 'githubPromptFactory');
+    ({command, describe, handler} = require('.'));
   });
 
-  teardown(() => sandbox.restore());
+  teardown(() => td.reset());
 
   test('that the scaffold command is defined', async () => {
     const scaffoldingResults = any.simpleObject();
@@ -40,17 +37,15 @@ suite('scaffold command', () => {
     };
     const jsScaffolder = () => undefined;
     const githubPrompt = () => undefined;
-    enhancedScaffolders.javascriptScaffolderFactory.withArgs(decisionsWithEnhancements).returns(jsScaffolder);
-    enhancedScaffolders.githubPromptFactory.withArgs(decisionsWithEnhancements).returns(githubPrompt);
-    projectScaffolder.scaffold
-      .withArgs({
-        languages: {JavaScript: jsScaffolder},
-        vcsHosts: {GitHub: {scaffolder: scaffoldGithub, prompt: githubPrompt, public: true}},
-        overrides: {copyrightHolder: 'Matt Travi'},
-        dependencyUpdaters: {Renovate: {scaffolder: scaffoldRenovate}},
-        decisions: decisionsWithEnhancements
-      })
-      .resolves(scaffoldingResults);
+    td.when(enhancedScaffolders.javascriptScaffolderFactory(decisionsWithEnhancements)).thenReturn(jsScaffolder);
+    td.when(enhancedScaffolders.githubPromptFactory(decisionsWithEnhancements)).thenReturn(githubPrompt);
+    td.when(projectScaffolder.scaffold({
+      languages: {JavaScript: jsScaffolder},
+      vcsHosts: {GitHub: {scaffolder: scaffoldGithub, prompt: githubPrompt, public: true}},
+      overrides: {copyrightHolder: 'Matt Travi'},
+      dependencyUpdaters: {Renovate: {scaffolder: scaffoldRenovate}},
+      decisions: decisionsWithEnhancements
+    })).thenResolve(scaffoldingResults);
 
     assert.equal(await handler(decisions), scaffoldingResults);
     assert.equal(command, 'scaffold');
