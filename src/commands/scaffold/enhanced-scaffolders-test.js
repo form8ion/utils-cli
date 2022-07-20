@@ -8,7 +8,7 @@ import {scaffold as scaffoldRollup} from '@form8ion/rollup';
 import {scaffold as scaffoldVite} from '@form8ion/vite';
 
 import {assert} from 'chai';
-import td from 'testdouble';
+import * as td from 'testdouble';
 import any from '@travi/any';
 
 suite('enhanced scaffolders', () => {
@@ -16,11 +16,11 @@ suite('enhanced scaffolders', () => {
   const output = any.simpleObject();
   const decisions = any.simpleObject();
 
-  setup(() => {
-    javascriptScaffolder = td.replace('@form8ion/javascript');
-    githubScaffolder = td.replace('@travi/github-scaffolder');
+  setup(async () => {
+    javascriptScaffolder = await td.replaceEsm('@form8ion/javascript');
+    githubScaffolder = await td.replaceEsm('@travi/github-scaffolder');
 
-    ({javascriptScaffolderFactory, githubPromptFactory} = require('./enhanced-scaffolders'));
+    ({javascriptScaffolderFactory, githubPromptFactory} = await import('./enhanced-scaffolders.js'));
   });
 
   teardown(() => td.reset());

@@ -1,16 +1,18 @@
-import {resolve} from 'path';
+import {dirname, resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {projectTypes} from '@form8ion/javascript-core';
 
 import {After, Before, setWorldConstructor, When} from '@cucumber/cucumber';
 import any from '@travi/any';
-import importFresh from 'import-fresh';
-import clearModule from 'clear-module';
 import stubbedFs from 'mock-fs';
-import td from 'testdouble';
+import * as td from 'testdouble';
 
-import {World} from '../support/world';
-import {githubToken} from './vcs/github-api-steps';
+import {World} from '../support/world.js';
+import {githubToken} from './vcs/github-api-steps.js';
 
 let action, javascriptQuestionNames, projectQuestionNames;
+/* eslint-disable-next-line no-underscore-dangle */
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const pathToNodeModules = [__dirname, '../../../../', 'node_modules/'];
 export const stubbedNodeModules = stubbedFs.load(resolve(...pathToNodeModules));
 
@@ -26,35 +28,24 @@ Before(async function () {
 
   // work around for overly aggressive mock-fs, see:
   // https://github.com/tschaub/mock-fs/issues/213#issuecomment-347002795
-  require('validate-npm-package-name'); // eslint-disable-line import/no-extraneous-dependencies
-  require('color-convert'); // eslint-disable-line import/no-extraneous-dependencies
+  // require('validate-npm-package-name'); // eslint-disable-line import/no-extraneous-dependencies
+  // require('color-convert'); // eslint-disable-line import/no-extraneous-dependencies
 
-  this.execa = td.replace('execa');
-  this.nodegit = td.replace('@form8ion/nodegit-wrapper');
+  this.execa = await td.replaceEsm('@form8ion/execa-wrapper');
+  this.nodegit = await td.replaceEsm('@form8ion/nodegit-wrapper');
 
-  ({questionNames: projectQuestionNames} = importFresh('@form8ion/project'));
-  ({questionNames: javascriptQuestionNames} = importFresh('@form8ion/javascript'));
-  action = importFresh('../../../../src/commands/scaffold/command').handler;
+  ({questionNames: projectQuestionNames} = await import('@form8ion/project'));
+  ({questionNames: javascriptQuestionNames} = await import('@form8ion/javascript'));
+  ({handler: action} = (await import('../../../../src/commands/scaffold/command.js')));
 });
 
 After(function () {
   stubbedFs.restore();
   td.reset();
-
-  clearModule('@form8ion/javascript');
-  clearModule('@form8ion/lift-javascript');
-  clearModule('@form8ion/javascript-core');
-  clearModule('@form8ion/replace-travis-ci-with-github-action');
-  clearModule('travis-token-updater');
-  clearModule('@form8ion/husky');
-  clearModule('@form8ion/project');
-  clearModule('execa');
-  clearModule('../../../../src/commands/scaffold/command');
 });
 
 When(/^the project is scaffolded$/, async function () {
   this.visibility = any.fromList(['Public', 'Private']);
-  const {projectTypes} = require('@form8ion/javascript-core');
   const repoShouldBeCreated = this.getAnswerFor(projectQuestionNames.GIT_REPO);
   const projectLanguage = this.getAnswerFor(projectQuestionNames.PROJECT_LANGUAGE);
   const jsProjectType = this.getAnswerFor(javascriptQuestionNames.PROJECT_TYPE) || projectTypes.PACKAGE;

@@ -1,15 +1,14 @@
 import {Before, Then, When} from '@cucumber/cucumber';
 import stubbedFs from 'mock-fs';
-import importFresh from 'import-fresh';
 
-import {stubbedNodeModules} from '../../common-steps';
-import {assertGroupContainsBadge} from '../../documentation-steps';
+import {stubbedNodeModules} from '../../common-steps.js';
+import {assertGroupContainsBadge} from '../../documentation-steps.js';
 
 let lift, liftQuestionNames;
 
-Before(function () {
-  ({questionNames: liftQuestionNames} = require('@form8ion/lift'));
-  lift = importFresh('../../../../../../src/commands/lift/command').handler;
+Before(async function () {
+  ({questionNames: liftQuestionNames} = await import('@form8ion/lift'));
+  ({handler: lift} = (await import('../../../../../../src/commands/lift/command.js')));
 });
 
 When('codecov is configured for an existing project', async function () {

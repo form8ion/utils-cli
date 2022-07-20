@@ -1,5 +1,6 @@
-import {promises as fs} from 'fs';
+import {promises as fs} from 'node:fs';
 import {fileExists} from '@form8ion/core';
+
 import {Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
 

@@ -1,11 +1,14 @@
-import {promises as fs} from 'fs';
+import {promises as fs} from 'node:fs';
 import {load} from 'js-yaml';
 import {fileExists} from '@form8ion/core';
+import {dialects} from '@form8ion/javascript-core';
+
 import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
 import any from '@travi/any';
-import td from 'testdouble';
-import {projectNameAnswer} from '../../common-steps';
+import * as td from 'testdouble';
+
+import {projectNameAnswer} from '../../common-steps.js';
 
 function versionSegment() {
   return any.integer({max: 20});
@@ -19,9 +22,9 @@ function semverStringFactory() {
 
 let questionNames, jsQuestionNames;
 
-Before(function () {
-  ({questionNames} = require('@form8ion/project'));
-  ({questionNames: jsQuestionNames} = require('@form8ion/javascript'));
+Before(async function () {
+  ({questionNames} = await import('@form8ion/project'));
+  ({questionNames: jsQuestionNames} = await import('@form8ion/javascript'));
 });
 
 Given(/^the project language should be JavaScript$/, async function () {
@@ -32,20 +35,20 @@ Given(/^the project language should be JavaScript$/, async function () {
   huskyVersionError.command = 'npm ls husky --json';
   huskyVersionError.exitCode = 1;
 
-  td.when(this.execa('npm run generate:md && npm test', {shell: true}))
+  td.when(this.execa.default('npm run generate:md && npm test', {shell: true}))
     .thenReturn({stdout: {pipe: () => undefined}});
-  td.when(this.execa('npm', ['whoami']))
+  td.when(this.execa.default('npm', ['whoami']))
     .thenResolve(any.word());
-  td.when(this.execa('npm', ['ls', 'husky', '--json']))
+  td.when(this.execa.default('npm', ['ls', 'husky', '--json']))
     .thenReject(huskyVersionError);
 });
 
 Given(/^nvm is properly configured$/, function () {
   const latestLtsVersion = semverStringFactory();
 
-  td.when(this.execa('. ~/.nvm/nvm.sh && nvm ls-remote --lts', {shell: true}))
+  td.when(this.execa.default('. ~/.nvm/nvm.sh && nvm ls-remote --lts', {shell: true}))
     .thenResolve({stdout: [...any.listOf(semverStringFactory), latestLtsVersion, ''].join('\n')});
-  td.when(this.execa('. ~/.nvm/nvm.sh && nvm install', {shell: true}))
+  td.when(this.execa.default('. ~/.nvm/nvm.sh && nvm install', {shell: true}))
     .thenReturn({stdout: {pipe: () => undefined}});
 });
 
@@ -83,7 +86,6 @@ Then('the project will have linting configured', async function () {
 });
 
 Then('the package will have linting configured', async function () {
-  const {dialects} = require('@form8ion/javascript-core');
   const extendedEslintConfigs = load(await fs.readFile(`${process.cwd()}/.eslintrc.yml`, 'utf-8')).extends;
 
   assert.includeMembers(extendedEslintConfigs, ['@form8ion', '@form8ion/mocha']);
@@ -97,5 +99,8 @@ Then('the package will have linting configured', async function () {
 });
 
 Then('npm is used for the package manager', async function () {
-  td.verify(this.execa(td.matchers.contains('. ~/.nvm/nvm.sh && nvm use && npm install')), {ignoreExtraArgs: true});
+  td.verify(
+    this.execa.default(td.matchers.contains('. ~/.nvm/nvm.sh && nvm use && npm install')),
+    {ignoreExtraArgs: true}
+  );
 });

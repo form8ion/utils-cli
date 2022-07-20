@@ -1,6 +1,7 @@
-import {promises} from 'fs';
-import td from 'testdouble';
+import {promises} from 'node:fs';
 import {fileExists} from '@form8ion/core';
+
+import * as td from 'testdouble';
 import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
 import any from '@travi/any';
@@ -8,8 +9,8 @@ import any from '@travi/any';
 let questionNames;
 const nodegitRepository = any.simpleObject();
 
-Before(() => {
-  questionNames = require('@form8ion/project').questionNames;
+Before(async () => {
+  ({questionNames} = (await import('@form8ion/project')));
 });
 
 Given(/^the project should be versioned in git$/, async function () {

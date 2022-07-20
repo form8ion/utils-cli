@@ -1,1 +1,1 @@
-exports.plugins = ['@form8ion/remark-lint-preset'];
+export default {plugins: ['@form8ion/remark-lint-preset']};

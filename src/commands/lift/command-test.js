@@ -10,17 +10,17 @@ import {lift as liftGithubActionsCI, test as githubActionsCiApplicabilityTest} f
 import {replace as replaceTravisCiWithGithubActions} from '@form8ion/replace-travis-ci-with-github-actions';
 
 import {assert} from 'chai';
-import td from 'testdouble';
+import * as td from 'testdouble';
 import any from '@travi/any';
 
 suite('lift command', () => {
   let lifter, enhancedLifters, command, describe, handler;
 
-  setup(() => {
-    lifter = td.replace('@form8ion/lift');
-    enhancedLifters = td.replace('./enhanced-lifters');
+  setup(async () => {
+    lifter = await td.replaceEsm('@form8ion/lift');
+    enhancedLifters = await td.replaceEsm('./enhanced-lifters.js');
 
-    ({command, describe, handler} = require('.'));
+    ({command, describe, handler} = await import('./index.js'));
   });
 
   teardown(() => td.reset());

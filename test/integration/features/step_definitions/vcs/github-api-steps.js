@@ -1,7 +1,8 @@
+import {StatusCodes} from 'http-status-codes';
+
 import {After, Before, Given} from '@cucumber/cucumber';
 import any from '@travi/any';
 import nock from 'nock';
-import {StatusCodes} from 'http-status-codes';
 
 let githubScope;
 export const githubToken = any.word();

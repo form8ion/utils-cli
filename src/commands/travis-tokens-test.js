@@ -1,14 +1,14 @@
-import td from 'testdouble';
+import * as td from 'testdouble';
 import {assert} from 'chai';
 import any from '@travi/any';
 
 suite('travis-tokens command', () => {
   let tokenUpdater, command, describe, handler;
 
-  setup(() => {
-    tokenUpdater = td.replace('travis-token-updater');
+  setup(async () => {
+    tokenUpdater = await td.replaceEsm('travis-token-updater');
 
-    ({command, describe, handler} = require('./travis-tokens'));
+    ({command, describe, handler} = await import('./travis-tokens.js'));
   });
 
   teardown(() => td.reset());

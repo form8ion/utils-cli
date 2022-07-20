@@ -1,8 +1,8 @@
-import {promises as fs} from 'fs';
-
+import {promises as fs} from 'node:fs';
 import parseMd from 'mdast-util-from-markdown';
 import zone from 'mdast-zone';
 import find from 'unist-util-find';
+
 import {assert} from 'chai';
 
 function getBadgesFromZone(tree, badgeGroupName) {

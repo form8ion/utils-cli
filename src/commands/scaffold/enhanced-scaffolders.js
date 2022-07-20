@@ -9,7 +9,7 @@ import {scaffold as scaffoldVitest} from '@form8ion/vitest';
 import {scaffold as scaffoldRollup} from '@form8ion/rollup';
 import {scaffold as scaffoldVite} from '@form8ion/vite';
 
-import {javascriptConfigs} from '../common';
+import {javascriptConfigs} from '../common.js';
 
 export function javascriptScaffolderFactory(decisions) {
   return options => scaffoldJavaScript({

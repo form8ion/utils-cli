@@ -4,17 +4,17 @@ import {scaffold as scaffoldGithub} from '@travi/github-scaffolder';
 import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
 
 import {assert} from 'chai';
-import td from 'testdouble';
+import * as td from 'testdouble';
 import any from '@travi/any';
 
 suite('scaffold command', () => {
   let projectScaffolder, enhancedScaffolders, command, describe, handler;
 
-  setup(() => {
-    projectScaffolder = td.replace('@form8ion/project');
-    enhancedScaffolders = td.replace('./enhanced-scaffolders');
+  setup(async () => {
+    projectScaffolder = await td.replaceEsm('@form8ion/project');
+    enhancedScaffolders = await td.replaceEsm('./enhanced-scaffolders.js');
 
-    ({command, describe, handler} = require('.'));
+    ({command, describe, handler} = await import('./index.js'));
   });
 
   teardown(() => td.reset());

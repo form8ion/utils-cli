@@ -1,15 +1,15 @@
-import td from 'testdouble';
+import * as td from 'testdouble';
 import any from '@travi/any';
 import {assert} from 'chai';
 
 suite('enhanced lifters', () => {
   let jsLifter, codecovPlugin, getEnhancedCodecovScaffolder, javascript;
 
-  setup(() => {
-    jsLifter = td.replace('@form8ion/javascript');
-    codecovPlugin = td.replace('@form8ion/codecov');
+  setup(async () => {
+    jsLifter = await td.replaceEsm('@form8ion/javascript');
+    codecovPlugin = await td.replaceEsm('@form8ion/codecov');
 
-    ({getEnhancedCodecovScaffolder, javascript} = require('./enhanced-lifters'));
+    ({getEnhancedCodecovScaffolder, javascript} = await import('./enhanced-lifters.js'));
   });
 
   teardown(() => td.reset());
