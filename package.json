@@ -88,7 +88,7 @@
     "@form8ion/cucumber-scaffolder": "2.0.1",
     "@form8ion/github-actions-node-ci": "3.8.1",
     "@form8ion/hapi-scaffolder": "4.0.3",
-    "@form8ion/javascript": "7.2.2",
+    "@form8ion/javascript": "7.2.3",
     "@form8ion/javascript-core": "6.0.1",
     "@form8ion/lift": "4.1.0",
     "@form8ion/mocha-scaffolder": "2.0.2",
