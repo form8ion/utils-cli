@@ -85,7 +85,7 @@
   },
   "dependencies": {
     "@form8ion/codecov": "3.0.1",
-    "@form8ion/cucumber-scaffolder": "2.0.1",
+    "@form8ion/cucumber-scaffolder": "2.1.0",
     "@form8ion/github-actions-node-ci": "3.8.2",
     "@form8ion/hapi-scaffolder": "4.0.3",
     "@form8ion/javascript": "7.3.0",
