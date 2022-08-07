@@ -32,6 +32,7 @@ suite('enhanced scaffolders', () => {
       ...options,
       configs: {
         eslint: {scope: packageScope},
+        prettier: {scope: packageScope},
         remark: `${packageScope}/remark-lint-preset`,
         babelPreset: {name: packageScope, packageName: `${packageScope}/babel-preset`},
         typescript: {scope: packageScope},

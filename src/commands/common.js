@@ -2,6 +2,7 @@ const packageScope = '@form8ion';
 
 export const javascriptConfigs = {
   eslint: {scope: packageScope},
+  prettier: {scope: packageScope},
   remark: `${packageScope}/remark-lint-preset`,
   babelPreset: {
     name: packageScope,

@@ -22,6 +22,7 @@ suite('enhanced lifters', () => {
       ...options,
       configs: {
         eslint: {scope: packageScope},
+        prettier: {scope: packageScope},
         remark: `${packageScope}/remark-lint-preset`,
         babelPreset: {
           name: packageScope,
