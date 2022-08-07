@@ -12,6 +12,7 @@ import {replace as replaceTravisCiWithGithubActions} from '@form8ion/replace-tra
 import {assert} from 'chai';
 import td from 'testdouble';
 import any from '@travi/any';
+import {scaffold as scaffoldPrettier} from '@form8ion/prettier';
 
 suite('lift command', () => {
   let lifter, enhancedLifters, command, describe, handler;
@@ -34,9 +35,10 @@ suite('lift command', () => {
       decisions,
       scaffolders: {
         Renovate: scaffoldRenovate,
-        'Remove Greenkeeper': removeGreenkeeper,
         Cucumber: scaffoldCucumber,
         Codecov: codecovScaffolder,
+        Prettier: scaffoldPrettier,
+        'Remove Greenkeeper': removeGreenkeeper,
         'Replace Travis CI with GitHub Actions': replaceTravisCiWithGithubActions
       },
       enhancers: {

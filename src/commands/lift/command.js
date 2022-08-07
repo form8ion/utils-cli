@@ -5,6 +5,7 @@ import {
   scaffold as scaffoldRenovate
 } from '@form8ion/renovate-scaffolder';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
+import {scaffold as scaffoldPrettier} from '@form8ion/prettier';
 import {test as jsApplicabilityTest} from '@form8ion/javascript';
 import {removeGreenkeeper} from '@form8ion/remove-greenkeeper';
 import {lift as liftGithubActionsCI, test as githubActionsCiApplicabilityTest} from '@form8ion/github-actions-node-ci';
@@ -16,9 +17,10 @@ export function handler({decisions}) {
     decisions,
     scaffolders: {
       Renovate: scaffoldRenovate,
-      'Remove Greenkeeper': removeGreenkeeper,
       Cucumber: scaffoldCucumber,
       Codecov: getEnhancedCodecovScaffolder(),
+      Prettier: scaffoldPrettier,
+      'Remove Greenkeeper': removeGreenkeeper,
       'Replace Travis CI with GitHub Actions': replaceTravisCiWithGithubActions
     },
     enhancers: {
