@@ -3,21 +3,22 @@ import any from '@travi/any';
 import {assert} from 'chai';
 
 suite('enhanced lifters', () => {
-  let jsLifter, codecovPlugin, getEnhancedCodecovScaffolder, javascript;
+  let jsLifter, codecovPlugin, prettierPlugin, getEnhancedCodecovScaffolder, javascript, prettier;
+  const options = any.simpleObject();
+  const packageScope = '@form8ion';
+  const results = any.simpleObject();
 
   setup(() => {
     jsLifter = td.replace('@form8ion/javascript');
     codecovPlugin = td.replace('@form8ion/codecov');
+    prettierPlugin = td.replace('@form8ion/prettier');
 
-    ({getEnhancedCodecovScaffolder, javascript} = require('./enhanced-lifters'));
+    ({getEnhancedCodecovScaffolder, javascript, prettier} = require('./enhanced-lifters'));
   });
 
   teardown(() => td.reset());
 
   test('that the custom properties are passed along with the provided options to the js lifter', async () => {
-    const options = any.simpleObject();
-    const results = any.simpleObject();
-    const packageScope = '@form8ion';
     td.when(jsLifter.lift({
       ...options,
       configs: {
@@ -40,11 +41,15 @@ suite('enhanced lifters', () => {
   });
 
   test('that visibility is set to `Public` for Codecov since all projects in this org are public', async () => {
-    const results = any.simpleObject();
-    const options = any.simpleObject();
     const scaffolder = getEnhancedCodecovScaffolder();
     td.when(codecovPlugin.scaffold({...options, visibility: 'Public'})).thenResolve(results);
 
     assert.equal(await scaffolder(options), results);
+  });
+
+  test('that the prettier config details are passed to the prettier scaffolder', async () => {
+    td.when(prettierPlugin.scaffold({...options, config: {scope: packageScope}})).thenResolve(results);
+
+    assert.equal(await prettier(options), results);
   });
 });
