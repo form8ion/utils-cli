@@ -87,7 +87,8 @@ When(/^the project is scaffolded$/, async function () {
       [javascriptQuestionNames.CONFIGURE_LINTING]: true,
       [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: 'Other',
       ...projectTypes.PACKAGE === jsProjectType && {
-        [javascriptQuestionNames.PACKAGE_BUNDLER]: this.getAnswerFor(javascriptQuestionNames.PACKAGE_BUNDLER)
+        [javascriptQuestionNames.PACKAGE_BUNDLER]: this.getAnswerFor(javascriptQuestionNames.PACKAGE_BUNDLER),
+        [javascriptQuestionNames.PROVIDE_EXAMPLE]: true
       },
       [javascriptQuestionNames.SHOULD_BE_SCOPED]: shouldBeScoped,
       [javascriptQuestionNames.SCOPE]: scope,
