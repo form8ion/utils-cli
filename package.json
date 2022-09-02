@@ -50,7 +50,7 @@
     "@form8ion/hapi-scaffolder": "4.0.5",
     "@form8ion/javascript": "8.7.0",
     "@form8ion/javascript-core": "7.0.1",
-    "@form8ion/lift": "4.1.0",
+    "@form8ion/lift": "5.0.1",
     "@form8ion/mocha-scaffolder": "2.0.2",
     "@form8ion/prettier": "1.0.2",
     "@form8ion/project": "14.0.0",
