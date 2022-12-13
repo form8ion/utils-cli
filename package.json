@@ -49,7 +49,7 @@
     "@form8ion/github-actions-node-ci": "3.10.0",
     "@form8ion/hapi-scaffolder": "4.0.5",
     "@form8ion/javascript": "10.2.1",
-    "@form8ion/javascript-core": "8.3.0",
+    "@form8ion/javascript-core": "8.3.1",
     "@form8ion/lift": "6.0.1",
     "@form8ion/mocha-scaffolder": "3.0.1",
     "@form8ion/prettier": "1.0.2",
