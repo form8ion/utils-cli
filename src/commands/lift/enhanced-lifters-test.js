@@ -3,7 +3,7 @@ import any from '@travi/any';
 import {assert} from 'chai';
 
 suite('enhanced lifters', () => {
-  let jsLifter, codecovPlugin, prettierPlugin, getEnhancedCodecovScaffolder, javascript, prettier;
+  let jsLifter, codecovPlugin, getEnhancedCodecovScaffolder, javascript;
   const options = any.simpleObject();
   const packageScope = '@form8ion';
   const results = any.simpleObject();
@@ -11,9 +11,8 @@ suite('enhanced lifters', () => {
   setup(() => {
     jsLifter = td.replace('@form8ion/javascript');
     codecovPlugin = td.replace('@form8ion/codecov');
-    prettierPlugin = td.replace('@form8ion/prettier');
 
-    ({getEnhancedCodecovScaffolder, javascript, prettier} = require('./enhanced-lifters'));
+    ({getEnhancedCodecovScaffolder, javascript} = require('./enhanced-lifters'));
   });
 
   teardown(() => td.reset());
@@ -23,7 +22,6 @@ suite('enhanced lifters', () => {
       ...options,
       configs: {
         eslint: {scope: packageScope},
-        prettier: {scope: packageScope},
         remark: `${packageScope}/remark-lint-preset`,
         babelPreset: {
           name: packageScope,
@@ -45,11 +43,5 @@ suite('enhanced lifters', () => {
     td.when(codecovPlugin.scaffold({...options, visibility: 'Public'})).thenResolve(results);
 
     assert.equal(await scaffolder(options), results);
-  });
-
-  test('that the prettier config details are passed to the prettier scaffolder', async () => {
-    td.when(prettierPlugin.scaffold({...options, config: {scope: packageScope}})).thenResolve(results);
-
-    assert.equal(await prettier(options), results);
   });
 });
