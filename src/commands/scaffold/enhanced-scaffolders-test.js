@@ -43,7 +43,7 @@ suite('enhanced scaffolders', () => {
       },
       applicationTypes: {Hapi: {scaffolder: scaffoldHapi}},
       packageTypes: {
-        'Scaffolder Plugin': {scaffolder: scaffoldScaffolder},
+        'form8ion Plugin': {scaffolder: scaffoldScaffolder},
         'Remark Plugin': {scaffolder: scaffoldRemarkPlugin}
       },
       unitTestFrameworks: {
