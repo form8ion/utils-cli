@@ -6,6 +6,7 @@ import {scaffold as scaffoldVitest} from '@form8ion/vitest';
 import {scaffold as scaffoldScaffolder} from '@form8ion/scaffolder-scaffolder';
 import {scaffold as scaffoldRollup} from '@form8ion/rollup';
 import {scaffold as scaffoldVite} from '@form8ion/vite';
+import {scaffold as scaffoldOctoherdScript} from '@form8ion/octoherd-script';
 
 import {assert} from 'chai';
 import td from 'testdouble';
@@ -44,7 +45,8 @@ suite('enhanced scaffolders', () => {
       applicationTypes: {Hapi: {scaffolder: scaffoldHapi}},
       packageTypes: {
         'form8ion Plugin': {scaffolder: scaffoldScaffolder},
-        'Remark Plugin': {scaffolder: scaffoldRemarkPlugin}
+        'Remark Plugin': {scaffolder: scaffoldRemarkPlugin},
+        'Octoherd Script': {scaffolder: scaffoldOctoherdScript}
       },
       unitTestFrameworks: {
         mocha: {scaffolder: scaffoldMocha},
