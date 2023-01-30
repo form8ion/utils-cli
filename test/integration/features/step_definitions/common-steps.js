@@ -30,7 +30,7 @@ Before(async function () {
   require('color-convert'); // eslint-disable-line import/no-extraneous-dependencies
 
   this.execa = td.replace('execa');
-  this.nodegit = td.replace('@form8ion/nodegit-wrapper');
+  this.git = td.replace('simple-git');
 
   ({questionNames: projectQuestionNames} = importFresh('@form8ion/project'));
   ({questionNames: javascriptQuestionNames} = importFresh('@form8ion/javascript'));
