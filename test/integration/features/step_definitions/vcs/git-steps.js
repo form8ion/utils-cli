@@ -1,5 +1,5 @@
 import {promises} from 'fs';
-import td from 'testdouble';
+import * as td from 'testdouble';
 import {fileExists} from '@form8ion/core';
 import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
@@ -9,8 +9,8 @@ let questionNames;
 
 const simpleGitInstance = td.object(['checkIsRepo', 'listRemote', 'remote', 'addRemote', 'init']);
 
-Before(() => {
-  questionNames = require('@form8ion/project').questionNames;
+Before(async () => {
+  ({questionNames} = (await import('@form8ion/project')));
 });
 
 Given(/^the project should be versioned in git$/, async function () {

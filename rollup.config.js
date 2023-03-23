@@ -13,5 +13,5 @@ export default {
     nodeResolve({mainFields: ['module']})
   ],
   external: ['source-map-support/register'],
-  output: [{file: 'bin/form8ion-utils.js', format: 'cjs', sourcemap: true, banner: '#!/usr/bin/env node'}]
+  output: [{file: 'bin/form8ion-utils.js', format: 'esm', sourcemap: true, banner: '#!/usr/bin/env node'}]
 };

@@ -4,8 +4,8 @@ import {assert} from 'chai';
 
 let questionNames;
 
-Before(() => {
-  questionNames = require('@form8ion/project').questionNames;
+Before(async () => {
+  ({questionNames} = (await import('@form8ion/project')));
 });
 
 Given(/^the project language should be Other$/, async function () {

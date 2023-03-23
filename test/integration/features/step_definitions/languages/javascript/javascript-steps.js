@@ -1,11 +1,14 @@
-import {promises as fs} from 'fs';
+import {promises as fs} from 'node:fs';
+
 import {load} from 'js-yaml';
 import {fileExists} from '@form8ion/core';
+
 import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
 import any from '@travi/any';
-import td from 'testdouble';
-import {projectNameAnswer} from '../../common-steps';
+import * as td from 'testdouble';
+
+import {projectNameAnswer} from '../../common-steps.js';
 
 function versionSegment() {
   return any.integer({max: 20});
@@ -19,9 +22,9 @@ function semverStringFactory() {
 
 let questionNames, jsQuestionNames;
 
-Before(function () {
-  ({questionNames} = require('@form8ion/project'));
-  ({questionNames: jsQuestionNames} = require('@form8ion/javascript'));
+Before(async function () {
+  ({questionNames} = await import('@form8ion/project'));
+  ({questionNames: jsQuestionNames} = await import('@form8ion/javascript'));
 });
 
 Given(/^the project language should be JavaScript$/, async function () {
@@ -83,7 +86,7 @@ Then('the project will have linting configured', async function () {
 });
 
 Then('the package will have linting configured', async function () {
-  const {dialects} = require('@form8ion/javascript-core');
+  const {dialects} = await import('@form8ion/javascript-core');
   const extendedEslintConfigs = load(await fs.readFile(`${process.cwd()}/.eslintrc.yml`, 'utf-8')).extends;
 
   assert.includeMembers(extendedEslintConfigs, ['@form8ion', '@form8ion/mocha']);

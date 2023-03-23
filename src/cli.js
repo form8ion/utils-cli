@@ -1,6 +1,5 @@
-import 'source-map-support/register';
-import * as scaffoldCommand from './commands/scaffold';
-import * as liftCommand from './commands/lift';
+import * as scaffoldCommand from './commands/scaffold/index.js';
+import * as liftCommand from './commands/lift/index.js';
 
 export default function (yargs) {
   return yargs
