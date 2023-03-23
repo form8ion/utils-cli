@@ -2,3 +2,8 @@ extends:
   - '@form8ion'
   - '@form8ion/mocha'
   - '@form8ion/cucumber'
+
+rules:
+  import/extensions:
+    - warn
+    - ignorePackages
