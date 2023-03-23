@@ -1,7 +1,7 @@
 import {promises as fs} from 'fs';
 
-import parseMd from 'mdast-util-from-markdown';
-import zone from 'mdast-zone';
+import {fromMarkdown as parseMd} from 'mdast-util-from-markdown';
+import {zone} from 'mdast-zone';
 import find from 'unist-util-find';
 import {assert} from 'chai';
 
