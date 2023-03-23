@@ -1,25 +1,27 @@
+import * as projectScaffolder from '@form8ion/project';
 import {questionNames as jsQuestionNames} from '@form8ion/javascript';
 import {packageManagers} from '@form8ion/javascript-core';
 import {scaffold as scaffoldGithub} from '@travi/github-scaffolder';
 import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
 
-import {assert} from 'chai';
-import td from 'testdouble';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
+import {when} from 'jest-when';
 
-suite('scaffold command', () => {
-  let projectScaffolder, enhancedScaffolders, command, describe, handler;
+import * as enhancedScaffolders from './enhanced-scaffolders.js';
+import {command, describe as commandDescription, handler} from './index.js';
 
-  setup(() => {
-    projectScaffolder = td.replace('@form8ion/project');
-    enhancedScaffolders = td.replace('./enhanced-scaffolders');
-
-    ({command, describe, handler} = require('.'));
+describe('scaffold command', () => {
+  beforeEach(() => {
+    vi.mock('@form8ion/project');
+    vi.mock('./enhanced-scaffolders.js');
   });
 
-  teardown(() => td.reset());
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
-  test('that the scaffold command is defined', async () => {
+  it('should define the scaffold command', async () => {
     const scaffoldingResults = any.simpleObject();
     const decisions = any.simpleObject();
     const decisionsWithEnhancements = {
@@ -37,18 +39,20 @@ suite('scaffold command', () => {
     };
     const jsScaffolder = () => undefined;
     const githubPrompt = () => undefined;
-    td.when(enhancedScaffolders.javascriptScaffolderFactory(decisionsWithEnhancements)).thenReturn(jsScaffolder);
-    td.when(enhancedScaffolders.githubPromptFactory(decisionsWithEnhancements)).thenReturn(githubPrompt);
-    td.when(projectScaffolder.scaffold({
+    when(enhancedScaffolders.javascriptScaffolderFactory)
+      .calledWith(decisionsWithEnhancements)
+      .mockReturnValue(jsScaffolder);
+    when(enhancedScaffolders.githubPromptFactory).calledWith(decisionsWithEnhancements).mockReturnValue(githubPrompt);
+    when(projectScaffolder.scaffold).calledWith({
       languages: {JavaScript: jsScaffolder},
       vcsHosts: {GitHub: {scaffolder: scaffoldGithub, prompt: githubPrompt, public: true}},
       overrides: {copyrightHolder: 'Matt Travi'},
       dependencyUpdaters: {Renovate: {scaffolder: scaffoldRenovate}},
       decisions: decisionsWithEnhancements
-    })).thenResolve(scaffoldingResults);
+    }).mockResolvedValue(scaffoldingResults);
 
-    assert.equal(await handler(decisions), scaffoldingResults);
-    assert.equal(command, 'scaffold');
-    assert.equal(describe, 'Scaffold a new project');
+    expect(await handler(decisions)).toEqual(scaffoldingResults);
+    expect(command).toEqual('scaffold');
+    expect(commandDescription).toEqual('Scaffold a new project');
   });
 });

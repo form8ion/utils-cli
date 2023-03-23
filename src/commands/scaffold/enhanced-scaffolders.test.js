@@ -1,35 +1,38 @@
+import * as javascriptScaffolder from '@form8ion/javascript';
+import * as githubScaffolder from '@travi/github-scaffolder';
 import {scaffold as scaffoldGithubActions} from '@form8ion/github-actions-node-ci';
 import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
+import {scaffold as scaffoldScaffolder} from '@form8ion/scaffolder-scaffolder';
 import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
+import {scaffold as scaffoldOctoherdScript} from '@form8ion/octoherd-script';
 import {scaffold as scaffoldMocha} from '@form8ion/mocha-scaffolder';
 import {scaffold as scaffoldVitest} from '@form8ion/vitest';
-import {scaffold as scaffoldScaffolder} from '@form8ion/scaffolder-scaffolder';
 import {scaffold as scaffoldRollup} from '@form8ion/rollup';
 import {scaffold as scaffoldVite} from '@form8ion/vite';
-import {scaffold as scaffoldOctoherdScript} from '@form8ion/octoherd-script';
 
-import {assert} from 'chai';
-import td from 'testdouble';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
+import {when} from 'jest-when';
 
-suite('enhanced scaffolders', () => {
-  let javascriptScaffolder, githubScaffolder, javascriptScaffolderFactory, githubPromptFactory;
+import {javascriptScaffolderFactory, githubPromptFactory} from './enhanced-scaffolders.js';
+
+describe('enhanced scaffolders', () => {
   const output = any.simpleObject();
   const decisions = any.simpleObject();
 
-  setup(() => {
-    javascriptScaffolder = td.replace('@form8ion/javascript');
-    githubScaffolder = td.replace('@travi/github-scaffolder');
-
-    ({javascriptScaffolderFactory, githubPromptFactory} = require('./enhanced-scaffolders'));
+  beforeEach(() => {
+    vi.mock('@form8ion/javascript');
+    vi.mock('@travi/github-scaffolder');
   });
 
-  teardown(() => td.reset());
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
-  test('that the custom properties are passed along with the provided options to the js scaffolder', async () => {
+  it('should pass the custom properties along with the provided options to the js scaffolder', async () => {
     const options = any.simpleObject();
     const packageScope = '@form8ion';
-    td.when(javascriptScaffolder.scaffold({
+    when(javascriptScaffolder.scaffold).calledWith({
       ...options,
       configs: {
         eslint: {scope: packageScope},
@@ -57,14 +60,14 @@ suite('enhanced scaffolders', () => {
         Vite: {scaffolder: scaffoldVite}
       },
       decisions
-    })).thenResolve(output);
+    }).mockResolvedValue(output);
 
-    assert.equal(await javascriptScaffolderFactory(decisions)(options), output);
+    expect(await javascriptScaffolderFactory(decisions)(options)).toEqual(output);
   });
 
-  test('that the owner account is passed to the github prompts', async () => {
-    td.when(githubScaffolder.prompt({account: 'form8ion', decisions})).thenResolve(output);
+  it('should pass the owner account to the github prompts', async () => {
+    when(githubScaffolder.prompt).calledWith({account: 'form8ion', decisions}).mockResolvedValue(output);
 
-    assert.equal(await githubPromptFactory(decisions)(), output);
+    expect(await githubPromptFactory(decisions)()).toEqual(output);
   });
 });
