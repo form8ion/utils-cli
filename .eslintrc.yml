@@ -1,4 +1,14 @@
+root: true
+
 extends:
   - '@form8ion'
   - '@form8ion/mocha'
   - '@form8ion/cucumber'
+
+parserOptions:
+  ecmaVersion: 2022
+
+rules:
+  import/extensions:
+    - error
+    - ignorePackages
