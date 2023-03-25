@@ -5,8 +5,6 @@ import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {scaffold as scaffoldScaffolder} from '@form8ion/scaffolder-scaffolder';
 import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
 import {scaffold as scaffoldOctoherdScript} from '@form8ion/octoherd-script';
-import {scaffold as scaffoldMocha} from '@form8ion/mocha-scaffolder';
-import {scaffold as scaffoldVitest} from '@form8ion/vitest';
 import {scaffold as scaffoldRollup} from '@form8ion/rollup';
 import {scaffold as scaffoldVite} from '@form8ion/vite';
 
@@ -14,7 +12,8 @@ import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'jest-when';
 
-import {javascriptScaffolderFactory, githubPromptFactory} from './enhanced-scaffolders.js';
+import {githubPromptFactory, javascriptScaffolderFactory} from './enhanced-scaffolders.js';
+import {unitTestFrameworks} from '../common/test-frameworks.js';
 
 describe('enhanced scaffolders', () => {
   const output = any.simpleObject();
@@ -51,10 +50,7 @@ describe('enhanced scaffolders', () => {
         'Remark Plugin': {scaffolder: scaffoldRemarkPlugin},
         'Octoherd Script': {scaffolder: scaffoldOctoherdScript}
       },
-      unitTestFrameworks: {
-        mocha: {scaffolder: scaffoldMocha},
-        vitest: {scaffolder: scaffoldVitest}
-      },
+      unitTestFrameworks,
       packageBundlers: {
         Rollup: {scaffolder: scaffoldRollup},
         Vite: {scaffolder: scaffoldVite}
