@@ -11,12 +11,14 @@ import {lift as liftGithubActionsCI, test as githubActionsCiApplicabilityTest} f
 import {replace as replaceTravisCiWithGithubActions} from '@form8ion/replace-travis-ci-with-github-actions';
 
 import {getEnhancedCodecovScaffolder, javascript as liftJavascript, prettier} from './enhanced-lifters.js';
+import {unitTesting} from './enhanced-scaffolders.js';
 
 export function handler({decisions}) {
   return lift({
     decisions,
     scaffolders: {
       Renovate: scaffoldRenovate,
+      'Unit Testing': unitTesting,
       Cucumber: scaffoldCucumber,
       Codecov: getEnhancedCodecovScaffolder(),
       Prettier: prettier,

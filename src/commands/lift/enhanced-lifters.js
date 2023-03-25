@@ -2,7 +2,7 @@ import {lift} from '@form8ion/javascript';
 import {scaffold as codecovScaffolder} from '@form8ion/codecov';
 import {scaffold as scaffoldPrettier} from '@form8ion/prettier';
 
-import {javascriptConfigs} from '../common.js';
+import {javascriptConfigs} from '../common/javascript-configs.js';
 
 export function javascript(options) {
   return lift({...options, configs: javascriptConfigs});

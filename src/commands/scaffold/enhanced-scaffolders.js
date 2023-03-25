@@ -10,7 +10,7 @@ import {scaffold as scaffoldRollup} from '@form8ion/rollup';
 import {scaffold as scaffoldVite} from '@form8ion/vite';
 import {scaffold as scaffoldOctoherdScript} from '@form8ion/octoherd-script';
 
-import {javascriptConfigs} from '../common.js';
+import {javascriptConfigs} from '../common/javascript-configs.js';
 
 export function javascriptScaffolderFactory(decisions) {
   return options => scaffoldJavaScript({

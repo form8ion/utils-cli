@@ -14,6 +14,7 @@ import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'jest-when';
 
+import {unitTesting} from './enhanced-scaffolders.js';
 import * as enhancedLifters from './enhanced-lifters.js';
 import {command, describe as commandDescription, handler} from './index.js';
 
@@ -37,6 +38,7 @@ describe('lift command', () => {
         decisions,
         scaffolders: {
           Renovate: scaffoldRenovate,
+          'Unit Testing': unitTesting,
           Cucumber: scaffoldCucumber,
           Codecov: codecovScaffolder,
           Prettier: enhancedLifters.prettier,
