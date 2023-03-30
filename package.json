@@ -61,7 +61,7 @@
     "@form8ion/prettier": "1.0.2",
     "@form8ion/project": "15.2.0",
     "@form8ion/remark-plugin-scaffolder": "2.0.3",
-    "@form8ion/remove-greenkeeper": "2.0.0",
+    "@form8ion/remove-greenkeeper": "2.0.1",
     "@form8ion/renovate-scaffolder": "1.8.0",
     "@form8ion/replace-travis-ci-with-github-actions": "7.0.0",
     "@form8ion/rollup": "2.1.1",
