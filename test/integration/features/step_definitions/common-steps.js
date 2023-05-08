@@ -72,6 +72,7 @@ When(/^the project is scaffolded$/, async function () {
       [javascriptQuestionNames.NODE_VERSION_CATEGORY]: 'LTS',
       [javascriptQuestionNames.PROJECT_TYPE]: jsProjectType,
       [javascriptQuestionNames.UNIT_TESTS]: true,
+      [javascriptQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
       [javascriptQuestionNames.INTEGRATION_TESTS]: true,
       [javascriptQuestionNames.CI_SERVICE]: 'Travis',
       [javascriptQuestionNames.CONFIGURE_LINTING]: true,

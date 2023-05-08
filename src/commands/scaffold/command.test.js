@@ -33,7 +33,6 @@ describe('scaffold command', () => {
       [jsQuestionNames.AUTHOR_NAME]: 'Matt Travi',
       [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
       [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
-      [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
       [jsQuestionNames.SCOPE]: 'form8ion',
       [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
     };

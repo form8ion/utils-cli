@@ -18,7 +18,6 @@ export function handler(decisions) {
     [jsQuestionNames.AUTHOR_NAME]: traviName,
     [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
     [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
-    [jsQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
     [jsQuestionNames.SCOPE]: orgName,
     [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
   };
