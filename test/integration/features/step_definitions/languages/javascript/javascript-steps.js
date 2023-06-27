@@ -8,6 +8,7 @@ import {assert} from 'chai';
 import any from '@travi/any';
 import * as td from 'testdouble';
 
+import {setupMissingHusky} from './husky-steps.js';
 import {projectNameAnswer} from '../../common-steps.js';
 
 function versionSegment() {
@@ -30,17 +31,13 @@ Before(async function () {
 Given(/^the project language should be JavaScript$/, async function () {
   this.setAnswerFor(questionNames.PROJECT_LANGUAGE, 'JavaScript');
   this.setAnswerFor(jsQuestionNames.PACKAGE_BUNDLER, 'Rollup');
-  const huskyVersionError = new Error();
-  huskyVersionError.stdout = JSON.stringify({});
-  huskyVersionError.command = 'npm ls husky --json';
-  huskyVersionError.exitCode = 1;
+
+  setupMissingHusky(this.execa);
 
   td.when(this.execa('npm run generate:md && npm test', {shell: true}))
     .thenReturn({stdout: {pipe: () => undefined}});
   td.when(this.execa('npm', ['whoami']))
     .thenResolve(any.word());
-  td.when(this.execa('npm', ['ls', 'husky', '--json']))
-    .thenReject(huskyVersionError);
 });
 
 Given(/^nvm is properly configured$/, function () {
