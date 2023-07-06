@@ -54,7 +54,7 @@
     "@form8ion/github-actions-node-ci": "3.14.2",
     "@form8ion/hapi-scaffolder": "4.0.5",
     "@form8ion/javascript": "11.5.0",
-    "@form8ion/javascript-core": "9.0.0",
+    "@form8ion/javascript-core": "9.0.1",
     "@form8ion/lift": "8.0.0",
     "@form8ion/mocha-scaffolder": "3.0.2",
     "@form8ion/octoherd-script": "1.0.0",
