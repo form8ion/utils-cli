@@ -27,7 +27,6 @@ export function handler(decisions) {
     vcsHosts: {
       GitHub: {scaffolder: scaffoldGithub, prompt: githubPromptFactory(decisionsWithEnhancements), public: true}
     },
-    overrides: {copyrightHolder: traviName},
     dependencyUpdaters: {Renovate: {scaffolder: scaffoldRenovate}},
     decisions: decisionsWithEnhancements
   });

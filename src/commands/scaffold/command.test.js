@@ -45,7 +45,6 @@ describe('scaffold command', () => {
     when(projectScaffolder.scaffold).calledWith({
       languages: {JavaScript: jsScaffolder},
       vcsHosts: {GitHub: {scaffolder: scaffoldGithub, prompt: githubPrompt, public: true}},
-      overrides: {copyrightHolder: 'Matt Travi'},
       dependencyUpdaters: {Renovate: {scaffolder: scaffoldRenovate}},
       decisions: decisionsWithEnhancements
     }).mockResolvedValue(scaffoldingResults);
