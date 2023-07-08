@@ -3,7 +3,6 @@ import * as td from 'testdouble';
 import {fileExists} from '@form8ion/core';
 import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
-import any from '@travi/any';
 
 let questionNames;
 
@@ -30,7 +29,7 @@ Given('the repository is initialized', async function () {
   td.when(simpleGitInstance.checkIsRepo('root')).thenResolve(true);
   td.when(simpleGitInstance.listRemote()).thenResolve(['origin']);
   td.when(simpleGitInstance.remote(['get-url', 'origin']))
-    .thenResolve(`git@github.com:${any.word()}/${this.projectName}.git`);
+    .thenResolve(`git@github.com:${this.repoOwner}/${this.repoName}.git`);
 });
 
 Then(/^the base git files should be present$/, async function () {
