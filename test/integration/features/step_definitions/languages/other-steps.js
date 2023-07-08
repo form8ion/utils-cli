@@ -12,6 +12,10 @@ Given(/^the project language should be Other$/, async function () {
   this.setAnswerFor(questionNames.PROJECT_LANGUAGE, 'Other');
 });
 
+Given('the visibility of the project is {string}', async function (visibility) {
+  this.visibility = visibility;
+});
+
 Then(/^core ignores are defined$/, async function () {
   assert.isTrue(await fileExists(`${process.cwd()}/.editorconfig`));
   assert.isTrue(await fileExists(`${process.cwd()}/README.md`));
