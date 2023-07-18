@@ -59,7 +59,7 @@
     "@form8ion/mocha-scaffolder": "3.0.2",
     "@form8ion/octoherd-script": "1.0.0",
     "@form8ion/ossf-scorecard": "1.2.0",
-    "@form8ion/prettier": "1.0.2",
+    "@form8ion/prettier": "2.0.0",
     "@form8ion/project": "17.0.2",
     "@form8ion/remark-plugin-scaffolder": "3.0.2",
     "@form8ion/remove-greenkeeper": "2.0.4",
