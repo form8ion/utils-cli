@@ -1,5 +1,6 @@
 import {Before, Then, When} from '@cucumber/cucumber';
 import stubbedFs from 'mock-fs';
+import any from '@travi/any';
 
 import {stubbedNodeModules} from '../../common-steps.js';
 import {assertGroupContainsBadge} from '../../documentation-steps.js';
@@ -14,6 +15,11 @@ Before(async function () {
 When('codecov is configured for an existing project', async function () {
   stubbedFs({
     node_modules: stubbedNodeModules,
+    ...'JavaScript' === this.projectLanguage && {
+      'package.json': JSON.stringify({...any.simpleObject(), scripts: any.simpleObject()}),
+      'package-lock.json': JSON.stringify(any.simpleObject()),
+      '.c8rc.json': JSON.stringify(any.simpleObject())
+    },
     'README.md': `# project-name
 
 <!--status-badges start -->

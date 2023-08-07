@@ -40,6 +40,12 @@ Given(/^the project language should be JavaScript$/, async function () {
     .thenResolve(any.word());
 });
 
+Given('the project language is {string}', async function (projectLanguage) {
+  this.projectLanguage = projectLanguage;
+
+  setupMissingHusky(this.execa);
+});
+
 Given(/^nvm is properly configured$/, function () {
   const latestLtsVersion = semverStringFactory();
 
