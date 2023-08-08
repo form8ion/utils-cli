@@ -21,7 +21,7 @@ jobs:
           - 16.14.0
           - 18.0.0
           - 18
-          - 19
+          - 20
     steps:
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
       - name: Setup node
