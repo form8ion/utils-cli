@@ -6,6 +6,7 @@ cli for various tools for the organization
 
 [![Codecov][coverage-badge]][coverage-link]
 [![Node CI Workflow Status][github-actions-ci-badge]][github-actions-ci-link]
+![SLSA Level 2][slsa-badge]
 
 <!--status-badges end -->
 
@@ -122,3 +123,5 @@ $ npm test
 [github-actions-ci-badge]: https://github.com/form8ion/cli/workflows/Node.js%20CI/badge.svg
 
 [node-badge]: https://img.shields.io/node/v/@form8ion/utils-cli?logo=node.js
+
+[slsa-badge]: https://slsa.dev/images/gh-badge-level2.svg
