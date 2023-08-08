@@ -96,7 +96,7 @@ $ npm test
 
 [coverage-link]: https://codecov.io/github/form8ion/utils-cli
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/form8ion/utils-cli.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/form8ion/utils-cli?logo=codecov
 
 [commit-convention-link]: https://conventionalcommits.org
 
@@ -108,7 +108,7 @@ $ npm test
 
 [semantic-release-link]: https://github.com/semantic-release/semantic-release
 
-[semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-release-badge]: https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release
 
 [PRs-link]: http://makeapullrequest.com
 
