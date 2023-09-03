@@ -75,7 +75,7 @@
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "9.4.0",
+    "@cucumber/cucumber": "9.5.0",
     "@form8ion/commitlint-config": "1.0.55",
     "@form8ion/core": "3.2.1",
     "@form8ion/eslint-config": "6.0.3",
