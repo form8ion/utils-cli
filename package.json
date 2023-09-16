@@ -111,7 +111,7 @@
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-executable": "1.6.3",
     "rollup-plugin-json": "4.0.0",
-    "testdouble": "3.18.0",
+    "testdouble": "3.19.0",
     "unist-util-find": "3.0.0",
     "vitest": "0.34.4"
   }
