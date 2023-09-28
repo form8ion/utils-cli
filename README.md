@@ -88,7 +88,7 @@ $ npm test
 
 [npm-link]: https://www.npmjs.com/package/@form8ion/utils-cli
 
-[npm-badge]: https://img.shields.io/npm/v/@form8ion/utils-cli.svg
+[npm-badge]: https://img.shields.io/npm/v/@form8ion/utils-cli?logo=npm
 
 [license-link]: LICENSE
 
