@@ -118,7 +118,7 @@ $ npm test
 
 [renovate-badge]: https://img.shields.io/badge/renovate-enabled-brightgreen.svg?logo=renovatebot
 
-[github-actions-ci-link]: https://github.com/form8ion/cli/actions?query=workflow%3A%22Node.js+CI%22+branch%3Amaster
+[github-actions-ci-link]: https://github.com/form8ion/utils-cli/actions?query=workflow%3A%22Node.js+CI%22+branch%3Amaster
 
 [github-actions-ci-badge]: https://github.com/form8ion/cli/workflows/Node.js%20CI/badge.svg
 
