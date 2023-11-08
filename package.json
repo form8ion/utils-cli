@@ -56,7 +56,7 @@
     "@form8ion/hapi-scaffolder": "4.0.7",
     "@form8ion/javascript": "11.10.0",
     "@form8ion/javascript-core": "10.0.1",
-    "@form8ion/lift": "8.0.2",
+    "@form8ion/lift": "9.0.0",
     "@form8ion/mocha-scaffolder": "4.0.0",
     "@form8ion/octoherd-script": "1.0.0",
     "@form8ion/ossf-scorecard": "1.2.0",
