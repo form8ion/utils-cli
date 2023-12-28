@@ -86,6 +86,7 @@
     "@travi/any": "3.0.2",
     "ban-sensitive-files": "1.10.1",
     "c8": "8.0.1",
+    "camelcase": "8.0.0",
     "chai": "5.0.0",
     "clear-module": "4.1.2",
     "cross-env": "7.0.3",

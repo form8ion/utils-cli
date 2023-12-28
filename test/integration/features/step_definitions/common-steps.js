@@ -22,6 +22,7 @@ setWorldConstructor(World);
 Before(async function () {
   this.githubUser = any.word();
   this.repoName = projectNameAnswer;
+  this.projectName = projectNameAnswer;
   this.repoOwner = 'form8ion';
   this.visibility = any.fromList(['Public', 'Private']);
 
@@ -49,7 +50,6 @@ When(/^the project is scaffolded$/, async function () {
   const projectLanguage = this.getAnswerFor(projectQuestionNames.PROJECT_LANGUAGE);
   const jsProjectType = this.getAnswerFor(javascriptQuestionNames.PROJECT_TYPE) || projectTypes.PACKAGE;
   const shouldBeScoped = any.boolean();
-  const scope = shouldBeScoped || 'Private' === this.visibility ? any.word() : undefined;
 
   stubbedFs({
     [`${process.env.HOME}/.netrc`]: `machine github.com\n  login ${githubToken}`,
@@ -72,7 +72,8 @@ When(/^the project is scaffolded$/, async function () {
       [javascriptQuestionNames.NODE_VERSION_CATEGORY]: 'LTS',
       [javascriptQuestionNames.PROJECT_TYPE]: jsProjectType,
       [javascriptQuestionNames.UNIT_TESTS]: true,
-      [javascriptQuestionNames.UNIT_TEST_FRAMEWORK]: 'mocha',
+      [javascriptQuestionNames.UNIT_TEST_FRAMEWORK]: this.unitTestFramework
+        || 'mocha',
       [javascriptQuestionNames.INTEGRATION_TESTS]: true,
       [javascriptQuestionNames.CI_SERVICE]: 'Travis',
       [javascriptQuestionNames.CONFIGURE_LINTING]: true,
@@ -82,7 +83,6 @@ When(/^the project is scaffolded$/, async function () {
         [javascriptQuestionNames.PROVIDE_EXAMPLE]: true
       },
       [javascriptQuestionNames.SHOULD_BE_SCOPED]: shouldBeScoped,
-      [javascriptQuestionNames.SCOPE]: scope,
       [javascriptQuestionNames.DIALECT]: this.dialect
     }
   });

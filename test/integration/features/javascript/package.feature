@@ -24,3 +24,16 @@ Feature: JavaScript Package
     Then the package will have linting configured
     And the package will have typescript configured
     And the coverage badge is added to the readme
+
+  Scenario: ESM package
+    Given the project should be versioned in git
+    And the project language should be JavaScript
+    And the project will use the "esm" dialect
+    And nvm is properly configured
+    And the GitHub token is valid
+    When the project is scaffolded
+    Then the package will have repository details defined
+    And ESM details are configured for the project
+    And the package will have linting configured
+    And vitest has been configured for unit tests
+    And the coverage badge is added to the readme
