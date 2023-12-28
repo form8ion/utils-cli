@@ -7,3 +7,4 @@ Feature: Editor
     And the repository is initialized
     When the project is lifted
     Then runConfigurations are prevented from being ignored
+    And existing vcs ignores remain

@@ -1,5 +1,6 @@
 import {dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import os from 'node:os';
 import {questionNames as liftQuestionNames} from '@form8ion/lift';
 
 import {After, Before, Given, setWorldConstructor, When} from '@cucumber/cucumber';
@@ -95,10 +96,12 @@ When(/^the project is scaffolded$/, async function () {
 });
 
 When('the project is lifted', async function () {
+  this.existingGitIgnores = any.listOf(any.word);
+
   stubbedFs({
     node_modules: stubbedNodeModules,
     'README.md': '',
-    '.gitignore': '',
+    '.gitignore': this.existingGitIgnores.join(os.EOL),
     ...'JetBrains' === this.editor && {'.idea': {}}
   });
 
