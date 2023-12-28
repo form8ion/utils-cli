@@ -49,6 +49,9 @@
     "access": "public",
     "provenance": true
   },
+  "overrides": {
+    "@form8ion/project": "18.1.0-beta.1"
+  },
   "dependencies": {
     "@form8ion/codecov": "5.0.0",
     "@form8ion/cucumber-scaffolder": "3.1.1",
@@ -56,12 +59,13 @@
     "@form8ion/hapi-scaffolder": "4.0.7",
     "@form8ion/javascript": "11.10.2",
     "@form8ion/javascript-core": "10.1.0",
+    "@form8ion/jetbrains": "1.0.0-alpha.1",
     "@form8ion/lift": "9.0.1",
     "@form8ion/mocha-scaffolder": "5.0.0",
     "@form8ion/octoherd-script": "1.0.0",
     "@form8ion/ossf-scorecard": "1.2.0",
     "@form8ion/prettier": "2.0.0",
-    "@form8ion/project": "18.0.1",
+    "@form8ion/project": "18.1.0-beta.1",
     "@form8ion/remark-plugin-scaffolder": "3.0.4",
     "@form8ion/remove-greenkeeper": "3.0.1",
     "@form8ion/renovate-scaffolder": "2.1.0",
