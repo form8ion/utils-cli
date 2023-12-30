@@ -50,7 +50,7 @@
     "provenance": true
   },
   "overrides": {
-    "@form8ion/project": "18.1.0-beta.1"
+    "@form8ion/project": "18.1.0-beta.2"
   },
   "dependencies": {
     "@form8ion/codecov": "5.0.0",
@@ -65,7 +65,7 @@
     "@form8ion/octoherd-script": "1.0.0",
     "@form8ion/ossf-scorecard": "1.2.0",
     "@form8ion/prettier": "2.0.0",
-    "@form8ion/project": "18.1.0-beta.1",
+    "@form8ion/project": "18.1.0-beta.2",
     "@form8ion/remark-plugin-scaffolder": "3.0.4",
     "@form8ion/remove-greenkeeper": "3.0.1",
     "@form8ion/renovate-scaffolder": "2.1.0",
