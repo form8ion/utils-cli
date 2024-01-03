@@ -10,6 +10,7 @@ import {replace as replaceTravisCiWithGithubActions} from '@form8ion/replace-tra
 import {test as jsApplicabilityTest} from '@form8ion/javascript';
 import {lift as liftGithubActionsCI, test as githubActionsCiApplicabilityTest} from '@form8ion/github-actions-node-ci';
 import {scaffold as scaffoldOssfScorecard} from '@form8ion/ossf-scorecard';
+import {lift as liftJetbrains, test as jetbrainsInUse} from '@form8ion/jetbrains';
 
 import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
@@ -50,7 +51,8 @@ describe('lift command', () => {
         enhancers: {
           JavaScript: {test: jsApplicabilityTest, lift: enhancedLifters.javascript},
           Renovate: {test: renovatePredicate, lift: liftRenovate},
-          'GitHub Actions CI': {test: githubActionsCiApplicabilityTest, lift: liftGithubActionsCI}
+          'GitHub Actions CI': {test: githubActionsCiApplicabilityTest, lift: liftGithubActionsCI},
+          JetBrains: {test: jetbrainsInUse, lift: liftJetbrains}
         }
       })
       .mockResolvedValue(liftingResults);

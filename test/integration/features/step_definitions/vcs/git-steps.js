@@ -3,6 +3,8 @@ import * as td from 'testdouble';
 import {fileExists} from '@form8ion/core';
 import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
+import {promises as fs} from 'node:fs';
+import os from 'node:os';
 
 let questionNames;
 
@@ -44,4 +46,11 @@ Then('the base git files should not be present', async function () {
   assert.isFalse(await fileExists(`${process.cwd()}/.git`));
   assert.isFalse(await fileExists(`${process.cwd()}/.gitattributes`));
   assert.isFalse(await fileExists(`${process.cwd()}/.gitignore`));
+});
+
+Then('existing vcs ignores remain', async function () {
+  const gitIgnoreContents = await fs.readFile(`${process.cwd()}/.gitignore`, 'utf-8');
+  const gitIgnoreLines = gitIgnoreContents.split(os.EOL);
+
+  assert.includeOrderedMembers(gitIgnoreLines, this.existingGitIgnores);
 });

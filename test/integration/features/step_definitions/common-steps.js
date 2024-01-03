@@ -1,7 +1,9 @@
 import {dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import os from 'node:os';
+import {questionNames as liftQuestionNames} from '@form8ion/lift';
 
-import {After, Before, setWorldConstructor, When} from '@cucumber/cucumber';
+import {After, Before, Given, setWorldConstructor, When} from '@cucumber/cucumber';
 import any from '@travi/any';
 import stubbedFs from 'mock-fs';
 import * as td from 'testdouble';
@@ -9,7 +11,7 @@ import * as td from 'testdouble';
 import {World} from '../support/world.js';
 import {githubToken} from './vcs/github-api-steps.js';
 
-let action, javascriptQuestionNames, projectQuestionNames;
+let scaffold, lift, javascriptQuestionNames, projectQuestionNames;
 const __dirname = dirname(fileURLToPath(import.meta.url));        // eslint-disable-line no-underscore-dangle
 const pathToNodeModules = [__dirname, '../../../../', 'node_modules/'];
 export const stubbedNodeModules = stubbedFs.load(resolve(...pathToNodeModules));
@@ -36,12 +38,17 @@ Before(async function () {
 
   ({questionNames: projectQuestionNames} = await import('@form8ion/project'));
   ({questionNames: javascriptQuestionNames} = await import('@form8ion/javascript'));
-  ({handler: action} = (await import('../../../../src/commands/scaffold/command.js')));
+  ({handler: scaffold} = (await import('../../../../src/commands/scaffold/command.js')));
+  ({handler: lift} = (await import('../../../../src/commands/lift/command.js')));
 });
 
 After(function () {
   stubbedFs.restore();
   td.reset();
+});
+
+Given('the {string} scaffolder is chosen', async function (scaffolder) {
+  this.chosenScaffolder = scaffolder;
 });
 
 When(/^the project is scaffolded$/, async function () {
@@ -57,7 +64,7 @@ When(/^the project is scaffolded$/, async function () {
     node_modules: stubbedNodeModules
   });
 
-  await action({
+  await scaffold({
     [projectQuestionNames.PROJECT_NAME]: projectNameAnswer,
     [projectQuestionNames.DESCRIPTION]: projectDescriptionAnswer,
     [projectQuestionNames.VISIBILITY]: this.visibility,
@@ -86,4 +93,17 @@ When(/^the project is scaffolded$/, async function () {
       [javascriptQuestionNames.DIALECT]: this.dialect
     }
   });
+});
+
+When('the project is lifted', async function () {
+  this.existingGitIgnores = any.listOf(any.word);
+
+  stubbedFs({
+    node_modules: stubbedNodeModules,
+    'README.md': '',
+    '.gitignore': this.existingGitIgnores.join(os.EOL),
+    ...'JetBrains' === this.editor && {'.idea': {}}
+  });
+
+  await lift({decisions: {[liftQuestionNames.SCAFFOLDER]: this.chosenScaffolder}});
 });
