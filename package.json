@@ -118,6 +118,6 @@
     "rollup-plugin-json": "4.0.0",
     "testdouble": "3.20.1",
     "unist-util-find": "3.0.0",
-    "vitest": "1.1.2"
+    "vitest": "1.1.3"
   }
 }
