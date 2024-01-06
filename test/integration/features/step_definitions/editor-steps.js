@@ -12,5 +12,7 @@ Then('runConfigurations are prevented from being ignored', async function () {
   const gitIgnoreContents = await fs.readFile(`${process.cwd()}/.gitignore`, 'utf-8');
   const gitIgnoreLines = gitIgnoreContents.split(os.EOL);
 
-  assert.includeOrderedMembers(gitIgnoreLines, ['.idea', '!.idea/', '.idea/*', '!.idea/runConfigurations/']);
+  // cant use includeOrderedMembers here since it was decided to require the included members to begin the list in
+  // https://github.com/chaijs/chai/issues/717#issuecomment-225452800
+  assert.includeMembers(gitIgnoreLines, ['.idea', '!.idea/', '.idea/*', '!.idea/runConfigurations/']);
 });
