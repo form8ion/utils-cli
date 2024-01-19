@@ -67,7 +67,7 @@
     "@form8ion/remove-greenkeeper": "3.0.1",
     "@form8ion/renovate-scaffolder": "2.1.0",
     "@form8ion/replace-travis-ci-with-github-actions": "10.0.1",
-    "@form8ion/rollup": "3.2.0",
+    "@form8ion/rollup": "4.0.0",
     "@form8ion/scaffolder-scaffolder": "6.0.3",
     "@form8ion/vite": "2.0.1",
     "@form8ion/vitest": "4.0.1",
