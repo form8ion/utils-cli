@@ -17,7 +17,7 @@ Before(async () => {
 Given(/^the project should be versioned in git$/, async function () {
   this.setAnswerFor(questionNames.GIT_REPO, true);
 
-  td.when(this.git.simpleGit(process.cwd())).thenReturn(simpleGitInstance);
+  td.when(this.git.simpleGit({baseDir: process.cwd()})).thenReturn(simpleGitInstance);
   td.when(simpleGitInstance.checkIsRepo('root')).thenResolve(false);
   td.when(simpleGitInstance.listRemote()).thenResolve([]);
 });
@@ -27,11 +27,11 @@ Given(/^the project should not be versioned in git$/, async function () {
 });
 
 Given('the repository is initialized', async function () {
-  td.when(this.git.simpleGit(process.cwd())).thenReturn(simpleGitInstance);
+  td.when(this.git.simpleGit({baseDir: process.cwd()})).thenReturn(simpleGitInstance);
   td.when(simpleGitInstance.checkIsRepo('root')).thenResolve(true);
   td.when(simpleGitInstance.listRemote()).thenResolve(['origin']);
   td.when(simpleGitInstance.remote(['get-url', 'origin']))
-    .thenResolve(`git@github.com:${this.repoOwner}/${this.repoName}.git`);
+    .thenResolve(`git@github.com:${this.repoOwner}/${this.repoName}.git\n`);
 });
 
 Then(/^the base git files should be present$/, async function () {
