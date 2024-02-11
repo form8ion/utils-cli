@@ -99,7 +99,7 @@
     "import-fresh": "3.3.0",
     "jest-when": "3.6.0",
     "js-yaml": "4.1.0",
-    "lockfile-lint": "4.12.1",
+    "lockfile-lint": "4.13.0",
     "ls-engines": "0.9.1",
     "mdast-util-from-markdown": "2.0.0",
     "mdast-zone": "6.1.0",
