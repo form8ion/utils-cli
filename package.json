@@ -70,7 +70,7 @@
     "@form8ion/rollup": "4.1.0",
     "@form8ion/scaffolder-scaffolder": "6.0.5",
     "@form8ion/vite": "2.0.1",
-    "@form8ion/vitest": "4.0.1",
+    "@form8ion/vitest": "4.2.0",
     "@travi/github-scaffolder": "10.0.1",
     "update-notifier": "7.0.0",
     "yargs": "17.7.2"
