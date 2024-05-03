@@ -115,7 +115,7 @@
     "rollup-plugin-json": "4.0.0",
     "testdouble": "3.20.2",
     "unist-util-find": "3.0.0",
-    "vitest": "1.5.3"
+    "vitest": "1.6.0"
   },
   "packageManager": "npm@10.7.0"
 }
