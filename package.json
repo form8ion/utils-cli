@@ -109,7 +109,7 @@
     "publint": "0.2.8",
     "remark-cli": "12.0.1",
     "rimraf": "5.0.7",
-    "rollup": "4.17.2",
+    "rollup": "4.18.0",
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-executable": "1.6.3",
     "rollup-plugin-json": "4.0.0",
