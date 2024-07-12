@@ -72,7 +72,7 @@
     "@form8ion/vite": "2.0.1",
     "@form8ion/vitest": "4.2.0",
     "@travi/github-scaffolder": "10.3.1",
-    "update-notifier": "7.0.0",
+    "update-notifier": "7.1.0",
     "yargs": "17.7.2"
   },
   "devDependencies": {
