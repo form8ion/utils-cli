@@ -1,7 +1,7 @@
 import {lift} from '@form8ion/lift';
 import {
   lift as liftRenovate,
-  predicate as renovatePredicate,
+  test as renovatePredicate,
   scaffold as scaffoldRenovate
 } from '@form8ion/renovate-scaffolder';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
