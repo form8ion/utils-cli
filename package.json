@@ -100,7 +100,7 @@
     "jest-when": "3.6.0",
     "js-yaml": "4.1.0",
     "lockfile-lint": "4.14.0",
-    "ls-engines": "0.9.2",
+    "ls-engines": "0.9.3",
     "mdast-util-from-markdown": "2.0.1",
     "mdast-zone": "6.1.0",
     "mock-fs": "5.2.0",
