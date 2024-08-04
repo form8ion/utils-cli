@@ -1,6 +1,5 @@
 import {scaffold as scaffoldJavaScript} from '@form8ion/javascript';
 import {scaffold as scaffoldGithubActions} from '@form8ion/github-actions-node-ci';
-import {prompt} from '@travi/github-scaffolder';
 import {scaffold as scaffoldHapi} from '@form8ion/hapi-scaffolder';
 import {scaffold as scaffoldRemarkPlugin} from '@form8ion/remark-plugin-scaffolder';
 import {scaffold as scaffoldScaffolder} from '@form8ion/scaffolder-scaffolder';
@@ -32,8 +31,4 @@ export function javascriptScaffolderFactory(decisions) {
     },
     decisions
   });
-}
-
-export function githubPromptFactory(decisions) {
-  return () => prompt({account: 'form8ion', decisions});
 }

@@ -28,11 +28,6 @@ Before(async function () {
   this.repoOwner = 'form8ion';
   this.visibility = any.fromList(['Public', 'Private']);
 
-  // work around for overly aggressive mock-fs, see:
-  // https://github.com/tschaub/mock-fs/issues/213#issuecomment-347002795
-  await import('validate-npm-package-name'); // eslint-disable-line import/no-extraneous-dependencies
-  await import('color-convert'); // eslint-disable-line import/no-extraneous-dependencies
-
   ({default: this.execa} = (await td.replaceEsm('@form8ion/execa-wrapper')));
   this.git = await td.replaceEsm('simple-git');
 
@@ -59,8 +54,7 @@ When(/^the project is scaffolded$/, async function () {
   const shouldBeScoped = any.boolean();
 
   stubbedFs({
-    [`${process.env.HOME}/.netrc`]: `machine github.com\n  login ${githubToken}`,
-    [`${process.env.HOME}/.gitconfig`]: `[github]\n\tuser = ${this.githubUser}`,
+    [`${process.env.HOME}/.netrc`]: `machine api.github.com\n  login ${githubToken}`,
     node_modules: stubbedNodeModules
   });
 
