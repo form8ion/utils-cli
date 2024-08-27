@@ -51,7 +51,7 @@
     "provenance": true
   },
   "dependencies": {
-    "@form8ion/codecov": "5.3.0",
+    "@form8ion/codecov": "6.2.0",
     "@form8ion/cucumber-scaffolder": "4.0.0",
     "@form8ion/github": "2.0.0",
     "@form8ion/github-actions-node-ci": "4.4.0",
