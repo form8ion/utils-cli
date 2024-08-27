@@ -73,7 +73,7 @@
     "@form8ion/scaffolder-scaffolder": "6.1.0",
     "@form8ion/vite": "2.0.1",
     "@form8ion/vitest": "4.2.0",
-    "update-notifier": "7.2.0",
+    "update-notifier": "7.3.0",
     "yargs": "17.7.2"
   },
   "devDependencies": {
