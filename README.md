@@ -92,7 +92,7 @@ $ npm test
 
 [license-link]: LICENSE
 
-[license-badge]: https://img.shields.io/github/license/form8ion/utils-cli.svg
+[license-badge]: https://img.shields.io/github/license/form8ion/utils-cli.svg?logo=opensourceinitiative
 
 [coverage-link]: https://codecov.io/github/form8ion/utils-cli
 
