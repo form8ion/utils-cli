@@ -41,7 +41,8 @@
     "watch": "run-s 'build:js -- --watch'",
     "prepack": "run-s build",
     "prepare": "husky install",
-    "lint:publish": "publint --strict"
+    "lint:publish": "publint --strict",
+    "lint:js:fix": "run-s 'lint:js -- --fix'"
   },
   "files": [
     "bin/"
