@@ -6,7 +6,9 @@ repository:
   homepage: 'https://npm.im/@form8ion/utils-cli'
   private: false
 
-branches: []
+branches:
+  - name: master
+    protection:
 
 rulesets:
   - name: prevent destruction of the default branch
