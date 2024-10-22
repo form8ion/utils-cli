@@ -109,7 +109,7 @@
     "mdast-zone": "6.1.0",
     "mock-fs": "5.4.0",
     "msw": "2.4.13",
-    "npm-run-all2": "6.2.6",
+    "npm-run-all2": "7.0.0",
     "publint": "0.2.11",
     "remark-cli": "12.0.1",
     "rimraf": "6.0.1",
