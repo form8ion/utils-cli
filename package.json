@@ -105,7 +105,7 @@
     "js-yaml": "4.1.0",
     "lockfile-lint": "4.14.0",
     "ls-engines": "0.9.3",
-    "mdast-util-from-markdown": "2.0.1",
+    "mdast-util-from-markdown": "2.0.2",
     "mdast-zone": "6.1.0",
     "mock-fs": "5.4.0",
     "msw": "2.5.1",
