@@ -107,7 +107,7 @@
     "ls-engines": "0.9.3",
     "mdast-util-from-markdown": "2.0.2",
     "mdast-zone": "6.1.0",
-    "mock-fs": "5.4.0",
+    "mock-fs": "5.4.1",
     "msw": "2.6.0",
     "npm-run-all2": "7.0.1",
     "publint": "0.2.12",
