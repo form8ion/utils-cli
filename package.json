@@ -108,7 +108,7 @@
     "mdast-util-from-markdown": "2.0.2",
     "mdast-zone": "6.1.0",
     "mock-fs": "5.4.1",
-    "msw": "2.6.2",
+    "msw": "2.6.3",
     "npm-run-all2": "7.0.1",
     "publint": "0.2.12",
     "remark-cli": "12.0.1",
