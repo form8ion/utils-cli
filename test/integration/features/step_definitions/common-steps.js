@@ -28,7 +28,7 @@ Before(async function () {
   this.repoOwner = 'form8ion';
   this.visibility = any.fromList(['Public', 'Private']);
 
-  ({default: this.execa} = (await td.replaceEsm('@form8ion/execa-wrapper')));
+  ({execa: this.execa} = (await td.replaceEsm('execa')));
   this.git = await td.replaceEsm('simple-git');
 
   ({questionNames: projectQuestionNames} = await import('@form8ion/project'));
