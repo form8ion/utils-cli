@@ -38,6 +38,7 @@ Given(/^the project language should be JavaScript$/, async function () {
     .thenReturn({stdout: {pipe: () => undefined}});
   td.when(this.execa('npm', ['whoami']))
     .thenResolve(any.word());
+  td.when(this.execa('npm', ['--version'])).thenResolve({stdout: semverStringFactory()});
 });
 
 Given('the project language is {string}', async function (projectLanguage) {
