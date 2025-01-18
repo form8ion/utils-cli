@@ -4,23 +4,17 @@ import {packageManagers} from '@form8ion/javascript-core';
 import * as githubPlugin from '@form8ion/github';
 import * as renovatePlugin from '@form8ion/renovate-scaffolder';
 
-import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
+import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'jest-when';
 
-import * as enhancedScaffolders from './enhanced-scaffolders.js';
+import {javascriptPluginFactory} from '../common/enhanced-plugins.js';
 import {command, describe as commandDescription, handler} from './index.js';
 
+vi.mock('@form8ion/project');
+vi.mock('../common/enhanced-plugins.js');
+
 describe('scaffold command', () => {
-  beforeEach(() => {
-    vi.mock('@form8ion/project');
-    vi.mock('./enhanced-scaffolders.js');
-  });
-
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should define the scaffold command', async () => {
     const scaffoldingResults = any.simpleObject();
     const decisions = any.simpleObject();
@@ -40,13 +34,11 @@ describe('scaffold command', () => {
       [jsQuestionNames.SCOPE]: 'form8ion',
       [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
     };
-    const jsScaffolder = () => undefined;
-    when(enhancedScaffolders.javascriptScaffolderFactory)
-      .calledWith(decisionsWithEnhancements)
-      .mockReturnValue(jsScaffolder);
+    const jsPlugins = any.simpleObject();
+    when(javascriptPluginFactory).calledWith(decisionsWithEnhancements).mockReturnValue(jsPlugins);
     when(projectScaffolder.scaffold).calledWith({
       plugins: {
-        languages: {JavaScript: {scaffold: jsScaffolder}},
+        languages: {JavaScript: jsPlugins},
         vcsHosts: {GitHub: githubPlugin},
         dependencyUpdaters: {Renovate: renovatePlugin}
       },
