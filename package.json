@@ -54,6 +54,7 @@
   "packageManager": "npm@11.0.0+sha512.11dff29565d2297c74e7c594a9762581bde969f0aa5cbe6f5b3644bf008a16c065ece61094d9ffbb81125be38df8e1ba43eb8244b3d30c61eb797e9a2440e3ec",
   "dependencies": {
     "@form8ion/codecov": "6.2.0",
+    "@form8ion/core": "4.8.0",
     "@form8ion/cucumber-scaffolder": "4.0.0",
     "@form8ion/github": "2.0.0",
     "@form8ion/github-actions-node-ci": "5.0.1",
@@ -81,7 +82,6 @@
   "devDependencies": {
     "@cucumber/cucumber": "11.2.0",
     "@form8ion/commitlint-config": "2.0.3",
-    "@form8ion/core": "4.8.0",
     "@form8ion/eslint-config": "7.0.12",
     "@form8ion/eslint-config-cucumber": "1.4.1",
     "@form8ion/eslint-config-mocha": "3.0.6",
