@@ -5,14 +5,8 @@ import {javascriptPluginFactory} from './enhanced-plugins.js';
 
 export default function (decisions) {
   return {
-    dependencyUpdaters: {
-      Renovate: renovatePlugin
-    },
-    languages: {
-      JavaScript: javascriptPluginFactory(decisions)
-    },
-    vcsHosts: {
-      GitHub: githubPlugin
-    }
+    dependencyUpdaters: {Renovate: renovatePlugin},
+    languages: {JavaScript: javascriptPluginFactory(decisions)},
+    vcsHosts: {GitHub: githubPlugin}
   };
 }

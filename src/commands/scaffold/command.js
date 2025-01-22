@@ -1,10 +1,9 @@
-import {scaffold, questionNames as projectQuestionNames} from '@form8ion/project';
+import {questionNames as projectQuestionNames, scaffold} from '@form8ion/project';
 import {packageManagers} from '@form8ion/javascript-core';
 import {questionNames as jsQuestionNames} from '@form8ion/javascript';
 import * as githubPlugin from '@form8ion/github';
-import * as renovatePlugin from '@form8ion/renovate-scaffolder';
 
-import {javascriptPluginFactory} from '../common/enhanced-plugins.js';
+import projectPlugins from '../common/plugins.js';
 
 const githubPromptConstants = githubPlugin.promptConstants;
 const githubDetailsPromptQuestionNames = githubPromptConstants.questionNames[githubPromptConstants.ids.GITHUB_DETAILS];
@@ -26,11 +25,7 @@ export function handler(decisions) {
   };
 
   return scaffold({
-    plugins: {
-      languages: {JavaScript: javascriptPluginFactory(decisionsWithEnhancements)},
-      vcsHosts: {GitHub: githubPlugin},
-      dependencyUpdaters: {Renovate: renovatePlugin}
-    },
+    plugins: projectPlugins(decisionsWithEnhancements),
     decisions: decisionsWithEnhancements
   });
 }
