@@ -2,17 +2,15 @@ import * as projectScaffolder from '@form8ion/project';
 import {questionNames as jsQuestionNames} from '@form8ion/javascript';
 import {packageManagers} from '@form8ion/javascript-core';
 import * as githubPlugin from '@form8ion/github';
-import * as renovatePlugin from '@form8ion/renovate-scaffolder';
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'jest-when';
-
-import {javascriptPluginFactory} from '../common/enhanced-plugins.js';
 import {command, describe as commandDescription, handler} from './index.js';
+import projectPlugins from '../common/plugins.js';
 
 vi.mock('@form8ion/project');
-vi.mock('../common/enhanced-plugins.js');
+vi.mock('../common/plugins.js');
 
 describe('scaffold command', () => {
   it('should define the scaffold command', async () => {
@@ -22,6 +20,7 @@ describe('scaffold command', () => {
     const githubDetailsPromptQuestionNames = githubPromptConstants.questionNames[
       githubPromptConstants.ids.GITHUB_DETAILS
     ];
+    const projectPluginGroups = any.objectWithKeys(any.listOf(any.word), {factory: any.simpleObject});
     const decisionsWithEnhancements = {
       ...decisions,
       [projectScaffolder.questionNames.COPYRIGHT_HOLDER]: 'Matt Travi',
@@ -34,16 +33,10 @@ describe('scaffold command', () => {
       [jsQuestionNames.SCOPE]: 'form8ion',
       [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
     };
-    const jsPlugins = any.simpleObject();
-    when(javascriptPluginFactory).calledWith(decisionsWithEnhancements).mockReturnValue(jsPlugins);
-    when(projectScaffolder.scaffold).calledWith({
-      plugins: {
-        languages: {JavaScript: jsPlugins},
-        vcsHosts: {GitHub: githubPlugin},
-        dependencyUpdaters: {Renovate: renovatePlugin}
-      },
-      decisions: decisionsWithEnhancements
-    }).mockResolvedValue(scaffoldingResults);
+    when(projectPlugins).calledWith(decisionsWithEnhancements).mockReturnValue(projectPluginGroups);
+    when(projectScaffolder.scaffold)
+      .calledWith({plugins: projectPluginGroups, decisions: decisionsWithEnhancements})
+      .mockResolvedValue(scaffoldingResults);
 
     expect(await handler(decisions)).toEqual(scaffoldingResults);
     expect(command).toEqual('scaffold');
