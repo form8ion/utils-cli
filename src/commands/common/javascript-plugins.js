@@ -8,7 +8,7 @@ import * as vitePlugin from '@form8ion/vite';
 
 import {unitTestFrameworks} from './test-frameworks.js';
 
-export function getJavascriptPlugins() {
+export default function () {
   return {
     ciServices: {'GitHub Actions': githubActionsPlugin},
     applicationTypes: {Hapi: hapiPlugin},

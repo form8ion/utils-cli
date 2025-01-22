@@ -9,7 +9,7 @@ import * as vitePlugin from '@form8ion/vite';
 import {describe, expect, it} from 'vitest';
 
 import {unitTestFrameworks} from './test-frameworks.js';
-import {getJavascriptPlugins} from './javascript-plugins.js';
+import getJavascriptPlugins from './javascript-plugins.js';
 
 describe('javascript plugins', () => {
   it('should return the javascript plugins', () => {
