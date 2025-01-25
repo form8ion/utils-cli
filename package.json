@@ -113,12 +113,12 @@
     "publint": "0.3.2",
     "remark-cli": "12.0.1",
     "rimraf": "6.0.1",
-    "rollup": "4.30.1",
+    "rollup": "4.32.0",
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-executable": "1.6.3",
     "rollup-plugin-json": "4.0.0",
     "testdouble": "3.20.2",
     "unist-util-find": "3.0.0",
-    "vitest": "3.0.1"
+    "vitest": "3.0.4"
   }
 }
