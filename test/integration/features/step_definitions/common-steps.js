@@ -9,7 +9,7 @@ import stubbedFs from 'mock-fs';
 import * as td from 'testdouble';
 
 import {World} from '../support/world.js';
-import {githubToken} from './vcs/github-api-steps.js';
+import {githubToken} from './vcs/github-steps.js';
 
 let scaffold, lift, javascriptQuestionNames, projectQuestionNames;
 const __dirname = dirname(fileURLToPath(import.meta.url));        // eslint-disable-line no-underscore-dangle
@@ -27,6 +27,7 @@ Before(async function () {
   this.projectName = projectNameAnswer;
   this.repoOwner = 'form8ion';
   this.visibility = any.fromList(['Public', 'Private']);
+  this.projectRoot = process.cwd();
 
   ({execa: this.execa} = (await td.replaceEsm('execa')));
   this.git = await td.replaceEsm('simple-git');
