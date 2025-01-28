@@ -56,6 +56,10 @@ Given(/^nvm is properly configured$/, function () {
     .thenReturn({stdout: {pipe: () => undefined}});
 });
 
+Given('the project will be a form8ion plugin', async function () {
+  this.projectTypePlugin = 'form8ion Plugin';
+});
+
 Then(/^JavaScript ignores are defined$/, async function () {
   const gitIgnore = await fs.readFile(`${process.cwd()}/.gitignore`);
 

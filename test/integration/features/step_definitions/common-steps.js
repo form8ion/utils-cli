@@ -79,7 +79,7 @@ When(/^the project is scaffolded$/, async function () {
       [javascriptQuestionNames.INTEGRATION_TESTS]: true,
       [javascriptQuestionNames.CI_SERVICE]: 'Travis',
       [javascriptQuestionNames.CONFIGURE_LINTING]: true,
-      [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: 'Other',
+      [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: this.projectTypePlugin || 'Other',
       ...projectTypes.PACKAGE === jsProjectType && {
         [javascriptQuestionNames.PACKAGE_BUNDLER]: this.getAnswerFor(javascriptQuestionNames.PACKAGE_BUNDLER),
         [javascriptQuestionNames.PROVIDE_EXAMPLE]: true
