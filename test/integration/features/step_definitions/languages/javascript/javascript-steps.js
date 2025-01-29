@@ -2,6 +2,7 @@ import {promises as fs} from 'node:fs';
 
 import {load} from 'js-yaml';
 import {fileExists} from '@form8ion/core';
+import {DEV_DEPENDENCY_TYPE} from '@form8ion/javascript-core';
 
 import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
@@ -10,6 +11,19 @@ import * as td from 'testdouble';
 
 import {setupMissingHusky} from './husky-steps.js';
 import {projectNameAnswer} from '../../common-steps.js';
+
+function escapeSpecialCharacters(string) {
+  return string.replace(/[.*+?^$\-{}()|[\]\\]/g, '\\$&');
+}
+
+export function assertDevDependencyIsInstalled(execa, dependencyName) {
+  td.verify(
+    execa(td.matchers.contains(
+      new RegExp(`(npm install).*${escapeSpecialCharacters(dependencyName)}.*${DEV_DEPENDENCY_TYPE}`)
+    )),
+    {ignoreExtraArgs: true}
+  );
+}
 
 function versionSegment() {
   return any.integer({max: 20});
@@ -56,8 +70,8 @@ Given(/^nvm is properly configured$/, function () {
     .thenReturn({stdout: {pipe: () => undefined}});
 });
 
-Given('the project will be a form8ion plugin', async function () {
-  this.projectTypePlugin = 'form8ion Plugin';
+Given('the project will be a {string}', async function (projectTypeChoice) {
+  this.projectTypePlugin = projectTypeChoice;
 });
 
 Then(/^JavaScript ignores are defined$/, async function () {
