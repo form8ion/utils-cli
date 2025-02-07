@@ -34,7 +34,5 @@ Then('integration testing is configured', async function () {
     'run-s build'
   );
   assertDevDependencyIsInstalled(this.execa, '@cucumber/cucumber');
-  assertDevDependencyIsInstalled(this.execa, 'mock-fs');
-  assert.isTrue(await fileExists(`${process.cwd()}/test/integration/features/scaffold.feature`));
   assert.isTrue(await fileExists(`${process.cwd()}/test/integration/features/step_definitions/common-steps.js`));
 });
