@@ -4,3 +4,9 @@
 /.nyc_output/
 
 .eslintcache
+
+.idea
+!.idea/
+.idea/*
+!.idea/runConfigurations/
+
