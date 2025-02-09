@@ -3,7 +3,7 @@ _extends: .github
 repository:
   name: utils-cli
   description: cli for various tools for the organization
-  homepage: 'https://npm.im/@form8ion/utils-cli'
+  homepage: https://npm.im/@form8ion/utils-cli
   private: false
 
 branches:
@@ -17,7 +17,7 @@ rulesets:
     conditions:
       ref_name:
         include:
-          - "~DEFAULT_BRANCH"
+          - ~DEFAULT_BRANCH
         exclude: []
     rules:
       - type: deletion
@@ -29,7 +29,7 @@ rulesets:
     conditions:
       ref_name:
         include:
-          - "~DEFAULT_BRANCH"
+          - ~DEFAULT_BRANCH
         exclude: []
     rules:
       - type: required_status_checks

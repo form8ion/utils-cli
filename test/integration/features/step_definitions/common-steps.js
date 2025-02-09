@@ -9,7 +9,7 @@ import stubbedFs from 'mock-fs';
 import * as td from 'testdouble';
 
 import {World} from '../support/world.js';
-import {githubToken} from './vcs/github-api-steps.js';
+import {githubToken} from './vcs/github-steps.js';
 
 let scaffold, lift, javascriptQuestionNames, projectQuestionNames;
 const __dirname = dirname(fileURLToPath(import.meta.url));        // eslint-disable-line no-underscore-dangle
@@ -27,6 +27,7 @@ Before(async function () {
   this.projectName = projectNameAnswer;
   this.repoOwner = 'form8ion';
   this.visibility = any.fromList(['Public', 'Private']);
+  this.projectRoot = process.cwd();
 
   ({execa: this.execa} = (await td.replaceEsm('execa')));
   this.git = await td.replaceEsm('simple-git');
@@ -78,7 +79,7 @@ When(/^the project is scaffolded$/, async function () {
       [javascriptQuestionNames.INTEGRATION_TESTS]: true,
       [javascriptQuestionNames.CI_SERVICE]: 'Travis',
       [javascriptQuestionNames.CONFIGURE_LINTING]: true,
-      [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: 'Other',
+      [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: this.projectTypePlugin || 'Other',
       ...projectTypes.PACKAGE === jsProjectType && {
         [javascriptQuestionNames.PACKAGE_BUNDLER]: this.getAnswerFor(javascriptQuestionNames.PACKAGE_BUNDLER),
         [javascriptQuestionNames.PROVIDE_EXAMPLE]: true

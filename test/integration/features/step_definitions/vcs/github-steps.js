@@ -1,5 +1,7 @@
+import {promises as fs} from 'node:fs';
 import {StatusCodes} from 'http-status-codes';
 import deepEqual from 'deep-equal';
+import {load} from 'js-yaml';
 
 import {After, AfterAll, BeforeAll, Given, Then} from '@cucumber/cucumber';
 import any from '@travi/any';
@@ -104,5 +106,12 @@ Then('next-steps are added as issues on GitHub', async function () {
       {title: 'Commit scaffolded files'},
       {title: 'Set local `master` branch to track upstream `origin/master`'}
     ]
+  );
+});
+
+Then('github is configured', async function () {
+  assert.equal(
+    load(await fs.readFile(`${this.projectRoot}/.github/settings.yml`)).repository.homepage,
+    'https://npm.im/@form8ion/project-name'
   );
 });
