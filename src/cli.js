@@ -1,7 +1,7 @@
 import * as scaffoldCommand from './commands/scaffold/index.js';
 import * as liftCommand from './commands/lift/index.js';
 
-export default function (yargs) {
+export default function cli(yargs) {
   return yargs
     .scriptName('form8ion-utils')
     .usage('Usage: $0 <cmd> [args]')

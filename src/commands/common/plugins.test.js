@@ -1,11 +1,10 @@
 import * as renovatePlugin from '@form8ion/renovate-scaffolder';
-import * as githubPlugin from '@form8ion/github';
 
 import any from '@travi/any';
 import {describe, expect, it, vi} from 'vitest';
 import {when} from 'jest-when';
 
-import {javascriptPluginFactory} from './enhanced-plugins.js';
+import {javascriptPluginFactory, githubPluginFactory} from './enhanced-plugins.js';
 import plugins from './plugins.js';
 
 vi.mock('./enhanced-plugins.js');
@@ -15,7 +14,9 @@ describe('plugins', () => {
 
   it('defines the project plugins', () => {
     const jsPlugin = any.simpleObject();
+    const githubPlugin = any.simpleObject();
     when(javascriptPluginFactory).calledWith(decisions).mockReturnValue(jsPlugin);
+    when(githubPluginFactory).calledWith().mockReturnValue(githubPlugin);
 
     expect(plugins(decisions)).toEqual({
       dependencyUpdaters: {
