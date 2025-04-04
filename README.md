@@ -32,6 +32,12 @@ $ npm install @form8ion/utils-cli --global
 
 Scaffolds a new project
 
+This command leverages the [.netrc strategy](https://github.com/travi/octokit-auth-netrc)
+for [octokit](https://github.com/octokit/rest.js/). Be sure to
+[add your personal access token](https://github.com/travi/octokit-auth-netrc#defining-your-token)
+to leverage the GitHub API integration benefits of this plugin.
+
+
 ```sh
 $ form8ion-utils scaffold
 ```
@@ -40,20 +46,14 @@ $ form8ion-utils scaffold
 
 Lifts an existing project by configuring new functionality
 
+This command leverages the [.netrc strategy](https://github.com/travi/octokit-auth-netrc)
+for [octokit](https://github.com/octokit/rest.js/). Be sure to
+[add your personal access token](https://github.com/travi/octokit-auth-netrc#defining-your-token)
+to leverage the GitHub API integration benefits of this plugin.
+
 ```sh
 $ form8ion-utils lift
 ```
-
-#### `travis-tokens`
-
-Roll the `NPM_TOKEN` or `GH_TOKEN` across multiple repositories
-
-```sh
-$ form8ion-utils travis-tokens
-```
-
-Find additional details for this command in the [travis-token-updater](https://github.com/travis-token-updater)
-repository
 
 ## Contributing
 
