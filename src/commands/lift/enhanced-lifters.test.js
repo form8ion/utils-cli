@@ -1,5 +1,4 @@
 import {ungroupObject} from '@form8ion/core';
-import {octokit} from '@form8ion/github-core';
 import {lift as liftJs} from '@form8ion/javascript';
 import {scaffold as scaffoldCodecov} from '@form8ion/codecov';
 import {lift as liftGithub} from '@form8ion/github';
@@ -15,7 +14,6 @@ vi.mock('@form8ion/core');
 vi.mock('@form8ion/javascript');
 vi.mock('@form8ion/codecov');
 vi.mock('@form8ion/github');
-vi.mock('@form8ion/github-core');
 vi.mock('../common/javascript-plugins.js');
 
 describe('enhanced lifters', () => {
@@ -57,9 +55,8 @@ describe('enhanced lifters', () => {
 
   it('should pass the octokit instance as a dependency to the github lifter', async () => {
     const octokitInstance = any.simpleObject();
-    when(octokit.getNetrcAuthenticatedInstance).calledWith().mockReturnValue(octokitInstance);
     when(liftGithub).calledWith(options, {octokit: octokitInstance}).mockResolvedValue(results);
 
-    expect(await github()(options)).toEqual(results);
+    expect(await github(octokitInstance)(options)).toEqual(results);
   });
 });

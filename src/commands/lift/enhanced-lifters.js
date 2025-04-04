@@ -1,5 +1,4 @@
 import {ungroupObject} from '@form8ion/core';
-import {octokit} from '@form8ion/github-core';
 import {lift as liftJavascript} from '@form8ion/javascript';
 import {scaffold as codecovScaffolder} from '@form8ion/codecov';
 import {scaffold as scaffoldPrettier} from '@form8ion/prettier';
@@ -20,8 +19,6 @@ export function prettier(options) {
   return scaffoldPrettier({...options, config: javascriptConfigs.prettier});
 }
 
-export function github() {
-  const octokitInstance = octokit.getNetrcAuthenticatedInstance();
-
-  return options => liftGithub(options, {octokit: octokitInstance});
+export function github(octokit) {
+  return options => liftGithub(options, {octokit});
 }

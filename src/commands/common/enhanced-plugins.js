@@ -1,3 +1,4 @@
+import {octokit} from '@form8ion/github-core';
 import * as javascriptPlugin from '@form8ion/javascript';
 import * as githubPlugin from '@form8ion/github';
 
@@ -13,9 +14,11 @@ export function javascriptPluginFactory(decisions) {
 }
 
 export function githubPluginFactory() {
+  const octokitInstance = octokit.getNetrcAuthenticatedInstance();
+
   return {
     ...githubPlugin,
-    scaffold: githubScaffolderFactory(),
-    lift: enhanceGithubLifter()
+    scaffold: githubScaffolderFactory(octokitInstance),
+    lift: enhanceGithubLifter(octokitInstance)
   };
 }
