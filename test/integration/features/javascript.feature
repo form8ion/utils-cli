@@ -11,5 +11,6 @@ Feature: JavaScript Project
     And core ignores are defined
     And the base git files should be present
     And github is configured
+    And next-steps are added as issues on GitHub
     And husky is configured
 #    And JavaScript ignores are defined
