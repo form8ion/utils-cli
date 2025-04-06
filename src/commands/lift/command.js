@@ -9,8 +9,8 @@ import {scaffold as scaffoldOssfScorecard} from '@form8ion/ossf-scorecard';
 import {lift as liftJetbrains, test as jetbrainsInUse} from '@form8ion/jetbrains';
 
 import projectPlugins from '../common/plugins.js';
-import {getEnhancedCodecovScaffolder, prettier} from './enhanced-lifters.js';
-import {unitTesting} from './enhanced-scaffolders.js';
+import {prettier} from './enhanced-lifters.js';
+import {getEnhancedCodecovScaffolder, unitTesting} from './enhanced-scaffolders.js';
 
 export function handler({decisions}) {
   return lift({

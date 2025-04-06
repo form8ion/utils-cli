@@ -1,6 +1,5 @@
 import {ungroupObject} from '@form8ion/core';
 import {lift as liftJs} from '@form8ion/javascript';
-import {scaffold as scaffoldCodecov} from '@form8ion/codecov';
 import {lift as liftGithub} from '@form8ion/github';
 
 import {describe, expect, it, vi} from 'vitest';
@@ -8,7 +7,7 @@ import any from '@travi/any';
 import {when} from 'jest-when';
 
 import getJavascriptPlugins from '../common/javascript-plugins.js';
-import {getEnhancedCodecovScaffolder, github, javascript} from './enhanced-lifters.js';
+import {github, javascript} from './enhanced-lifters.js';
 
 vi.mock('@form8ion/core');
 vi.mock('@form8ion/javascript');
@@ -45,12 +44,6 @@ describe('enhanced lifters', () => {
     }).mockResolvedValue(results);
 
     expect(await javascript(options)).toEqual(results);
-  });
-
-  it('should set the visibility to `Public` for Codecov since all projects in this org are public', async () => {
-    when(scaffoldCodecov).calledWith({...options, visibility: 'Public'}).mockResolvedValue(results);
-
-    expect(await getEnhancedCodecovScaffolder()(options)).toEqual(results);
   });
 
   it('should pass the octokit instance as a dependency to the github lifter', async () => {
