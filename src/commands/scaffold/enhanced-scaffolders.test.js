@@ -1,3 +1,4 @@
+import {getPrompt} from '@form8ion/cli-core';
 import {scaffold as scaffoldJavascript} from '@form8ion/javascript';
 import {scaffold as scaffoldGithub} from '@form8ion/github';
 
@@ -7,6 +8,7 @@ import {when} from 'jest-when';
 import {githubScaffolderFactory, javascriptScaffolderFactory} from './enhanced-scaffolders.js';
 import getJavascriptPlugins from '../common/javascript-plugins.js';
 
+vi.mock('@form8ion/cli-core');
 vi.mock('@form8ion/javascript');
 vi.mock('@form8ion/github');
 vi.mock('@travi/');
@@ -41,8 +43,10 @@ describe('enhanced scaffolders', () => {
     const options = any.simpleObject();
     const dependencies = any.simpleObject();
     const octokitInstance = any.simpleObject();
-    when(scaffoldGithub).calledWith(options, {...dependencies, octokit: octokitInstance}).mockResolvedValue(output);
+    const prompt = () => undefined;
+    when(getPrompt).calledWith(decisions).mockReturnValue(prompt);
+    when(scaffoldGithub).calledWith(options, {octokit: octokitInstance, prompt}).mockResolvedValue(output);
 
-    expect(await githubScaffolderFactory(octokitInstance)(options, dependencies)).toEqual(output);
+    expect(await githubScaffolderFactory({octokit: octokitInstance, decisions})(options, dependencies)).toEqual(output);
   });
 });

@@ -29,12 +29,13 @@ describe('enhanced plugins', () => {
     const enhancedScaffolder = () => undefined;
     const enhancedLifter = () => undefined;
     const octokitInstance = any.simpleObject();
+    const decisions = any.simpleObject();
     when(octokit.getNetrcAuthenticatedInstance).calledWith().mockReturnValue(octokitInstance);
-    when(githubScaffolderFactory).calledWith(octokitInstance).mockReturnValue(enhancedScaffolder);
+    when(githubScaffolderFactory).calledWith({octokit: octokitInstance, decisions}).mockReturnValue(enhancedScaffolder);
     when(enhanceGithubLifter).calledWith(octokitInstance).mockReturnValue(enhancedLifter);
 
     // eslint-disable-next-line prefer-object-spread
-    expect(githubPluginFactory()).toEqual(Object.assign(
+    expect(githubPluginFactory(decisions)).toEqual(Object.assign(
       {},
       githubPlugin,
       {scaffold: enhancedScaffolder, lift: enhancedLifter}

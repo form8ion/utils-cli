@@ -13,12 +13,12 @@ export function javascriptPluginFactory(decisions) {
   };
 }
 
-export function githubPluginFactory() {
+export function githubPluginFactory(decisions) {
   const octokitInstance = octokit.getNetrcAuthenticatedInstance();
 
   return {
     ...githubPlugin,
-    scaffold: githubScaffolderFactory(octokitInstance),
+    scaffold: githubScaffolderFactory({octokit: octokitInstance, decisions}),
     lift: enhanceGithubLifter(octokitInstance)
   };
 }

@@ -16,7 +16,7 @@ describe('plugins', () => {
     const jsPlugin = any.simpleObject();
     const githubPlugin = any.simpleObject();
     when(javascriptPluginFactory).calledWith(decisions).mockReturnValue(jsPlugin);
-    when(githubPluginFactory).calledWith().mockReturnValue(githubPlugin);
+    when(githubPluginFactory).calledWith(decisions).mockReturnValue(githubPlugin);
 
     expect(plugins(decisions)).toEqual({
       dependencyUpdaters: {
