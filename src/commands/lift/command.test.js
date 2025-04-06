@@ -13,7 +13,7 @@ import any from '@travi/any';
 import {when} from 'jest-when';
 
 import projectPlugins from '../common/plugins.js';
-import {unitTesting} from './enhanced-scaffolders.js';
+import {getEnhancedCodecovScaffolder, unitTesting} from './enhanced-scaffolders.js';
 import * as enhancedLifters from './enhanced-lifters.js';
 import {command, describe as commandDescription, handler} from './index.js';
 
@@ -21,6 +21,7 @@ vi.mock('@form8ion/core');
 vi.mock('@form8ion/lift');
 vi.mock('../common/plugins.js');
 vi.mock('./enhanced-lifters.js');
+vi.mock('./enhanced-scaffolders.js');
 
 describe('lift command', () => {
   it('should define the lift command', async () => {
@@ -30,7 +31,7 @@ describe('lift command', () => {
     const codecovScaffolder = () => undefined;
     const ungroupedPlugins = any.simpleObject();
     when(ungroupObject).calledWith(projectPluginGroups).mockReturnValue(ungroupedPlugins);
-    enhancedLifters.getEnhancedCodecovScaffolder.mockReturnValue(codecovScaffolder);
+    getEnhancedCodecovScaffolder.mockReturnValue(codecovScaffolder);
     when(projectPlugins).calledWith({}).mockReturnValue(projectPluginGroups);
     when(lifter.lift)
       .calledWith({

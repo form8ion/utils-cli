@@ -1,6 +1,5 @@
 import {ungroupObject} from '@form8ion/core';
 import {lift as liftJavascript} from '@form8ion/javascript';
-import {scaffold as codecovScaffolder} from '@form8ion/codecov';
 import {scaffold as scaffoldPrettier} from '@form8ion/prettier';
 import {lift as liftGithub} from '@form8ion/github';
 
@@ -9,10 +8,6 @@ import {javascriptConfigs} from '../common/javascript-configs.js';
 
 export function javascript(options) {
   return liftJavascript({...options, configs: javascriptConfigs, enhancers: ungroupObject(getJavascriptPlugins({}))});
-}
-
-export function getEnhancedCodecovScaffolder() {
-  return options => codecovScaffolder({...options, visibility: 'Public'});
 }
 
 export function prettier(options) {
