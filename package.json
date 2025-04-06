@@ -5,7 +5,7 @@
   "version": "0.0.0-semantically-released",
   "type": "module",
   "engines": {
-    "node": "^18.19.0 || ^20.9.0 || >=22.11.0"
+    "node": "^20.18.0 || >=22.11.0"
   },
   "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
   "repository": "form8ion/utils-cli",
@@ -57,7 +57,7 @@
     "@form8ion/codecov": "6.2.0",
     "@form8ion/core": "4.8.0",
     "@form8ion/cucumber-scaffolder": "5.1.0",
-    "@form8ion/github": "3.0.0-alpha.1",
+    "@form8ion/github": "3.0.0-beta.1",
     "@form8ion/github-actions-node-ci": "5.0.2",
     "@form8ion/github-core": "1.0.0-alpha.2",
     "@form8ion/hapi-scaffolder": "4.1.1",
