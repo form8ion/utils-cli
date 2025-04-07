@@ -1,4 +1,4 @@
-import {getPrompt} from '@form8ion/cli-core';
+import {getPrompt, logger} from '@form8ion/cli-core';
 import {scaffold as scaffoldJavascript} from '@form8ion/javascript';
 import {scaffold as scaffoldGithub} from '@form8ion/github';
 
@@ -45,7 +45,7 @@ describe('enhanced scaffolders', () => {
     const octokitInstance = any.simpleObject();
     const prompt = () => undefined;
     when(getPrompt).calledWith(decisions).mockReturnValue(prompt);
-    when(scaffoldGithub).calledWith(options, {octokit: octokitInstance, prompt}).mockResolvedValue(output);
+    when(scaffoldGithub).calledWith(options, {octokit: octokitInstance, prompt, logger}).mockResolvedValue(output);
 
     expect(await githubScaffolderFactory({octokit: octokitInstance, decisions})(options, dependencies)).toEqual(output);
   });

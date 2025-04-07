@@ -1,4 +1,4 @@
-import {getPrompt} from '@form8ion/cli-core';
+import {getPrompt, logger} from '@form8ion/cli-core';
 import {scaffold as scaffoldJavaScript} from '@form8ion/javascript';
 import {scaffold as scaffoldGithub} from '@form8ion/github';
 
@@ -15,5 +15,5 @@ export function javascriptScaffolderFactory(decisions) {
 }
 
 export function githubScaffolderFactory({octokit, decisions}) {
-  return options => scaffoldGithub(options, {octokit, prompt: getPrompt(decisions)});
+  return options => scaffoldGithub(options, {octokit, prompt: getPrompt(decisions), logger});
 }
