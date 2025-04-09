@@ -1,6 +1,5 @@
 import {promises as fs} from 'fs';
 import {fileExists} from '@form8ion/core';
-import camelcase from 'camelcase';
 
 import {Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
@@ -30,6 +29,6 @@ Then('ESM details are configured for the project', async function () {
   const {type} = JSON.parse(packageJsonContents);
 
   assert.equal(type, 'module');
-  assert.include(exampleContents, `import ${camelcase(this.projectName)} from './lib/index.js';`);
+  assert.include(exampleContents, "import {} from './lib/index.js';");
   assert.isTrue(await fileExists(`${process.cwd()}/rollup.config.js`));
 });
