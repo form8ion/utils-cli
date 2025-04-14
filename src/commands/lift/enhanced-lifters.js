@@ -14,6 +14,6 @@ export function prettier(options) {
   return scaffoldPrettier({...options, config: javascriptConfigs.prettier});
 }
 
-export function github(octokit) {
-  return options => liftGithub(options, {octokit});
+export function github(dependencies) {
+  return options => liftGithub(options, dependencies);
 }

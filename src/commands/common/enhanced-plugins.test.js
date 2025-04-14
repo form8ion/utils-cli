@@ -1,3 +1,4 @@
+import {getPrompt, logger} from '@form8ion/cli-core';
 import {octokit} from '@form8ion/github-core';
 import * as javascriptPlugin from '@form8ion/javascript';
 import * as githubPlugin from '@form8ion/github';
@@ -10,6 +11,7 @@ import {javascriptScaffolderFactory, githubScaffolderFactory} from '../scaffold/
 import {javascript as enhancedLiftJavascript, github as enhanceGithubLifter} from '../lift/enhanced-lifters.js';
 import {javascriptPluginFactory, githubPluginFactory} from './enhanced-plugins.js';
 
+vi.mock('@form8ion/cli-core');
 vi.mock('@form8ion/github-core');
 vi.mock('../scaffold/enhanced-scaffolders.js');
 vi.mock('../lift/enhanced-lifters.js');
@@ -25,16 +27,21 @@ describe('enhanced plugins', () => {
       .toEqual(Object.assign({}, javascriptPlugin, {scaffold: enhancedScaffolder, lift: enhancedLiftJavascript}));
   });
 
-  it('should inject an octokit instance into the github plugin', async () => {
+  it('should inject dependencies into the github plugin', async () => {
     const enhancedScaffolder = () => undefined;
     const enhancedLifter = () => undefined;
     const octokitInstance = any.simpleObject();
+    const decisions = any.simpleObject();
+    const prompt = () => undefined;
     when(octokit.getNetrcAuthenticatedInstance).calledWith().mockReturnValue(octokitInstance);
-    when(githubScaffolderFactory).calledWith(octokitInstance).mockReturnValue(enhancedScaffolder);
-    when(enhanceGithubLifter).calledWith(octokitInstance).mockReturnValue(enhancedLifter);
+    when(getPrompt).calledWith(decisions).mockReturnValue(prompt);
+    when(githubScaffolderFactory)
+      .calledWith({octokit: octokitInstance, prompt, logger})
+      .mockReturnValue(enhancedScaffolder);
+    when(enhanceGithubLifter).calledWith({octokit: octokitInstance, prompt, logger}).mockReturnValue(enhancedLifter);
 
     // eslint-disable-next-line prefer-object-spread
-    expect(githubPluginFactory()).toEqual(Object.assign(
+    expect(githubPluginFactory(decisions)).toEqual(Object.assign(
       {},
       githubPlugin,
       {scaffold: enhancedScaffolder, lift: enhancedLifter}

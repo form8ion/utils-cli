@@ -13,6 +13,6 @@ export function javascriptScaffolderFactory(decisions) {
   });
 }
 
-export function githubScaffolderFactory(octokit) {
-  return (options, dependencies) => scaffoldGithub(options, {...dependencies, octokit});
+export function githubScaffolderFactory(dependencies) {
+  return options => scaffoldGithub(options, dependencies);
 }

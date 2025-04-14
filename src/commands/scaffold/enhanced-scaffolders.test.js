@@ -9,7 +9,6 @@ import getJavascriptPlugins from '../common/javascript-plugins.js';
 
 vi.mock('@form8ion/javascript');
 vi.mock('@form8ion/github');
-vi.mock('@travi/');
 vi.mock('../common/javascript-plugins.js');
 
 describe('enhanced scaffolders', () => {
@@ -40,9 +39,8 @@ describe('enhanced scaffolders', () => {
   it('should provide the octokit instance to the github scaffolder', async () => {
     const options = any.simpleObject();
     const dependencies = any.simpleObject();
-    const octokitInstance = any.simpleObject();
-    when(scaffoldGithub).calledWith(options, {...dependencies, octokit: octokitInstance}).mockResolvedValue(output);
+    when(scaffoldGithub).calledWith(options, dependencies).mockResolvedValue(output);
 
-    expect(await githubScaffolderFactory(octokitInstance)(options, dependencies)).toEqual(output);
+    expect(await githubScaffolderFactory(dependencies)(options)).toEqual(output);
   });
 });

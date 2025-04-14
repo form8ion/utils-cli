@@ -47,9 +47,9 @@ describe('enhanced lifters', () => {
   });
 
   it('should pass the octokit instance as a dependency to the github lifter', async () => {
-    const octokitInstance = any.simpleObject();
-    when(liftGithub).calledWith(options, {octokit: octokitInstance}).mockResolvedValue(results);
+    const dependencies = any.simpleObject();
+    when(liftGithub).calledWith(options, dependencies).mockResolvedValue(results);
 
-    expect(await github(octokitInstance)(options)).toEqual(results);
+    expect(await github(dependencies)(options)).toEqual(results);
   });
 });
