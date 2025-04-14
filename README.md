@@ -37,7 +37,6 @@ for [octokit](https://github.com/octokit/rest.js/). Be sure to
 [add your personal access token](https://github.com/travi/octokit-auth-netrc#defining-your-token)
 to leverage the GitHub API integration benefits of this plugin.
 
-
 ```sh
 $ form8ion-utils scaffold
 ```
