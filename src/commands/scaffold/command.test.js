@@ -5,7 +5,7 @@ import * as githubPlugin from '@form8ion/github';
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
-import {when} from 'jest-when';
+import {when} from 'vitest-when';
 import {command, describe as commandDescription, handler} from './index.js';
 import projectPlugins from '../common/plugins.js';
 
@@ -33,10 +33,10 @@ describe('scaffold command', () => {
       [jsQuestionNames.SCOPE]: 'form8ion',
       [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
     };
-    when(projectPlugins).calledWith(decisionsWithEnhancements).mockReturnValue(projectPluginGroups);
+    when(projectPlugins).calledWith(decisionsWithEnhancements).thenReturn(projectPluginGroups);
     when(projectScaffolder.scaffold)
       .calledWith({plugins: projectPluginGroups, decisions: decisionsWithEnhancements})
-      .mockResolvedValue(scaffoldingResults);
+      .thenResolve(scaffoldingResults);
 
     expect(await handler(decisions)).toEqual(scaffoldingResults);
     expect(command).toEqual('scaffold');

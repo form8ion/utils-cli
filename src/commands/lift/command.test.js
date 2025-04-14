@@ -10,7 +10,7 @@ import {lift as liftJetbrains, test as jetbrainsInUse} from '@form8ion/jetbrains
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
-import {when} from 'jest-when';
+import {when} from 'vitest-when';
 
 import projectPlugins from '../common/plugins.js';
 import {getEnhancedCodecovScaffolder, unitTesting} from './enhanced-scaffolders.js';
@@ -30,9 +30,9 @@ describe('lift command', () => {
     const projectPluginGroups = any.objectWithKeys(any.listOf(any.word), {factory: any.simpleObject});
     const codecovScaffolder = () => undefined;
     const ungroupedPlugins = any.simpleObject();
-    when(ungroupObject).calledWith(projectPluginGroups).mockReturnValue(ungroupedPlugins);
+    when(ungroupObject).calledWith(projectPluginGroups).thenReturn(ungroupedPlugins);
     getEnhancedCodecovScaffolder.mockReturnValue(codecovScaffolder);
-    when(projectPlugins).calledWith({}).mockReturnValue(projectPluginGroups);
+    when(projectPlugins).calledWith({}).thenReturn(projectPluginGroups);
     when(lifter.lift)
       .calledWith({
         decisions,
@@ -52,7 +52,7 @@ describe('lift command', () => {
           JetBrains: {test: jetbrainsInUse, lift: liftJetbrains}
         }
       })
-      .mockResolvedValue(liftingResults);
+      .thenResolve(liftingResults);
 
     expect(await handler({decisions})).toEqual(liftingResults);
     expect(command).toEqual('lift');

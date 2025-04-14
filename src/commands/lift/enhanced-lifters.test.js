@@ -4,7 +4,7 @@ import {lift as liftGithub} from '@form8ion/github';
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
-import {when} from 'jest-when';
+import {when} from 'vitest-when';
 
 import getJavascriptPlugins from '../common/javascript-plugins.js';
 import {github, javascript} from './enhanced-lifters.js';
@@ -23,8 +23,8 @@ describe('enhanced lifters', () => {
   it('should pass the custom properties along with the provided options to the js lifter', async () => {
     const pluginGroups = any.objectWithKeys(any.listOf(any.word), {factory: any.simpleObject});
     const ungroupedPlugins = any.simpleObject();
-    when(getJavascriptPlugins).calledWith({}).mockReturnValue(pluginGroups);
-    when(ungroupObject).calledWith(pluginGroups).mockReturnValue(ungroupedPlugins);
+    when(getJavascriptPlugins).calledWith({}).thenReturn(pluginGroups);
+    when(ungroupObject).calledWith(pluginGroups).thenReturn(ungroupedPlugins);
     when(liftJs).calledWith({
       ...options,
       configs: {
@@ -41,14 +41,14 @@ describe('enhanced lifters', () => {
         }
       },
       enhancers: ungroupedPlugins
-    }).mockResolvedValue(results);
+    }).thenResolve(results);
 
     expect(await javascript(options)).toEqual(results);
   });
 
   it('should pass the octokit instance as a dependency to the github lifter', async () => {
     const dependencies = any.simpleObject();
-    when(liftGithub).calledWith(options, dependencies).mockResolvedValue(results);
+    when(liftGithub).calledWith(options, dependencies).thenResolve(results);
 
     expect(await github(dependencies)(options)).toEqual(results);
   });
