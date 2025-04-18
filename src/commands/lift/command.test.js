@@ -4,7 +4,6 @@ import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
 import {removeGreenkeeper} from '@form8ion/remove-greenkeeper';
 import {replace as replaceTravisCiWithGithubActions} from '@form8ion/replace-travis-ci-with-github-actions';
-import {lift as liftGithubActionsCI, test as githubActionsCiApplicabilityTest} from '@form8ion/github-actions-node-ci';
 import {scaffold as scaffoldOssfScorecard} from '@form8ion/ossf-scorecard';
 import {lift as liftJetbrains, test as jetbrainsInUse} from '@form8ion/jetbrains';
 
@@ -48,7 +47,6 @@ describe('lift command', () => {
         },
         enhancers: {
           ...ungroupedPlugins,
-          'GitHub Actions CI': {test: githubActionsCiApplicabilityTest, lift: liftGithubActionsCI},
           JetBrains: {test: jetbrainsInUse, lift: liftJetbrains}
         }
       })
