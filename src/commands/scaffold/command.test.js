@@ -1,7 +1,7 @@
 import * as projectScaffolder from '@form8ion/project';
 import {questionNames as jsQuestionNames} from '@form8ion/javascript';
 import {packageManagers} from '@form8ion/javascript-core';
-import * as githubPlugin from '@form8ion/github';
+import {promptConstants as githubPromptConstants} from '@form8ion/github';
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
@@ -16,9 +16,11 @@ describe('scaffold command', () => {
   it('should define the scaffold command', async () => {
     const scaffoldingResults = any.simpleObject();
     const decisions = any.simpleObject();
-    const githubPromptConstants = githubPlugin.promptConstants;
     const githubDetailsPromptQuestionNames = githubPromptConstants.questionNames[
       githubPromptConstants.ids.GITHUB_DETAILS
+    ];
+    const requiredCheckBypassPromptQuestionNames = githubPromptConstants.questionNames[
+      githubPromptConstants.ids.REQUIRED_CHECK_BYPASS
     ];
     const projectPluginGroups = any.objectWithKeys(any.listOf(any.word), {factory: any.simpleObject});
     const decisionsWithEnhancements = {
@@ -27,6 +29,7 @@ describe('scaffold command', () => {
       [projectScaffolder.questionNames.REPO_HOST]: 'GitHub',
       [projectScaffolder.questionNames.DEPENDENCY_UPDATER]: 'Renovate',
       [githubDetailsPromptQuestionNames.GITHUB_ACCOUNT]: 'form8ion',
+      [requiredCheckBypassPromptQuestionNames.CHECK_BYPASS_TEAM]: 3208999,
       [jsQuestionNames.AUTHOR_NAME]: 'Matt Travi',
       [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
       [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
