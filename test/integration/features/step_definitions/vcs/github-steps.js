@@ -115,8 +115,11 @@ Then('next-steps are added as issues on GitHub', async function () {
 });
 
 Then('github is configured', async function () {
+  const repositorySettings = load(await fs.readFile(`${this.projectRoot}/.github/settings.yml`));
+
+  assert.equal(repositorySettings.repository.homepage, 'https://npm.im/@form8ion/project-name');
   assert.equal(
-    load(await fs.readFile(`${this.projectRoot}/.github/settings.yml`)).repository.homepage,
-    'https://npm.im/@form8ion/project-name'
+    repositorySettings.rulesets.find(rule => 'verification must pass' === rule.name).bypass_actors[0].actor_id,
+    3208999
   );
 });
