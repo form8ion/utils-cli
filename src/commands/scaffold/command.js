@@ -5,10 +5,11 @@ import {promptConstants as githubPromptConstants} from '@form8ion/github';
 
 import projectPlugins from '../common/plugins.js';
 
-const githubDetailsPromptQuestionNames = githubPromptConstants.questionNames[githubPromptConstants.ids.GITHUB_DETAILS];
-const requiredCheckBypassPromptQuestionNames = githubPromptConstants.questionNames[
-  githubPromptConstants.ids.REQUIRED_CHECK_BYPASS
-];
+const {
+  [githubPromptConstants.ids.GITHUB_DETAILS]: githubDetailsPromptQuestionNames,
+  [githubPromptConstants.ids.ADMIN_SETTINGS]: repositoryAdminSettingsPromptQuestionNames,
+  [githubPromptConstants.ids.REQUIRED_CHECK_BYPASS]: requiredCheckBypassPromptQuestionNames
+} = githubPromptConstants.questionNames;
 
 export function handler(decisions) {
   const orgName = 'form8ion';
@@ -20,6 +21,7 @@ export function handler(decisions) {
     [projectQuestionNames.REPO_HOST]: 'GitHub',
     [projectQuestionNames.DEPENDENCY_UPDATER]: 'Renovate',
     [githubDetailsPromptQuestionNames.GITHUB_ACCOUNT]: orgName,
+    [repositoryAdminSettingsPromptQuestionNames.SETTINGS_MANAGED_AS_CODE]: true,
     [requiredCheckBypassPromptQuestionNames.CHECK_BYPASS_TEAM]: githubMaintainersTeamId,
     [jsQuestionNames.AUTHOR_NAME]: traviName,
     [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',

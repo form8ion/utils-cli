@@ -16,12 +16,11 @@ describe('scaffold command', () => {
   it('should define the scaffold command', async () => {
     const scaffoldingResults = any.simpleObject();
     const decisions = any.simpleObject();
-    const githubDetailsPromptQuestionNames = githubPromptConstants.questionNames[
-      githubPromptConstants.ids.GITHUB_DETAILS
-    ];
-    const requiredCheckBypassPromptQuestionNames = githubPromptConstants.questionNames[
-      githubPromptConstants.ids.REQUIRED_CHECK_BYPASS
-    ];
+    const {
+      [githubPromptConstants.ids.GITHUB_DETAILS]: githubDetailsPromptQuestionNames,
+      [githubPromptConstants.ids.ADMIN_SETTINGS]: repositoryAdminSettingsPromptQuestionNames,
+      [githubPromptConstants.ids.REQUIRED_CHECK_BYPASS]: requiredCheckBypassPromptQuestionNames
+    } = githubPromptConstants.questionNames;
     const projectPluginGroups = any.objectWithKeys(any.listOf(any.word), {factory: any.simpleObject});
     const decisionsWithEnhancements = {
       ...decisions,
@@ -29,6 +28,7 @@ describe('scaffold command', () => {
       [projectScaffolder.questionNames.REPO_HOST]: 'GitHub',
       [projectScaffolder.questionNames.DEPENDENCY_UPDATER]: 'Renovate',
       [githubDetailsPromptQuestionNames.GITHUB_ACCOUNT]: 'form8ion',
+      [repositoryAdminSettingsPromptQuestionNames.SETTINGS_MANAGED_AS_CODE]: true,
       [requiredCheckBypassPromptQuestionNames.CHECK_BYPASS_TEAM]: 3208999,
       [jsQuestionNames.AUTHOR_NAME]: 'Matt Travi',
       [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
