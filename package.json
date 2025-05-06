@@ -76,7 +76,7 @@
     "@form8ion/renovate-scaffolder": "3.0.0",
     "@form8ion/replace-travis-ci-with-github-actions": "10.0.1",
     "@form8ion/rollup": "6.0.0",
-    "@form8ion/scaffolder-scaffolder": "7.0.4",
+    "@form8ion/scaffolder-scaffolder": "7.0.5",
     "@form8ion/vite": "3.0.0",
     "@form8ion/vitest": "5.2.0",
     "update-notifier": "7.3.1",
