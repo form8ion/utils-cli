@@ -45,9 +45,7 @@ Given(/^the GitHub token is valid$/, async function () {
       }
 
       return new HttpResponse(null, {status: StatusCodes.UNAUTHORIZED});
-    })
-  );
-  server.use(
+    }),
     http.post('https://api.github.com/orgs/form8ion/repos', async ({request}) => {
       if (
         authorizationHeaderIncludesToken(request)
@@ -60,9 +58,14 @@ Given(/^the GitHub token is valid$/, async function () {
       }
 
       return new HttpResponse(null, {status: StatusCodes.UNAUTHORIZED});
-    })
-  );
-  server.use(
+    }),
+    http.get('https://api.github.com/search/issues', ({request}) => {
+      if (authorizationHeaderIncludesToken(request)) {
+        return HttpResponse.json({items: []});
+      }
+
+      return undefined;
+    }),
     http.post(`https://api.github.com/repos/form8ion/${this.projectName}/issues`, async ({request}) => {
       if (authorizationHeaderIncludesToken(request)) {
         this.nextStepsFiledOnGithub.push(await request.json());
@@ -74,24 +77,27 @@ Given(/^the GitHub token is valid$/, async function () {
       }
 
       return new HttpResponse(null, {status: StatusCodes.UNAUTHORIZED});
-    })
-  );
-  server.use(
+    }),
     http.get('https://api.github.com/user', ({request}) => {
       if (authorizationHeaderIncludesToken(request)) {
         return HttpResponse.json({login: this.githubUser});
       }
 
       return new HttpResponse(null, {status: StatusCodes.UNAUTHORIZED});
-    })
-  );
-  server.use(
+    }),
     http.get('https://api.github.com/user/orgs', ({request}) => {
       if (authorizationHeaderIncludesToken(request)) {
         return HttpResponse.json([{login: 'form8ion'}]);
       }
 
       return new HttpResponse(null, {status: StatusCodes.UNAUTHORIZED});
+    }),
+    http.get('https://api.github.com/orgs/form8ion/teams', ({request}) => {
+      if (authorizationHeaderIncludesToken(request)) {
+        return HttpResponse.json([]);
+      }
+
+      return undefined;
     })
   );
 });
@@ -100,16 +106,37 @@ Then('next-steps are added as issues on GitHub', async function () {
   assert.deepEqual(
     this.nextStepsFiledOnGithub,
     [
-      {title: 'Add the appropriate `save` flag to the installation instructions in the README'},
-      {title: 'Define supported node.js versions as `engines.node` in the `package.json` file'},
-      {title: 'Publish pre-release versions to npm until package is stable enough to publish v1.0.0'},
-      {title: 'Remove the canary test for mocha once more valuable tests exist'},
+      {
+        title: 'Add the appropriate `save` flag to the installation instructions in the README',
+        body: '<!-- '
+          + 'octokit-unique-issue id="add-the-appropriate-save-flag-to-the-installation-instructions-in-the-readme" -->'
+      },
+      {
+        title: 'Define supported node.js versions as `engines.node` in the `package.json` file',
+        body: '<!-- '
+          + 'octokit-unique-issue id="define-supported-node-js-versions-as-engines-node-in-the-package-json-file" -->'
+      },
+      {
+        title: 'Publish pre-release versions to npm until package is stable enough to publish v1.0.0',
+        body: '<!-- octokit-unique-issue id='
+          + '"publish-pre-release-versions-to-npm-until-package-is-stable-enough-to-publish-v-1-0-0" -->'
+      },
+      {
+        title: 'Remove the canary test for mocha once more valuable tests exist',
+        body: '<!-- octokit-unique-issue id="remove-the-canary-test-for-mocha-once-more-valuable-tests-exist" -->'
+      },
       {
         title: 'Decide if the default renovate config is appropriate,'
-          + ' or if one of the :js-app or :js-package version are a better fit'
+          + ' or if one of the :js-app or :js-package version are a better fit',
+        body: '<!-- '
+          + 'octokit-unique-issue id="decide-if-the-default-renovate-config-is-appropriate-'
+          + 'or-if-one-of-the-js-app-or-js-package-version-are-a-better-fit" -->'
       },
-      {title: 'Commit scaffolded files'},
-      {title: 'Set local `master` branch to track upstream `origin/master`'}
+      {title: 'Commit scaffolded files', body: '<!-- octokit-unique-issue id="commit-scaffolded-files" -->'},
+      {
+        title: 'Set local `master` branch to track upstream `origin/master`',
+        body: '<!-- octokit-unique-issue id="set-local-master-branch-to-track-upstream-origin-master" -->'
+      }
     ]
   );
 });

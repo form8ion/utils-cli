@@ -2,6 +2,7 @@ import {dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import os from 'node:os';
 import {questionNames as liftQuestionNames} from '@form8ion/lift';
+import {promptConstants as githubPromptConstants} from '@form8ion/github';
 
 import {After, Before, Given, setWorldConstructor, When} from '@cucumber/cucumber';
 import any from '@travi/any';
@@ -92,6 +93,9 @@ When(/^the project is scaffolded$/, async function () {
 
 When('the project is lifted', async function () {
   this.existingGitIgnores = any.listOf(any.word);
+  const {
+    [githubPromptConstants.ids.REQUIRED_CHECK_BYPASS]: requiredCheckBypassPromptQuestionNames
+  } = githubPromptConstants.questionNames;
 
   stubbedFs({
     node_modules: stubbedNodeModules,
@@ -100,5 +104,10 @@ When('the project is lifted', async function () {
     ...'JetBrains' === this.editor && {'.idea': {}}
   });
 
-  await lift({decisions: {[liftQuestionNames.SCAFFOLDER]: this.chosenScaffolder}});
+  await lift({
+    decisions: {
+      [liftQuestionNames.SCAFFOLDER]: this.chosenScaffolder,
+      [requiredCheckBypassPromptQuestionNames.CHECK_BYPASS_TEAM]: any.integer()
+    }
+  });
 });
