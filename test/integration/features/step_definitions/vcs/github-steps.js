@@ -94,7 +94,7 @@ Given(/^the GitHub token is valid$/, async function () {
     }),
     http.get('https://api.github.com/orgs/form8ion/teams', ({request}) => {
       if (authorizationHeaderIncludesToken(request)) {
-        return HttpResponse.json([]);
+        return HttpResponse.json([{name: 'maintainers', slug: 'maintainers', id: 3208999}]);
       }
 
       return undefined;

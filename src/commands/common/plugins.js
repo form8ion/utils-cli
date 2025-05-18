@@ -6,6 +6,6 @@ export default function plugins(decisions) {
   return {
     dependencyUpdaters: {Renovate: renovatePlugin},
     languages: {JavaScript: javascriptPluginFactory(decisions)},
-    vcsHosts: {GitHub: githubPluginFactory(decisions)}
+    vcsHosts: {GitHub: githubPluginFactory()}
   };
 }

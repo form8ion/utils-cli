@@ -1,15 +1,16 @@
-import {getPrompt, logger} from '@form8ion/cli-core';
+import {logger} from '@form8ion/cli-core';
 import {octokit} from '@form8ion/github-core';
 import * as javascriptPlugin from '@form8ion/javascript';
 import * as githubPlugin from '@form8ion/github';
 
 import any from '@travi/any';
 import {when} from 'vitest-when';
-import {describe, vi, it, expect} from 'vitest';
+import {describe, expect, it, vi} from 'vitest';
 
-import {javascriptScaffolderFactory, githubScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
-import {javascript as enhancedLiftJavascript, github as enhanceGithubLifter} from '../lift/enhanced-lifters.js';
-import {javascriptPluginFactory, githubPluginFactory} from './enhanced-plugins.js';
+import {githubScaffolderFactory, javascriptScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
+import {github as enhanceGithubLifter, javascript as enhancedLiftJavascript} from '../lift/enhanced-lifters.js';
+import {github as githubPrompt} from './prompts.js';
+import {githubPluginFactory, javascriptPluginFactory} from './enhanced-plugins.js';
 
 vi.mock('@form8ion/cli-core');
 vi.mock('@form8ion/github-core');
@@ -32,13 +33,13 @@ describe('enhanced plugins', () => {
     const enhancedLifter = () => undefined;
     const octokitInstance = any.simpleObject();
     const decisions = any.simpleObject();
-    const prompt = () => undefined;
     when(octokit.getNetrcAuthenticatedInstance).calledWith().thenReturn(octokitInstance);
-    when(getPrompt).calledWith(decisions).thenReturn(prompt);
     when(githubScaffolderFactory)
-      .calledWith({octokit: octokitInstance, prompt, logger})
+      .calledWith({octokit: octokitInstance, prompt: githubPrompt, logger})
       .thenReturn(enhancedScaffolder);
-    when(enhanceGithubLifter).calledWith({octokit: octokitInstance, prompt, logger}).thenReturn(enhancedLifter);
+    when(enhanceGithubLifter)
+      .calledWith({octokit: octokitInstance, prompt: githubPrompt, logger})
+      .thenReturn(enhancedLifter);
 
     // eslint-disable-next-line prefer-object-spread
     expect(githubPluginFactory(decisions)).toEqual(Object.assign(

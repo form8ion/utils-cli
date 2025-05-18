@@ -16,18 +16,12 @@ describe('plugins', () => {
     const jsPlugin = any.simpleObject();
     const githubPlugin = any.simpleObject();
     when(javascriptPluginFactory).calledWith(decisions).thenReturn(jsPlugin);
-    when(githubPluginFactory).calledWith(decisions).thenReturn(githubPlugin);
+    when(githubPluginFactory).calledWith().thenReturn(githubPlugin);
 
     expect(plugins(decisions)).toEqual({
-      dependencyUpdaters: {
-        Renovate: renovatePlugin
-      },
-      languages: {
-        JavaScript: jsPlugin
-      },
-      vcsHosts: {
-        GitHub: githubPlugin
-      }
+      dependencyUpdaters: {Renovate: renovatePlugin},
+      languages: {JavaScript: jsPlugin},
+      vcsHosts: {GitHub: githubPlugin}
     });
   });
 });

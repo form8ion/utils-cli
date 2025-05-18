@@ -1,10 +1,11 @@
-import {getPrompt, logger} from '@form8ion/cli-core';
+import {logger} from '@form8ion/cli-core';
 import {octokit} from '@form8ion/github-core';
 import * as javascriptPlugin from '@form8ion/javascript';
 import * as githubPlugin from '@form8ion/github';
 
-import {javascriptScaffolderFactory, githubScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
-import {javascript as enhancedLiftJavascript, github as enhanceGithubLifter} from '../lift/enhanced-lifters.js';
+import {githubScaffolderFactory, javascriptScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
+import {github as enhanceGithubLifter, javascript as enhancedLiftJavascript} from '../lift/enhanced-lifters.js';
+import {github as githubPrompt} from './prompts.js';
 
 export function javascriptPluginFactory(decisions) {
   return {
@@ -14,9 +15,9 @@ export function javascriptPluginFactory(decisions) {
   };
 }
 
-export function githubPluginFactory(decisions) {
+export function githubPluginFactory() {
   const octokitInstance = octokit.getNetrcAuthenticatedInstance();
-  const dependencies = {octokit: octokitInstance, prompt: getPrompt(decisions), logger};
+  const dependencies = {octokit: octokitInstance, prompt: githubPrompt, logger};
 
   return {
     ...githubPlugin,
