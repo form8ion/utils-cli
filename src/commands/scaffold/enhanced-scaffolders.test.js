@@ -1,11 +1,10 @@
 import {scaffold as scaffoldJavascript} from '@form8ion/javascript';
-import {scaffold as scaffoldGithub} from '@form8ion/github';
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'vitest-when';
 
-import {githubScaffolderFactory, javascriptScaffolderFactory} from './enhanced-scaffolders.js';
+import {javascriptScaffolderFactory} from './enhanced-scaffolders.js';
 import getJavascriptPlugins from '../common/javascript-plugins.js';
 
 vi.mock('@form8ion/javascript');
@@ -35,13 +34,5 @@ describe('enhanced scaffolders', () => {
     }).thenResolve(output);
 
     expect(await javascriptScaffolderFactory(decisions)(options)).toEqual(output);
-  });
-
-  it('should provide the octokit instance to the github scaffolder', async () => {
-    const options = any.simpleObject();
-    const dependencies = any.simpleObject();
-    when(scaffoldGithub).calledWith(options, dependencies).thenResolve(output);
-
-    expect(await githubScaffolderFactory(dependencies)(options)).toEqual(output);
   });
 });

@@ -1,3 +1,4 @@
+import {composeDependenciesInto} from '@form8ion/core';
 import {logger} from '@form8ion/cli-core';
 import {octokit} from '@form8ion/github-core';
 import * as javascriptPlugin from '@form8ion/javascript';
@@ -7,11 +8,12 @@ import any from '@travi/any';
 import {when} from 'vitest-when';
 import {describe, expect, it, vi} from 'vitest';
 
-import {githubScaffolderFactory, javascriptScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
-import {github as enhanceGithubLifter, javascript as enhancedLiftJavascript} from '../lift/enhanced-lifters.js';
+import {javascriptScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
+import {javascript as enhancedLiftJavascript} from '../lift/enhanced-lifters.js';
 import {github as githubPrompt} from './prompts.js';
 import {githubPluginFactory, javascriptPluginFactory} from './enhanced-plugins.js';
 
+vi.mock('@form8ion/core');
 vi.mock('@form8ion/cli-core');
 vi.mock('@form8ion/github-core');
 vi.mock('../scaffold/enhanced-scaffolders.js');
@@ -33,13 +35,10 @@ describe('enhanced plugins', () => {
     const enhancedLifter = () => undefined;
     const octokitInstance = any.simpleObject();
     const decisions = any.simpleObject();
+    const dependencies = {octokit: octokitInstance, prompt: githubPrompt, logger};
     when(octokit.getNetrcAuthenticatedInstance).calledWith().thenReturn(octokitInstance);
-    when(githubScaffolderFactory)
-      .calledWith({octokit: octokitInstance, prompt: githubPrompt, logger})
-      .thenReturn(enhancedScaffolder);
-    when(enhanceGithubLifter)
-      .calledWith({octokit: octokitInstance, prompt: githubPrompt, logger})
-      .thenReturn(enhancedLifter);
+    when(composeDependenciesInto).calledWith(githubPlugin.scaffold, dependencies).thenReturn(enhancedScaffolder);
+    when(composeDependenciesInto).calledWith(githubPlugin.lift, dependencies).thenReturn(enhancedLifter);
 
     // eslint-disable-next-line prefer-object-spread
     expect(githubPluginFactory(decisions)).toEqual(Object.assign(

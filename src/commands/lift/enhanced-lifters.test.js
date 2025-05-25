@@ -1,13 +1,12 @@
 import {ungroupObject} from '@form8ion/core';
 import {lift as liftJs} from '@form8ion/javascript';
-import {lift as liftGithub} from '@form8ion/github';
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'vitest-when';
 
 import getJavascriptPlugins from '../common/javascript-plugins.js';
-import {github, javascript} from './enhanced-lifters.js';
+import {javascript} from './enhanced-lifters.js';
 
 vi.mock('@form8ion/core');
 vi.mock('@form8ion/javascript');
@@ -44,12 +43,5 @@ describe('enhanced lifters', () => {
     }).thenResolve(results);
 
     expect(await javascript(options)).toEqual(results);
-  });
-
-  it('should pass dependencies to the github lifter', async () => {
-    const dependencies = any.simpleObject();
-    when(liftGithub).calledWith(options, dependencies).thenResolve(results);
-
-    expect(await github(dependencies)(options)).toEqual(results);
   });
 });
