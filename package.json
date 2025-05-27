@@ -101,7 +101,7 @@
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "deep-equal": "2.2.3",
-    "execa": "9.5.3",
+    "execa": "9.6.0",
     "gherkin-lint": "4.2.4",
     "http-status-codes": "2.3.0",
     "husky": "9.1.7",
