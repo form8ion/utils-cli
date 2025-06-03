@@ -87,7 +87,11 @@ Given(/^the GitHub token is valid$/, async function () {
     }),
     http.get('https://api.github.com/user/orgs', ({request}) => {
       if (authorizationHeaderIncludesToken(request)) {
-        return HttpResponse.json([{login: 'form8ion'}]);
+        return HttpResponse.json([
+          ...any.listOf(() => ({login: any.word(), id: any.integer()})),
+          {login: 'form8ion', id: 49035156},
+          ...any.listOf(() => ({login: any.word(), id: any.integer()}))
+        ]);
       }
 
       return new HttpResponse(null, {status: StatusCodes.UNAUTHORIZED});

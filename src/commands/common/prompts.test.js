@@ -14,13 +14,37 @@ const {
 } = githubPromptConstants.questionNames;
 
 const anyTeam = () => ({name: any.word(), value: any.integer(), short: any.word()});
-const anyQuestion = () => ({type: any.word()});
+const anyOrganization = () => {
+  const login = any.word();
+
+  return ({name: login, value: any.integer(), short: login});
+};
+const anyQuestion = () => ({type: any.word(), name: any.word()});
 
 describe('prompts', () => {
   describe('github', () => {
     it('should define the `form8ion` organization as the github account', async () => {
-      expect(github({id: githubPromptConstants.ids.GITHUB_DETAILS, questions: any.listOf(anyQuestion)}))
-        .toEqual({[githubDetailsPromptQuestionNames.GITHUB_ACCOUNT]: 'form8ion'});
+      const form8ionOrganizationId = 49035156;
+
+      expect(github({
+        id: githubPromptConstants.ids.GITHUB_DETAILS,
+        questions: [
+          ...any.listOf(anyQuestion),
+          {
+            name: githubDetailsPromptQuestionNames.ORGANIZATION,
+            type: 'list',
+            choices: [
+              ...any.listOf(anyOrganization),
+              {name: 'form8ion', value: form8ionOrganizationId, short: 'form8ion'},
+              ...any.listOf(anyOrganization)
+            ]
+          },
+          ...any.listOf(anyQuestion)
+        ]
+      })).toEqual({
+        [githubDetailsPromptQuestionNames.ACCOUNT_TYPE]: 'organization',
+        [githubDetailsPromptQuestionNames.ORGANIZATION]: form8ionOrganizationId
+      });
     });
 
     it('should confirm that repository admin settings should be managed as code', async () => {
