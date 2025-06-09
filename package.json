@@ -121,7 +121,7 @@
     "rollup-plugin-executable": "1.6.3",
     "testdouble": "3.20.2",
     "unist-util-find": "3.0.0",
-    "vitest": "3.2.2",
+    "vitest": "3.2.3",
     "vitest-when": "0.6.1"
   }
 }
