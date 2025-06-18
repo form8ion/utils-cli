@@ -1,8 +1,10 @@
 import {composeDependenciesInto} from '@form8ion/core';
 import {logger} from '@form8ion/cli-core';
 import {octokit} from '@form8ion/github-core';
-import * as javascriptPlugin from '@form8ion/javascript';
 import * as githubPlugin from '@form8ion/github';
+import {packageManagers} from '@form8ion/javascript-core';
+import * as javascriptPlugin from '@form8ion/javascript';
+import {questionNames as jsQuestionNames} from '@form8ion/javascript';
 
 import any from '@travi/any';
 import {when} from 'vitest-when';
@@ -23,7 +25,16 @@ describe('enhanced plugins', () => {
   it('should pass the custom properties along with the provided options to the js plugin', async () => {
     const decisions = any.simpleObject();
     const enhancedScaffolder = () => undefined;
-    when(javascriptScaffolderFactory).calledWith(decisions).thenReturn(enhancedScaffolder);
+    when(javascriptScaffolderFactory)
+      .calledWith({
+        ...decisions,
+        [jsQuestionNames.AUTHOR_NAME]: 'Matt Travi',
+        [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
+        [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
+        [jsQuestionNames.SCOPE]: 'form8ion',
+        [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
+      })
+      .thenReturn(enhancedScaffolder);
 
     expect(javascriptPluginFactory(decisions))
       // eslint-disable-next-line prefer-object-spread

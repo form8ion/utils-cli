@@ -70,7 +70,7 @@
     "@form8ion/octoherd-script": "1.0.0",
     "@form8ion/ossf-scorecard": "1.2.1",
     "@form8ion/prettier": "3.1.0",
-    "@form8ion/project": "21.0.3",
+    "@form8ion/project": "22.0.0-beta.4",
     "@form8ion/remark-plugin-scaffolder": "4.0.0",
     "@form8ion/remove-greenkeeper": "3.0.1",
     "@form8ion/renovate-scaffolder": "3.0.0",
