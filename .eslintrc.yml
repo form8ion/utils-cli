@@ -8,6 +8,14 @@ extends:
 parserOptions:
   ecmaVersion: 2022
 
+overrides:
+  - files: "src/index.js"
+    rules:
+      "import/no-unresolved":
+        - error
+        - ignore:
+            - "yargs/helpers"
+
 rules:
   import/extensions:
     - error
