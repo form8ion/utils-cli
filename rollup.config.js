@@ -12,6 +12,6 @@ export default {
     executable(),
     nodeResolve({mainFields: ['module']})
   ],
-  external: ['source-map-support/register'],
+  external: ['source-map-support/register', 'yargs/helpers'],
   output: [{file: 'bin/form8ion-utils.js', format: 'esm', sourcemap: true, banner: '#!/usr/bin/env node'}]
 };
