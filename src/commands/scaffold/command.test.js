@@ -1,4 +1,5 @@
 import * as projectScaffolder from '@form8ion/project';
+import {reportResults} from '@form8ion/results-reporter';
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
@@ -8,6 +9,7 @@ import {getProjectPrompt} from './prompts.js';
 import {command, describe as commandDescription, handler} from './index.js';
 
 vi.mock('@form8ion/project');
+vi.mock('@form8ion/results-reporter');
 vi.mock('../common/plugins.js');
 vi.mock('./prompts.js');
 
@@ -26,5 +28,6 @@ describe('scaffold command', () => {
     expect(await handler(decisions)).toEqual(scaffoldingResults);
     expect(command).toEqual('scaffold');
     expect(commandDescription).toEqual('Scaffold a new project');
+    expect(reportResults).toHaveBeenCalledWith(scaffoldingResults);
   });
 });
