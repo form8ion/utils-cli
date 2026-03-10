@@ -5,7 +5,7 @@
   "version": "0.0.0-semantically-released",
   "type": "module",
   "engines": {
-    "node": "^20.19.0 || >=22.14.0"
+    "node": "^22.21.0 || >=24.12"
   },
   "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
   "repository": "form8ion/utils-cli",
@@ -70,7 +70,7 @@
     "@form8ion/octoherd-script": "1.0.0",
     "@form8ion/ossf-scorecard": "1.2.1",
     "@form8ion/prettier": "3.1.0",
-    "@form8ion/project": "22.0.0-beta.10",
+    "@form8ion/project": "22.0.0-beta.12",
     "@form8ion/remark-plugin-scaffolder": "4.0.1",
     "@form8ion/remove-greenkeeper": "3.0.1",
     "@form8ion/renovate-scaffolder": "3.0.0",
