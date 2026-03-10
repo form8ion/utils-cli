@@ -1,5 +1,6 @@
-import * as projectScaffolder from '@form8ion/project';
+import {scaffold as scaffoldProject} from '@form8ion/project';
 import {reportResults} from '@form8ion/results-reporter';
+import {logger} from '@form8ion/cli-core';
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
@@ -21,8 +22,8 @@ describe('scaffold command', () => {
     const prompt = () => undefined;
     when(projectPlugins).calledWith(decisions).thenReturn(projectPluginGroups);
     when(getProjectPrompt).calledWith(decisions).thenReturn(prompt);
-    when(projectScaffolder.scaffold)
-      .calledWith({plugins: projectPluginGroups}, {prompt})
+    when(scaffoldProject)
+      .calledWith({plugins: projectPluginGroups}, {prompt, logger})
       .thenResolve(scaffoldingResults);
 
     expect(await handler(decisions)).toEqual(scaffoldingResults);
