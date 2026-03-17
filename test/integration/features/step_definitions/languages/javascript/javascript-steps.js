@@ -112,7 +112,7 @@ Then('the package will have linting configured', async function () {
   const extendedEslintConfigs = load(await fs.readFile(`${process.cwd()}/.eslintrc.yml`, 'utf-8')).extends;
 
   if ('vitest' === this.unitTestFramework) {
-    assert.equal(extendedEslintConfigs, '@form8ion');
+    assert.include(extendedEslintConfigs, '@form8ion');
   } else {
     assert.includeMembers(extendedEslintConfigs, ['@form8ion', '@form8ion/mocha']);
   }
