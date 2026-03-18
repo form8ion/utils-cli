@@ -84,6 +84,7 @@
     "yargs": "18.0.0"
   },
   "devDependencies": {
+    "@codecov/rollup-plugin": "1.9.1",
     "@cucumber/cucumber": "12.7.0",
     "@form8ion/commitlint-config": "2.0.10",
     "@form8ion/core": "4.11.1",
