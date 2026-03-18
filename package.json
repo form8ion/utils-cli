@@ -65,7 +65,7 @@
     "@form8ion/javascript": "15.1.3",
     "@form8ion/javascript-core": "12.4.0",
     "@form8ion/jetbrains": "1.1.3",
-    "@form8ion/lift": "11.0.0",
+    "@form8ion/lift": "12.0.0-beta.4",
     "@form8ion/mocha-scaffolder": "6.1.1",
     "@form8ion/octoherd-script": "1.0.0",
     "@form8ion/ossf-scorecard": "1.2.2",

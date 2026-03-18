@@ -1,4 +1,5 @@
 import {ungroupObject} from '@form8ion/core';
+import {reportResults} from '@form8ion/results-reporter';
 import {lift} from '@form8ion/lift';
 import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
@@ -11,8 +12,8 @@ import projectPlugins from '../common/plugins.js';
 import {prettier} from './enhanced-lifters.js';
 import {getEnhancedCodecovScaffolder, unitTesting} from './enhanced-scaffolders.js';
 
-export function handler({decisions}) {
-  return lift({
+export async function handler({decisions}) {
+  const results = await lift({
     decisions,
     scaffolders: {
       Renovate: scaffoldRenovate,
@@ -29,6 +30,10 @@ export function handler({decisions}) {
       JetBrains: {test: jetbrainsInUse, lift: liftJetbrains}
     }
   });
+
+  reportResults(results);
+
+  return results;
 }
 
 export const command = 'lift';

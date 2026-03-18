@@ -1,4 +1,5 @@
 import {ungroupObject} from '@form8ion/core';
+import {reportResults} from '@form8ion/results-reporter';
 import * as lifter from '@form8ion/lift';
 import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
 import {scaffold as scaffoldCucumber} from '@form8ion/cucumber-scaffolder';
@@ -17,6 +18,7 @@ import * as enhancedLifters from './enhanced-lifters.js';
 import {command, describe as commandDescription, handler} from './index.js';
 
 vi.mock('@form8ion/core');
+vi.mock('@form8ion/results-reporter');
 vi.mock('@form8ion/lift');
 vi.mock('../common/plugins.js');
 vi.mock('./enhanced-lifters.js');
@@ -55,5 +57,6 @@ describe('lift command', () => {
     expect(await handler({decisions})).toEqual(liftingResults);
     expect(command).toEqual('lift');
     expect(commandDescription).toEqual('Lift an existing project with additional functionality');
+    expect(reportResults).toHaveBeenCalledWith(liftingResults);
   });
 });
