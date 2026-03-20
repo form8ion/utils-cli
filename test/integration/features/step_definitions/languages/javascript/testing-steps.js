@@ -16,7 +16,7 @@ Then('vitest has been configured for unit tests', async function () {
   assert.isTrue(await fileExists(`${process.cwd()}/src/canary.test.js`));
   assert.deepEqual(
     JSON.parse(await fs.readFile(`${process.cwd()}/package.json`, 'utf-8')).scripts['test:unit:base'],
-    'DEBUG=any vitest run'
+    'NODE_ENV=test DEBUG=any vitest run src/'
   );
 });
 
