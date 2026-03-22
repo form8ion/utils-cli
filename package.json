@@ -57,7 +57,7 @@
     "@form8ion/cli-core": "1.1.0",
     "@form8ion/codecov": "7.2.0",
     "@form8ion/core": "4.11.1",
-    "@form8ion/cucumber-scaffolder": "5.1.0",
+    "@form8ion/cucumber-scaffolder": "5.2.0",
     "@form8ion/github": "3.0.0",
     "@form8ion/github-actions-node-ci": "5.0.2",
     "@form8ion/github-core": "1.1.3",
