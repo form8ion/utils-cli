@@ -30,7 +30,7 @@
     "pretest:e2e": "run-s build",
     "test:e2e": "NODE_OPTIONS=--enable-source-maps node ./test/e2e/smoke-test.js",
     "test:unit": "run-s 'test:unit:base -- --coverage'",
-    "test:unit:base": "NODE_ENV=test DEBUG=any vitest run",
+    "test:unit:base": "NODE_ENV=test DEBUG=any vitest run src/",
     "test:integration": "run-s 'test:integration:base -- --profile noWip'",
     "test:integration:base": "NODE_OPTIONS=--enable-source-maps DEBUG=any cucumber-js test/integration",
     "test:integration:debug": "DEBUG=nock.* run-s test:integration",
