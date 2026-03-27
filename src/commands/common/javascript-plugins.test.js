@@ -8,7 +8,7 @@ import * as vitePlugin from '@form8ion/vite';
 
 import {describe, expect, it} from 'vitest';
 
-import {unitTestFrameworks} from './test-frameworks.js';
+import {unitTestFrameworks, integrationTestFrameworks} from './test-frameworks.js';
 import getJavascriptPlugins from './javascript-plugins.js';
 
 describe('javascript plugins', () => {
@@ -22,6 +22,7 @@ describe('javascript plugins', () => {
         'Octoherd Script': octoherdScriptPlugin
       },
       unitTestFrameworks,
+      integrationTestFrameworks,
       packageBundlers: {
         Rollup: rollupPlugin,
         Vite: vitePlugin

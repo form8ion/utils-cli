@@ -6,7 +6,7 @@ import * as octoherdScriptPlugin from '@form8ion/octoherd-script';
 import * as rollupPlugin from '@form8ion/rollup';
 import * as vitePlugin from '@form8ion/vite';
 
-import {unitTestFrameworks} from './test-frameworks.js';
+import {unitTestFrameworks, integrationTestFrameworks} from './test-frameworks.js';
 
 export default function javascriptPlugins() {
   return {
@@ -18,6 +18,7 @@ export default function javascriptPlugins() {
       'Octoherd Script': octoherdScriptPlugin
     },
     unitTestFrameworks,
+    integrationTestFrameworks,
     packageBundlers: {
       Rollup: rollupPlugin,
       Vite: vitePlugin
