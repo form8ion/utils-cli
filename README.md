@@ -95,7 +95,7 @@ $ npm test
 
 [coverage-link]: https://codecov.io/github/form8ion/utils-cli
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/form8ion/utils-cli?logo=codecov
+[coverage-badge]: https://img.shields.io/codecov/c/github/form8ion/utils-cli/master?logo=codecov
 
 [commit-convention-link]: https://conventionalcommits.org
 
