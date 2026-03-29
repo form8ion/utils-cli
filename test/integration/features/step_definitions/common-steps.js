@@ -78,6 +78,7 @@ When(/^the project is scaffolded$/, async function () {
       [javascriptQuestionNames.UNIT_TEST_FRAMEWORK]: this.unitTestFramework
         || 'mocha',
       [javascriptQuestionNames.INTEGRATION_TESTS]: true,
+      [javascriptQuestionNames.INTEGRATION_TEST_FRAMEWORK]: 'Cucumber',
       [javascriptQuestionNames.CI_SERVICE]: 'Travis',
       [javascriptQuestionNames.CONFIGURE_LINTING]: true,
       [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: this.projectTypePlugin || 'Other',
