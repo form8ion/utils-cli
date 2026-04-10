@@ -8,6 +8,10 @@ Given('a JetBrains IDE is in use', async function () {
   this.editor = 'JetBrains';
 });
 
+Given('run configurations already exist for JetBrains IDEs', async function () {
+  this.jetbrainsRunConfigurationsExist = true;
+});
+
 Then('runConfigurations are prevented from being ignored', async function () {
   const gitIgnoreContents = await fs.readFile(`${process.cwd()}/.gitignore`, 'utf-8');
   const gitIgnoreLines = gitIgnoreContents.split(os.EOL);

@@ -102,7 +102,11 @@ When('the project is lifted', async function () {
     node_modules: stubbedNodeModules,
     'README.md': '',
     '.gitignore': this.existingGitIgnores.join(os.EOL),
-    ...'JetBrains' === this.editor && {'.idea': {}}
+    ...'JetBrains' === this.editor && {
+      '.idea': {
+        ...this.jetbrainsRunConfigurationsExist && {runConfigurations: {}}
+      }
+    }
   });
 
   await lift({
