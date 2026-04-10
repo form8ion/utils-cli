@@ -2,6 +2,7 @@ Feature: Editor
 
   Scenario: JetBrains config for existing project
     Given a JetBrains IDE is in use
+    And run configurations already exist for JetBrains IDEs
     And the "General Maintenance" scaffolder is chosen
     And the repository is initialized
     When the project is lifted
