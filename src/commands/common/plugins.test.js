@@ -1,4 +1,5 @@
 import * as renovatePlugin from '@form8ion/renovate-scaffolder';
+import * as githubWorkflowsPlugin from '@form8ion/github-workflows';
 
 import any from '@travi/any';
 import {describe, expect, it, vi} from 'vitest';
@@ -21,7 +22,8 @@ describe('plugins', () => {
     expect(plugins(decisions)).toEqual({
       dependencyUpdaters: {Renovate: renovatePlugin},
       languages: {JavaScript: jsPlugin},
-      vcsHosts: {GitHub: githubPlugin}
+      vcsHosts: {GitHub: githubPlugin},
+      ciProviders: {'GitHub Workflow': githubWorkflowsPlugin}
     });
   });
 });
