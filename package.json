@@ -63,7 +63,7 @@
     "@form8ion/github-core": "1.1.3",
     "@form8ion/github-workflows": "1.1.0",
     "@form8ion/hapi-scaffolder": "5.0.0-alpha.7",
-    "@form8ion/javascript": "15.8.2",
+    "@form8ion/javascript": "15.8.3",
     "@form8ion/javascript-core": "12.4.0",
     "@form8ion/jetbrains": "1.1.4",
     "@form8ion/lift": "12.0.0-beta.4",
