@@ -60,7 +60,7 @@
     "@form8ion/cucumber-scaffolder": "5.7.0",
     "@form8ion/github": "3.0.1",
     "@form8ion/github-actions-node-ci": "5.0.2",
-    "@form8ion/github-core": "1.1.3",
+    "@form8ion/github-core": "2.0.0",
     "@form8ion/github-workflows": "1.1.0",
     "@form8ion/hapi-scaffolder": "5.0.0-alpha.7",
     "@form8ion/javascript": "15.8.3",
