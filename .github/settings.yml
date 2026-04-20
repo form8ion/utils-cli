@@ -2,7 +2,7 @@ _extends: .github
 repository:
   name: utils-cli
   description: cli for various tools for the organization
-  homepage: https://npm.im/@form8ion/utils-cli
+  homepage: https://www.npmjs.com/package/@form8ion/utils-cli
   private: false
 branches:
   - name: master
