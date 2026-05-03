@@ -12,7 +12,7 @@ import * as td from 'testdouble';
 import {World} from '../support/world.js';
 import {githubToken} from './vcs/github-steps.js';
 
-let scaffold, lift, javascriptQuestionNames, projectQuestionNames;
+let scaffold, lift, javascriptQuestionNames, projectPromptConstants;
 const __dirname = dirname(fileURLToPath(import.meta.url));        // eslint-disable-line no-underscore-dangle
 const pathToNodeModules = [__dirname, '../../../../', 'node_modules/'];
 export const stubbedNodeModules = stubbedFs.load(resolve(...pathToNodeModules));
@@ -33,7 +33,7 @@ Before(async function () {
   ({execa: this.execa} = (await td.replaceEsm('execa')));
   this.git = await td.replaceEsm('simple-git');
 
-  ({questionNames: projectQuestionNames} = await import('@form8ion/project'));
+  ({promptConstants: projectPromptConstants} = await import('@form8ion/project'));
   ({questionNames: javascriptQuestionNames} = await import('@form8ion/javascript'));
   ({handler: scaffold} = (await import('../../../../src/commands/scaffold/command.js')));
   ({handler: lift} = (await import('../../../../src/commands/lift/command.js')));
@@ -50,8 +50,20 @@ Given('the {string} scaffolder is chosen', async function (scaffolder) {
 
 When(/^the project is scaffolded$/, async function () {
   const {projectTypes} = await import('@form8ion/javascript-core');
-  const repoShouldBeCreated = this.getAnswerFor(projectQuestionNames.GIT_REPO);
-  const projectLanguage = this.getAnswerFor(projectQuestionNames.PROJECT_LANGUAGE);
+  const {questionNames: projectQuestionNamesByPromptId, ids: projectPromptIds} = projectPromptConstants;
+  const {GIT_REPO} = projectQuestionNamesByPromptId[projectPromptIds.GIT_REPOSITORY];
+  const {PROJECT_LANGUAGE} = projectQuestionNamesByPromptId[projectPromptIds.PROJECT_LANGUAGE];
+  const {
+    PROJECT_NAME,
+    DESCRIPTION,
+    VISIBILITY,
+    LICENSE,
+    COPYRIGHT_YEAR,
+    UNLICENSED
+  } = projectQuestionNamesByPromptId[projectPromptIds.BASE_DETAILS];
+
+  const repoShouldBeCreated = this.getAnswerFor(GIT_REPO);
+  const projectLanguage = this.getAnswerFor(PROJECT_LANGUAGE);
   const jsProjectType = this.getAnswerFor(javascriptQuestionNames.PROJECT_TYPE) || projectTypes.PACKAGE;
   const shouldBeScoped = any.boolean();
 
@@ -61,16 +73,16 @@ When(/^the project is scaffolded$/, async function () {
   });
 
   await scaffold({
-    [projectQuestionNames.PROJECT_NAME]: projectNameAnswer,
-    [projectQuestionNames.DESCRIPTION]: projectDescriptionAnswer,
-    [projectQuestionNames.VISIBILITY]: this.visibility,
+    [PROJECT_NAME]: projectNameAnswer,
+    [DESCRIPTION]: projectDescriptionAnswer,
+    [VISIBILITY]: this.visibility,
     ...'Public' === this.visibility && {
-      [projectQuestionNames.LICENSE]: 'MIT',
-      [projectQuestionNames.COPYRIGHT_YEAR]: 2000
+      [LICENSE]: 'MIT',
+      [COPYRIGHT_YEAR]: 2000
     },
-    ...'Private' === this.visibility && {[projectQuestionNames.UNLICENSED]: true},
-    [projectQuestionNames.GIT_REPO]: repoShouldBeCreated,
-    [projectQuestionNames.PROJECT_LANGUAGE]: projectLanguage,
+    ...'Private' === this.visibility && {[UNLICENSED]: true},
+    [GIT_REPO]: repoShouldBeCreated,
+    [PROJECT_LANGUAGE]: projectLanguage,
     ...'JavaScript' === projectLanguage && {
       [javascriptQuestionNames.NODE_VERSION_CATEGORY]: 'LTS',
       [javascriptQuestionNames.PROJECT_TYPE]: jsProjectType,
