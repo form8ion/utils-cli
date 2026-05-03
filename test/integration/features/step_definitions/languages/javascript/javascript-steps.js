@@ -35,16 +35,17 @@ function semverStringFactory() {
   return `v${majorVersion}.${versionSegment()}.${versionSegment()}`;
 }
 
-let questionNames, jsQuestionNames;
+let projectPromptConstants, javascriptQuestionNames;
 
 Before(async function () {
-  ({questionNames} = await import('@form8ion/project'));
-  ({questionNames: jsQuestionNames} = await import('@form8ion/javascript'));
+  ({promptConstants: projectPromptConstants} = await import('@form8ion/project'));
+  ({questionNames: javascriptQuestionNames} = await import('@form8ion/javascript'));
 });
 
 Given(/^the project language should be JavaScript$/, async function () {
-  this.setAnswerFor(questionNames.PROJECT_LANGUAGE, 'JavaScript');
-  this.setAnswerFor(jsQuestionNames.PACKAGE_BUNDLER, 'Rollup');
+  const {PROJECT_LANGUAGE} = projectPromptConstants.questionNames[projectPromptConstants.ids.PROJECT_LANGUAGE];
+  this.setAnswerFor(PROJECT_LANGUAGE, 'JavaScript');
+  this.setAnswerFor(javascriptQuestionNames.PACKAGE_BUNDLER, 'Rollup');
 
   setupMissingHusky(this.execa);
 

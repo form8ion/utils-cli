@@ -6,16 +6,17 @@ import {assert} from 'chai';
 import {promises as fs} from 'node:fs';
 import os from 'node:os';
 
-let questionNames;
+let projectPromptConstants;
 
 const simpleGitInstance = td.object(['checkIsRepo', 'listRemote', 'remote', 'addRemote', 'init']);
 
 Before(async () => {
-  ({questionNames} = (await import('@form8ion/project')));
+  ({promptConstants: projectPromptConstants} = (await import('@form8ion/project')));
 });
 
 Given(/^the project should be versioned in git$/, async function () {
-  this.setAnswerFor(questionNames.GIT_REPO, true);
+  const {GIT_REPO} = projectPromptConstants.questionNames[projectPromptConstants.ids.GIT_REPOSITORY];
+  this.setAnswerFor(GIT_REPO, true);
 
   td.when(this.git.simpleGit({baseDir: process.cwd()})).thenReturn(simpleGitInstance);
   td.when(simpleGitInstance.checkIsRepo('root')).thenResolve(false, true);
@@ -23,7 +24,8 @@ Given(/^the project should be versioned in git$/, async function () {
 });
 
 Given(/^the project should not be versioned in git$/, async function () {
-  this.setAnswerFor(questionNames.GIT_REPO, false);
+  const {GIT_REPO} = projectPromptConstants.questionNames[projectPromptConstants.ids.GIT_REPOSITORY];
+  this.setAnswerFor(GIT_REPO, false);
 });
 
 Given('the repository is initialized', async function () {
