@@ -8,6 +8,6 @@ export default function plugins(decisions) {
     dependencyUpdaters: {Renovate: renovatePlugin},
     languages: {JavaScript: javascriptPluginFactory(decisions)},
     vcsHosts: {GitHub: githubPluginFactory()},
-    ciProviders: {'GitHub Workflow': githubWorkflowsPlugin}
+    ciProviders: {'GitHub Workflows': githubWorkflowsPlugin}
   };
 }

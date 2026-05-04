@@ -48,6 +48,11 @@ describe('scaffolder prompts', () => {
       .toEqual({[promptConstants.questionNames[promptConstants.ids.REPOSITORY_HOST].REPO_HOST]: 'GitHub'});
   });
 
+  it('should define GitHub Workflow as the target CI provider', async () => {
+    expect(getProjectPrompt(decisions)({id: promptConstants.ids.CI_PROVIDER}))
+      .toEqual({[promptConstants.questionNames[promptConstants.ids.CI_PROVIDER].CI_PROVIDER]: 'GitHub Workflows'});
+  });
+
   it('should define Renovate as the target dependency updater', async () => {
     const {questionNames: questionNamesByPromptId, ids: promptIds} = promptConstants;
 

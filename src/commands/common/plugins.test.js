@@ -23,7 +23,7 @@ describe('plugins', () => {
       dependencyUpdaters: {Renovate: renovatePlugin},
       languages: {JavaScript: jsPlugin},
       vcsHosts: {GitHub: githubPlugin},
-      ciProviders: {'GitHub Workflow': githubWorkflowsPlugin}
+      ciProviders: {'GitHub Workflows': githubWorkflowsPlugin}
     });
   });
 });

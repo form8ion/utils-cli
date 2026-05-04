@@ -16,6 +16,8 @@ export function getProjectPrompt(decisions) {
         return getPrompt(decisions)({questions});
       case promptIds.REPOSITORY_HOST:
         return {[questionNamesByPromptId[promptIds.REPOSITORY_HOST].REPO_HOST]: 'GitHub'};
+      case promptIds.CI_PROVIDER:
+        return {[questionNamesByPromptId[promptIds.CI_PROVIDER].CI_PROVIDER]: 'GitHub Workflows'};
       case promptIds.DEPENDENCY_UPDATER:
         return {[questionNamesByPromptId[promptIds.DEPENDENCY_UPDATER].DEPENDENCY_UPDATER]: 'Renovate'};
       default:
