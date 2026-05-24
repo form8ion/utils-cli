@@ -1,4 +1,5 @@
 import {ungroupObject} from '@form8ion/core';
+import {logger} from '@form8ion/cli-core';
 import {reportResults} from '@form8ion/results-reporter';
 import {lift} from '@form8ion/lift';
 import {scaffold as scaffoldRenovate} from '@form8ion/renovate-scaffolder';
@@ -29,7 +30,7 @@ export async function handler({decisions}) {
       ...ungroupObject(projectPlugins({})),
       JetBrains: {test: jetbrainsInUse, lift: liftJetbrains}
     }
-  });
+  }, {logger});
 
   reportResults(results);
 
