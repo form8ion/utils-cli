@@ -1,5 +1,6 @@
 import * as renovatePlugin from '@form8ion/renovate-scaffolder';
 import * as githubWorkflowsPlugin from '@form8ion/github-workflows';
+import {logger} from '@form8ion/cli-core';
 
 import any from '@travi/any';
 import {describe, expect, it, vi} from 'vitest';
@@ -16,7 +17,7 @@ describe('plugins', () => {
   it('defines the project plugins', () => {
     const jsPlugin = any.simpleObject();
     const githubPlugin = any.simpleObject();
-    when(javascriptPluginFactory).calledWith(decisions).thenReturn(jsPlugin);
+    when(javascriptPluginFactory).calledWith(decisions, {logger}).thenReturn(jsPlugin);
     when(githubPluginFactory).calledWith().thenReturn(githubPlugin);
 
     expect(plugins(decisions)).toEqual({

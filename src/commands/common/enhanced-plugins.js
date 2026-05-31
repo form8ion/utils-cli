@@ -7,10 +7,10 @@ import {packageManagers} from '@form8ion/javascript-core';
 import {questionNames as jsQuestionNames} from '@form8ion/javascript';
 
 import {javascriptScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
-import {javascript as enhancedLiftJavascript} from '../lift/enhanced-lifters.js';
+import {javascriptLifterFactory, javascriptTesterFactory} from '../lift/enhanced-lifters.js';
 import {github as githubPrompt} from './prompts.js';
 
-export function javascriptPluginFactory(decisions) {
+export function javascriptPluginFactory(decisions, dependencies) {
   const decisionsWithEnhancements = {
     ...decisions,
     [jsQuestionNames.AUTHOR_NAME]: 'Matt Travi',
@@ -22,8 +22,9 @@ export function javascriptPluginFactory(decisions) {
 
   return {
     ...javascriptPlugin,
-    scaffold: javascriptScaffolderFactory(decisionsWithEnhancements),
-    lift: enhancedLiftJavascript
+    test: javascriptTesterFactory(dependencies),
+    scaffold: javascriptScaffolderFactory(decisionsWithEnhancements, dependencies),
+    lift: javascriptLifterFactory(dependencies)
   };
 }
 

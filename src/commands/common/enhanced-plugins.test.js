@@ -11,7 +11,7 @@ import {when} from 'vitest-when';
 import {describe, expect, it, vi} from 'vitest';
 
 import {javascriptScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
-import {javascript as enhancedLiftJavascript} from '../lift/enhanced-lifters.js';
+import {javascriptLifterFactory, javascriptTesterFactory} from '../lift/enhanced-lifters.js';
 import {github as githubPrompt} from './prompts.js';
 import {githubPluginFactory, javascriptPluginFactory} from './enhanced-plugins.js';
 
@@ -24,7 +24,10 @@ vi.mock('../lift/enhanced-lifters.js');
 describe('enhanced plugins', () => {
   it('should pass the custom properties along with the provided options to the js plugin', async () => {
     const decisions = any.simpleObject();
+    const dependencies = any.simpleObject();
     const enhancedScaffolder = () => undefined;
+    const enhancedLifter = () => undefined;
+    const enhancedTester = () => undefined;
     when(javascriptScaffolderFactory)
       .calledWith({
         ...decisions,
@@ -33,12 +36,18 @@ describe('enhanced plugins', () => {
         [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
         [jsQuestionNames.SCOPE]: 'form8ion',
         [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
-      })
+      }, dependencies)
       .thenReturn(enhancedScaffolder);
+    when(javascriptLifterFactory).calledWith(dependencies).thenReturn(enhancedLifter);
+    when(javascriptTesterFactory).calledWith(dependencies).thenReturn(enhancedTester);
 
-    expect(javascriptPluginFactory(decisions))
+    expect(javascriptPluginFactory(decisions, dependencies))
       // eslint-disable-next-line prefer-object-spread
-      .toEqual(Object.assign({}, javascriptPlugin, {scaffold: enhancedScaffolder, lift: enhancedLiftJavascript}));
+      .toEqual(Object.assign(
+        {},
+        javascriptPlugin,
+        {scaffold: enhancedScaffolder, lift: enhancedLifter, test: enhancedTester}
+      ));
   });
 
   it('should inject dependencies into the github plugin', async () => {

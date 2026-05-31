@@ -12,6 +12,11 @@ import {assert} from 'chai';
 export const githubToken = any.word();
 
 const server = setupServer();
+const projectToRepositoryVisibilityMap = {
+  OSS: 'public',
+  ISS: 'internal',
+  CS: 'private'
+};
 
 server.events.on('request:start', ({request}) => {
   // eslint-disable-next-line no-console
@@ -49,7 +54,10 @@ Given(/^the GitHub token is valid$/, async function () {
     http.post('https://api.github.com/orgs/form8ion/repos', async ({request}) => {
       if (
         authorizationHeaderIncludesToken(request)
-        && deepEqual(await request.json(), {name: this.projectName, private: 'Private' === this.visibility})
+        && deepEqual(
+          await request.json(),
+          {name: this.projectName, visibility: projectToRepositoryVisibilityMap[this.visibility]}
+        )
       ) {
         return HttpResponse.json({
           ssh_url: this.repoSshUrl,

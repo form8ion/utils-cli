@@ -1,6 +1,7 @@
 import {dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import os from 'node:os';
+import {visibilityOptions} from '@form8ion/core';
 import {questionNames as liftQuestionNames} from '@form8ion/lift';
 import {promptConstants as githubPromptConstants} from '@form8ion/github';
 
@@ -27,7 +28,7 @@ Before(async function () {
   this.repoName = projectNameAnswer;
   this.projectName = projectNameAnswer;
   this.repoOwner = 'form8ion';
-  this.visibility = any.fromList(['Public', 'Private']);
+  this.visibility = any.fromList(Object.keys(visibilityOptions));
   this.projectRoot = process.cwd();
 
   ({execa: this.execa} = (await td.replaceEsm('execa')));
@@ -76,11 +77,11 @@ When(/^the project is scaffolded$/, async function () {
     [PROJECT_NAME]: projectNameAnswer,
     [DESCRIPTION]: projectDescriptionAnswer,
     [VISIBILITY]: this.visibility,
-    ...'Public' === this.visibility && {
+    ...'OSS' === this.visibility && {
       [LICENSE]: 'MIT',
       [COPYRIGHT_YEAR]: 2000
     },
-    ...'Private' === this.visibility && {[UNLICENSED]: true},
+    ...['ISS', 'CS'].includes(this.visibility) && {[UNLICENSED]: true},
     [GIT_REPO]: repoShouldBeCreated,
     [PROJECT_LANGUAGE]: projectLanguage,
     ...'JavaScript' === projectLanguage && {

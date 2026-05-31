@@ -17,6 +17,7 @@ describe('enhanced scaffolders', () => {
 
   it('should pass the custom properties along with the provided options to the js scaffolder', async () => {
     const options = any.simpleObject();
+    const dependencies = any.simpleObject();
     const packageScope = '@form8ion';
     const pluginGroups = any.objectWithKeys(any.listOf(any.word), {factory: any.simpleObject});
     when(getJavascriptPlugins).calledWith({}).thenReturn(pluginGroups);
@@ -31,8 +32,8 @@ describe('enhanced scaffolders', () => {
       },
       plugins: pluginGroups,
       decisions
-    }).thenResolve(output);
+    }, dependencies).thenResolve(output);
 
-    expect(await javascriptScaffolderFactory(decisions)(options)).toEqual(output);
+    expect(await javascriptScaffolderFactory(decisions, dependencies)(options)).toEqual(output);
   });
 });
