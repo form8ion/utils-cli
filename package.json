@@ -59,7 +59,7 @@
     "@form8ion/core": "5.0.0-beta.13",
     "@form8ion/cucumber-scaffolder": "5.9.0",
     "@form8ion/github": "4.0.0-beta.1",
-    "@form8ion/github-actions-node-ci": "5.0.2",
+    "@form8ion/github-actions-node-ci": "5.0.3",
     "@form8ion/github-core": "2.0.0",
     "@form8ion/github-workflows": "2.2.0",
     "@form8ion/hapi-scaffolder": "5.0.0-alpha.7",
