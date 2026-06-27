@@ -38,3 +38,22 @@ rulesets:
       - actor_id: 3208999
         actor_type: Team
         bypass_mode: always
+  - name: socket scan must pass
+    target: branch
+    enforcement: active
+    conditions:
+      ref_name:
+        include:
+          - ~DEFAULT_BRANCH
+        exclude: []
+    rules:
+      - type: required_status_checks
+        parameters:
+          strict_required_status_checks_policy: false
+          required_status_checks:
+            - context: 'Socket Security: Pull Request Alerts'
+              integration_id: 156372
+    bypass_actors:
+      - actor_id: 3208999
+        actor_type: Team
+        bypass_mode: always
