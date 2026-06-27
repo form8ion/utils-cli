@@ -96,7 +96,10 @@ Then(/^the core JavaScript files are present$/, async function () {
 Then('the package will have repository details defined', async function () {
   assert.deepEqual(
     JSON.parse(await fs.readFile(`${process.cwd()}/package.json`, 'utf-8')).repository,
-    `form8ion/${projectNameAnswer}`
+    {
+      type: 'git',
+      url: `git+https://github.com/form8ion/${projectNameAnswer}.git`
+    }
   );
 });
 
