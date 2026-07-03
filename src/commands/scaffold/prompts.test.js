@@ -60,6 +60,13 @@ describe('scaffolder prompts', () => {
       .toEqual({[questionNamesByPromptId[promptIds.DEPENDENCY_UPDATER].DEPENDENCY_UPDATER]: 'Renovate'});
   });
 
+  it('should define Codecov as the target coverage service', async () => {
+    const {questionNames: questionNamesByPromptId, ids: promptIds} = promptConstants;
+
+    expect(getProjectPrompt(decisions)({id: promptIds.COVERAGE_SERVICE}))
+      .toEqual({[questionNamesByPromptId[promptIds.COVERAGE_SERVICE].COVERAGE_SERVICE]: 'Codecov'});
+  });
+
   it('should throw an error for an unknown prompt', async () => {
     const unknownPromptId = any.word();
 

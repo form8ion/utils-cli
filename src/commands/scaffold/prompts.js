@@ -18,6 +18,8 @@ export function getProjectPrompt(decisions) {
         return {[questionNamesByPromptId[promptIds.REPOSITORY_HOST].REPO_HOST]: 'GitHub'};
       case promptIds.CI_PROVIDER:
         return {[questionNamesByPromptId[promptIds.CI_PROVIDER].CI_PROVIDER]: 'GitHub Workflows'};
+      case promptIds.COVERAGE_SERVICE:
+        return {[questionNamesByPromptId[promptIds.COVERAGE_SERVICE].COVERAGE_SERVICE]: 'Codecov'};
       case promptIds.DEPENDENCY_UPDATER:
         return {[questionNamesByPromptId[promptIds.DEPENDENCY_UPDATER].DEPENDENCY_UPDATER]: 'Renovate'};
       default:
