@@ -8,9 +8,11 @@ import any from '@travi/any';
 import {http, HttpResponse} from 'msw';
 import {setupServer} from 'msw/node';
 import {assert} from 'chai';
+import createDebugFor from 'debug';
 
 export const githubToken = any.word();
 
+const debug = createDebugFor('test:github');
 const server = setupServer();
 const projectToRepositoryVisibilityMap = {
   OSS: 'public',
@@ -19,8 +21,7 @@ const projectToRepositoryVisibilityMap = {
 };
 
 server.events.on('request:start', ({request}) => {
-  // eslint-disable-next-line no-console
-  console.log('Outgoing:', request.method, request.url);
+  debug('Outgoing:', request.method, request.url);
 });
 
 function authorizationHeaderIncludesToken(request) {
@@ -112,6 +113,11 @@ Given(/^the GitHub token is valid$/, async function () {
       return undefined;
     })
   );
+});
+
+Given('the repository is hosted on GitHub', async function () {
+  this.githubWorkflowsInUse = true;
+  // await fs.mkdir(`${this.projectRoot}/.github`, {recursive: true});
 });
 
 Then('next-steps are added as issues on GitHub', async function () {

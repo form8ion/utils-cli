@@ -15,6 +15,13 @@ Before(async function () {
 When('codecov is configured for an existing project', async function () {
   stubbedFs({
     node_modules: stubbedNodeModules,
+    ...this.githubWorkflowsInUse && {
+      '.github': {
+        workflows: {
+          '.gitkeep': ''
+        }
+      }
+    },
     ...'JavaScript' === this.projectLanguage && {
       'package.json': JSON.stringify({...any.simpleObject(), scripts: any.simpleObject()}),
       'package-lock.json': JSON.stringify(any.simpleObject()),
