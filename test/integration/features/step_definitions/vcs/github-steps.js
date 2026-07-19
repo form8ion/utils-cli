@@ -125,6 +125,11 @@ Then('next-steps are added as issues on GitHub', async function () {
     this.nextStepsFiledOnGithub,
     [
       {
+        body: '<!-- octokit-unique-issue '
+          + 'id="enable-building-branches-in-git-hub-actions-for-the-chosen-dependency-updater" -->',
+        title: 'Enable building branches in GitHub Actions for the chosen dependency updater'
+      },
+      {
         title: 'Add the appropriate `save` flag to the installation instructions in the README',
         body: '<!-- '
           + 'octokit-unique-issue id="add-the-appropriate-save-flag-to-the-installation-instructions-in-the-readme" -->'
