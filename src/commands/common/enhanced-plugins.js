@@ -4,7 +4,7 @@ import {octokit} from '@form8ion/github-core';
 import * as javascriptPlugin from '@form8ion/javascript';
 import * as githubPlugin from '@form8ion/github';
 import {packageManagers} from '@form8ion/javascript-core';
-import {questionNames as jsQuestionNames} from '@form8ion/javascript';
+import {promptConstants as jsPromptConstants} from '@form8ion/javascript';
 
 import {javascriptScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
 import {javascriptLifterFactory, javascriptTesterFactory} from '../lift/enhanced-lifters.js';
@@ -13,11 +13,11 @@ import {github as githubPrompt} from './prompts.js';
 export function javascriptPluginFactory(decisions, dependencies) {
   const decisionsWithEnhancements = {
     ...decisions,
-    [jsQuestionNames.AUTHOR_NAME]: 'Matt Travi',
-    [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
-    [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
-    [jsQuestionNames.SCOPE]: 'form8ion',
-    [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
+    [jsPromptConstants.questionNames.AUTHOR_NAME]: 'Matt Travi',
+    [jsPromptConstants.questionNames.AUTHOR_EMAIL]: 'npm@travi.org',
+    [jsPromptConstants.questionNames.AUTHOR_URL]: 'https://matt.travi.org',
+    [jsPromptConstants.questionNames.SCOPE]: 'form8ion',
+    [jsPromptConstants.questionNames.PACKAGE_MANAGER]: packageManagers.NPM
   };
 
   return {

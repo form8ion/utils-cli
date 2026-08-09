@@ -1,8 +1,8 @@
 import {getPrompt} from '@form8ion/cli-core';
-import {promptConstants} from '@form8ion/project';
+import {promptConstants as projectPromptConstants} from '@form8ion/project';
 
 export function getProjectPrompt(decisions) {
-  const {questionNames: questionNamesByPromptId, ids: promptIds} = promptConstants;
+  const {questionNames: questionNamesByPromptId, ids: promptIds} = projectPromptConstants;
 
   return ({id, questions}) => {
     switch (id) {

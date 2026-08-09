@@ -29,6 +29,19 @@ Then('ESM details are configured for the project', async function () {
   const {type} = JSON.parse(packageJsonContents);
 
   assert.equal(type, 'module');
-  assert.include(exampleContents, "import {} from './lib/index.js';");
+  assert.equal(exampleContents, `// #### Import
+// remark-usage-ignore-next
+import stubbedFs from 'mock-fs';
+import {scaffold} from './lib/index.js';
+
+// remark-usage-ignore-next
+stubbedFs();
+
+// #### Execute
+
+(async () => {
+  await scaffold({projectRoot: process.cwd()});
+})();
+`);
   assert.isTrue(await fileExists(`${process.cwd()}/rollup.config.js`));
 });
