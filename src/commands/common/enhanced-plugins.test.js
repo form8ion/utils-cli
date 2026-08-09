@@ -31,11 +31,11 @@ describe('enhanced plugins', () => {
     when(javascriptScaffolderFactory)
       .calledWith({
         ...decisions,
-        [jsPromptConstants.questionNames.AUTHOR_NAME]: 'Matt Travi',
-        [jsPromptConstants.questionNames.AUTHOR_EMAIL]: 'npm@travi.org',
-        [jsPromptConstants.questionNames.AUTHOR_URL]: 'https://matt.travi.org',
-        [jsPromptConstants.questionNames.SCOPE]: 'form8ion',
-        [jsPromptConstants.questionNames.PACKAGE_MANAGER]: packageManagers.NPM
+        [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_NAME]: 'Matt Travi',
+        [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_EMAIL]: 'npm@travi.org',
+        [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_URL]: 'https://matt.travi.org',
+        [jsPromptConstants.questionNames.BASE_DETAILS.SCOPE]: 'form8ion',
+        [jsPromptConstants.questionNames.BASE_DETAILS.PACKAGE_MANAGER]: packageManagers.NPM
       }, dependencies)
       .thenReturn(enhancedScaffolder);
     when(javascriptLifterFactory).calledWith(dependencies).thenReturn(enhancedLifter);

@@ -13,11 +13,11 @@ import {github as githubPrompt} from './prompts.js';
 export function javascriptPluginFactory(decisions, dependencies) {
   const decisionsWithEnhancements = {
     ...decisions,
-    [jsPromptConstants.questionNames.AUTHOR_NAME]: 'Matt Travi',
-    [jsPromptConstants.questionNames.AUTHOR_EMAIL]: 'npm@travi.org',
-    [jsPromptConstants.questionNames.AUTHOR_URL]: 'https://matt.travi.org',
-    [jsPromptConstants.questionNames.SCOPE]: 'form8ion',
-    [jsPromptConstants.questionNames.PACKAGE_MANAGER]: packageManagers.NPM
+    [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_NAME]: 'Matt Travi',
+    [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_EMAIL]: 'npm@travi.org',
+    [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_URL]: 'https://matt.travi.org',
+    [jsPromptConstants.questionNames.BASE_DETAILS.SCOPE]: 'form8ion',
+    [jsPromptConstants.questionNames.BASE_DETAILS.PACKAGE_MANAGER]: packageManagers.NPM
   };
 
   return {
