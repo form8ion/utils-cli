@@ -13,7 +13,7 @@ import * as td from 'testdouble';
 import {World} from '../support/world.js';
 import {githubToken} from './vcs/github-steps.js';
 
-let scaffold, lift, javascriptQuestionNames, projectPromptConstants;
+let scaffold, lift, javascriptPromptConstants, projectPromptConstants;
 const __dirname = dirname(fileURLToPath(import.meta.url));        // eslint-disable-line no-underscore-dangle
 const pathToNodeModules = [__dirname, '../../../../', 'node_modules/'];
 export const stubbedNodeModules = stubbedFs.load(resolve(...pathToNodeModules));
@@ -35,7 +35,8 @@ Before(async function () {
   this.git = await td.replaceEsm('simple-git');
 
   ({promptConstants: projectPromptConstants} = await import('@form8ion/project'));
-  ({questionNames: javascriptQuestionNames} = await import('@form8ion/javascript'));
+  ({promptConstants: javascriptPromptConstants} = await import('@form8ion/javascript'));
+
   ({handler: scaffold} = (await import('../../../../src/commands/scaffold/command.js')));
   ({handler: lift} = (await import('../../../../src/commands/lift/command.js')));
 });
@@ -65,7 +66,9 @@ When(/^the project is scaffolded$/, async function () {
 
   const repoShouldBeCreated = this.getAnswerFor(GIT_REPO);
   const projectLanguage = this.getAnswerFor(PROJECT_LANGUAGE);
-  const jsProjectType = this.getAnswerFor(javascriptQuestionNames.PROJECT_TYPE) || projectTypes.PACKAGE;
+  const jsProjectType = this.getAnswerFor(
+    javascriptPromptConstants.questionNames.BASE_DETAILS.PROJECT_TYPE
+  ) || projectTypes.PACKAGE;
   const shouldBeScoped = any.boolean();
 
   stubbedFs({
@@ -85,21 +88,27 @@ When(/^the project is scaffolded$/, async function () {
     [GIT_REPO]: repoShouldBeCreated,
     [PROJECT_LANGUAGE]: projectLanguage,
     ...'JavaScript' === projectLanguage && {
-      [javascriptQuestionNames.NODE_VERSION_CATEGORY]: 'LTS',
-      [javascriptQuestionNames.PROJECT_TYPE]: jsProjectType,
-      [javascriptQuestionNames.UNIT_TESTS]: true,
-      [javascriptQuestionNames.UNIT_TEST_FRAMEWORK]: this.unitTestFramework
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.PACKAGE_MANAGER]: 'npm',
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.SCOPE]: 'form8ion',
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.AUTHOR_NAME]: 'Matt Travi',
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.AUTHOR_EMAIL]: 'npm@travi.org',
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.AUTHOR_URL]: 'https://matt.travi.org',
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.NODE_VERSION_CATEGORY]: 'LTS',
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.PROJECT_TYPE]: jsProjectType,
+      [javascriptPromptConstants.questionNames.PROJECT_TYPE_PLUGIN.PROJECT_TYPE_CHOICE]: 'form8ion Plugin',
+      [javascriptPromptConstants.questionNames.PACKAGE_BUNDLER.PACKAGE_BUNDLER]:
+        'Rollup',
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.UNIT_TESTS]: true,
+      [javascriptPromptConstants.questionNames.UNIT_TESTING.UNIT_TEST_FRAMEWORK]: this.unitTestFramework
         || 'mocha',
-      [javascriptQuestionNames.INTEGRATION_TESTS]: true,
-      [javascriptQuestionNames.INTEGRATION_TEST_FRAMEWORK]: 'Cucumber',
-      [javascriptQuestionNames.CONFIGURE_LINTING]: true,
-      [javascriptQuestionNames.PROJECT_TYPE_CHOICE]: this.projectTypePlugin || 'Other',
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.INTEGRATION_TESTS]: true,
+      [javascriptPromptConstants.questionNames.INTEGRATION_TESTING.INTEGRATION_TEST_FRAMEWORK]: 'Cucumber',
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.CONFIGURE_LINTING]: true,
       ...projectTypes.PACKAGE === jsProjectType && {
-        [javascriptQuestionNames.PACKAGE_BUNDLER]: this.getAnswerFor(javascriptQuestionNames.PACKAGE_BUNDLER),
-        [javascriptQuestionNames.PROVIDE_EXAMPLE]: true
+        [javascriptPromptConstants.questionNames.BASE_DETAILS.PROVIDE_EXAMPLE]: true
       },
-      [javascriptQuestionNames.SHOULD_BE_SCOPED]: shouldBeScoped,
-      [javascriptQuestionNames.DIALECT]: this.dialect
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.SHOULD_BE_SCOPED]: shouldBeScoped,
+      [javascriptPromptConstants.questionNames.BASE_DETAILS.DIALECT]: this.dialect
     }
   });
 });

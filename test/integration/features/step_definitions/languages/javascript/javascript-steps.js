@@ -35,17 +35,19 @@ function semverStringFactory() {
   return `v${majorVersion}.${versionSegment()}.${versionSegment()}`;
 }
 
-let projectPromptConstants, javascriptQuestionNames;
+let projectPromptConstants, javascriptPromptConstants;
 
 Before(async function () {
   ({promptConstants: projectPromptConstants} = await import('@form8ion/project'));
-  ({questionNames: javascriptQuestionNames} = await import('@form8ion/javascript'));
+  ({promptConstants: javascriptPromptConstants} = await import('@form8ion/javascript'));
 });
 
 Given(/^the project language should be JavaScript$/, async function () {
   const {PROJECT_LANGUAGE} = projectPromptConstants.questionNames[projectPromptConstants.ids.PROJECT_LANGUAGE];
   this.setAnswerFor(PROJECT_LANGUAGE, 'JavaScript');
-  this.setAnswerFor(javascriptQuestionNames.PACKAGE_BUNDLER, 'Rollup');
+  this.setAnswerFor(javascriptPromptConstants.questionNames.BASE_DETAILS.DIALECT, 'ESM');
+  this.setAnswerFor(javascriptPromptConstants.questionNames.PROJECT_TYPE_PLUGIN.PROJECT_TYPE_CHOICE, 'Other');
+  this.setAnswerFor(javascriptPromptConstants.questionNames.PACKAGE_BUNDLER.PACKAGE_BUNDLER, 'Rollup');
 
   setupMissingHusky(this.execa);
 
@@ -90,7 +92,7 @@ Then(/^the core JavaScript files are present$/, async function () {
   const config = load(await fs.readFile(`${process.cwd()}/.eslintrc.yml`));
 
   assert.isTrue(await fileExists(`${process.cwd()}/package.json`));
-  assert.deepEqual(config.extends, ['@form8ion', '@form8ion/mocha']);
+  assert.deepEqual(config.extends, ['@form8ion', '@form8ion/mocha', '@form8ion/cucumber']);
 });
 
 Then('the package will have repository details defined', async function () {

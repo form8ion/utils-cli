@@ -4,7 +4,7 @@ import {octokit} from '@form8ion/github-core';
 import * as githubPlugin from '@form8ion/github';
 import {packageManagers} from '@form8ion/javascript-core';
 import * as javascriptPlugin from '@form8ion/javascript';
-import {questionNames as jsQuestionNames} from '@form8ion/javascript';
+import {promptConstants as jsPromptConstants} from '@form8ion/javascript';
 
 import any from '@travi/any';
 import {when} from 'vitest-when';
@@ -31,11 +31,11 @@ describe('enhanced plugins', () => {
     when(javascriptScaffolderFactory)
       .calledWith({
         ...decisions,
-        [jsQuestionNames.AUTHOR_NAME]: 'Matt Travi',
-        [jsQuestionNames.AUTHOR_EMAIL]: 'npm@travi.org',
-        [jsQuestionNames.AUTHOR_URL]: 'https://matt.travi.org',
-        [jsQuestionNames.SCOPE]: 'form8ion',
-        [jsQuestionNames.PACKAGE_MANAGER]: packageManagers.NPM
+        [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_NAME]: 'Matt Travi',
+        [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_EMAIL]: 'npm@travi.org',
+        [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_URL]: 'https://matt.travi.org',
+        [jsPromptConstants.questionNames.BASE_DETAILS.SCOPE]: 'form8ion',
+        [jsPromptConstants.questionNames.BASE_DETAILS.PACKAGE_MANAGER]: packageManagers.NPM
       }, dependencies)
       .thenReturn(enhancedScaffolder);
     when(javascriptLifterFactory).calledWith(dependencies).thenReturn(enhancedLifter);
