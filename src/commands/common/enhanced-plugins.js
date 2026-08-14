@@ -3,27 +3,16 @@ import {logger} from '@form8ion/cli-core';
 import {octokit} from '@form8ion/github-core';
 import * as javascriptPlugin from '@form8ion/javascript';
 import * as githubPlugin from '@form8ion/github';
-import {packageManagers} from '@form8ion/javascript-core';
-import {promptConstants as jsPromptConstants} from '@form8ion/javascript';
 
 import {javascriptScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
 import {javascriptLifterFactory, javascriptTesterFactory} from '../lift/enhanced-lifters.js';
-import {github as githubPrompt} from './prompts.js';
+import {getJavascriptPrompt, github as githubPrompt} from './prompts.js';
 
 export function javascriptPluginFactory(decisions, dependencies) {
-  const decisionsWithEnhancements = {
-    ...decisions,
-    [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_NAME]: 'Matt Travi',
-    [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_EMAIL]: 'npm@travi.org',
-    [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_URL]: 'https://matt.travi.org',
-    [jsPromptConstants.questionNames.BASE_DETAILS.SCOPE]: 'form8ion',
-    [jsPromptConstants.questionNames.BASE_DETAILS.PACKAGE_MANAGER]: packageManagers.NPM
-  };
-
   return {
     ...javascriptPlugin,
     test: javascriptTesterFactory(dependencies),
-    scaffold: javascriptScaffolderFactory(decisionsWithEnhancements, dependencies),
+    scaffold: javascriptScaffolderFactory({...dependencies, prompt: getJavascriptPrompt(decisions)}),
     lift: javascriptLifterFactory(dependencies)
   };
 }
