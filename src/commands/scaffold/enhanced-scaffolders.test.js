@@ -13,7 +13,6 @@ vi.mock('../common/javascript-plugins.js');
 
 describe('enhanced scaffolders', () => {
   const output = any.simpleObject();
-  const decisions = any.simpleObject();
 
   it('should pass the custom properties along with the provided options to the js scaffolder', async () => {
     const options = any.simpleObject();
@@ -30,10 +29,9 @@ describe('enhanced scaffolders', () => {
         typescript: {scope: packageScope},
         commitlint: {name: packageScope, packageName: `${packageScope}/commitlint-config`}
       },
-      plugins: pluginGroups,
-      decisions
+      plugins: pluginGroups
     }, dependencies).thenResolve(output);
 
-    expect(await javascriptScaffolderFactory(decisions, dependencies)(options)).toEqual(output);
+    expect(await javascriptScaffolderFactory(dependencies)(options)).toEqual(output);
   });
 });

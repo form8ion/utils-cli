@@ -1,9 +1,13 @@
+import {getPrompt} from '@form8ion/cli-core';
 import {promptConstants as githubPromptConstants} from '@form8ion/github';
+import {promptConstants as javascriptPromptConstants} from '@form8ion/javascript';
+import {packageManagers} from '@form8ion/javascript-core';
 
 import {describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
+import {when} from 'vitest-when';
 
-import {github} from './prompts.js';
+import {getJavascriptPrompt, github} from './prompts.js';
 
 vi.mock('@form8ion/cli-core');
 
@@ -79,6 +83,50 @@ describe('prompts', () => {
       const unknownPromptId = any.word();
 
       expect(() => github({id: unknownPromptId})).toThrowError(`Unknown prompt ID: ${unknownPromptId}`);
+    });
+  });
+
+  describe('getJavascriptPrompt', () => {
+    const decisions = any.simpleObject();
+    const questions = any.listOf(any.simpleObject);
+    const answers = any.simpleObject();
+    const {ids: promptIds} = javascriptPromptConstants;
+
+    it('should define the author and package details for the `BASE_DETAILS` prompt', async () => {
+      const prompt = vi.fn();
+      when(getPrompt)
+        .calledWith({
+          ...decisions,
+          [javascriptPromptConstants.questionNames.BASE_DETAILS.AUTHOR_NAME]: 'Matt Travi',
+          [javascriptPromptConstants.questionNames.BASE_DETAILS.AUTHOR_EMAIL]: 'npm@travi.org',
+          [javascriptPromptConstants.questionNames.BASE_DETAILS.AUTHOR_URL]: 'https://matt.travi.org',
+          [javascriptPromptConstants.questionNames.BASE_DETAILS.SCOPE]: 'form8ion',
+          [javascriptPromptConstants.questionNames.BASE_DETAILS.PACKAGE_MANAGER]: packageManagers.NPM
+        })
+        .thenReturn(prompt);
+      when(prompt).calledWith({questions}).thenResolve(answers);
+
+      expect(await getJavascriptPrompt(decisions)({id: promptIds.BASE_DETAILS, questions})).toEqual(answers);
+    });
+
+    it.each([
+      ['PROJECT_TYPE_PLUGIN', promptIds.PROJECT_TYPE_PLUGIN],
+      ['PACKAGE_BUNDLER', promptIds.PACKAGE_BUNDLER],
+      ['UNIT_TESTING', promptIds.UNIT_TESTING],
+      ['INTEGRATION_TESTING', promptIds.INTEGRATION_TESTING]
+    ])('should enable input for the `%s` prompt', async (name, id) => {
+      const prompt = vi.fn();
+      when(getPrompt).calledWith(decisions).thenReturn(prompt);
+      when(prompt).calledWith({questions}).thenResolve(answers);
+
+      expect(await getJavascriptPrompt(decisions)({id, questions})).toEqual(answers);
+    });
+
+    it('should throw an error for an unknown prompt', async () => {
+      const unknownPromptId = any.word();
+
+      const javascriptPrompt = getJavascriptPrompt(decisions);
+      await expect(() => javascriptPrompt({id: unknownPromptId})).toThrow(`Unknown prompt id: ${unknownPromptId}`);
     });
   });
 });

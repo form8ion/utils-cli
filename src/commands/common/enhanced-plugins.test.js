@@ -2,9 +2,7 @@ import {composeDependenciesInto} from '@form8ion/core';
 import {logger} from '@form8ion/cli-core';
 import {octokit} from '@form8ion/github-core';
 import * as githubPlugin from '@form8ion/github';
-import {packageManagers} from '@form8ion/javascript-core';
 import * as javascriptPlugin from '@form8ion/javascript';
-import {promptConstants as jsPromptConstants} from '@form8ion/javascript';
 
 import any from '@travi/any';
 import {when} from 'vitest-when';
@@ -12,7 +10,7 @@ import {describe, expect, it, vi} from 'vitest';
 
 import {javascriptScaffolderFactory} from '../scaffold/enhanced-scaffolders.js';
 import {javascriptLifterFactory, javascriptTesterFactory} from '../lift/enhanced-lifters.js';
-import {github as githubPrompt} from './prompts.js';
+import {getJavascriptPrompt, github as githubPrompt} from './prompts.js';
 import {githubPluginFactory, javascriptPluginFactory} from './enhanced-plugins.js';
 
 vi.mock('@form8ion/core');
@@ -20,23 +18,19 @@ vi.mock('@form8ion/cli-core');
 vi.mock('@form8ion/github-core');
 vi.mock('../scaffold/enhanced-scaffolders.js');
 vi.mock('../lift/enhanced-lifters.js');
+vi.mock('./prompts.js');
 
 describe('enhanced plugins', () => {
   it('should pass the custom properties along with the provided options to the js plugin', async () => {
     const decisions = any.simpleObject();
     const dependencies = any.simpleObject();
+    const jsPrompt = () => undefined;
     const enhancedScaffolder = () => undefined;
     const enhancedLifter = () => undefined;
     const enhancedTester = () => undefined;
+    when(getJavascriptPrompt).calledWith(decisions).thenReturn(jsPrompt);
     when(javascriptScaffolderFactory)
-      .calledWith({
-        ...decisions,
-        [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_NAME]: 'Matt Travi',
-        [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_EMAIL]: 'npm@travi.org',
-        [jsPromptConstants.questionNames.BASE_DETAILS.AUTHOR_URL]: 'https://matt.travi.org',
-        [jsPromptConstants.questionNames.BASE_DETAILS.SCOPE]: 'form8ion',
-        [jsPromptConstants.questionNames.BASE_DETAILS.PACKAGE_MANAGER]: packageManagers.NPM
-      }, dependencies)
+      .calledWith({...dependencies, prompt: jsPrompt})
       .thenReturn(enhancedScaffolder);
     when(javascriptLifterFactory).calledWith(dependencies).thenReturn(enhancedLifter);
     when(javascriptTesterFactory).calledWith(dependencies).thenReturn(enhancedTester);
