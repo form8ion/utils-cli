@@ -88,11 +88,6 @@ When(/^the project is scaffolded$/, async function () {
     [GIT_REPO]: repoShouldBeCreated,
     [PROJECT_LANGUAGE]: projectLanguage,
     ...'JavaScript' === projectLanguage && {
-      [javascriptPromptConstants.questionNames.BASE_DETAILS.PACKAGE_MANAGER]: 'npm',
-      [javascriptPromptConstants.questionNames.BASE_DETAILS.SCOPE]: 'form8ion',
-      [javascriptPromptConstants.questionNames.BASE_DETAILS.AUTHOR_NAME]: 'Matt Travi',
-      [javascriptPromptConstants.questionNames.BASE_DETAILS.AUTHOR_EMAIL]: 'npm@travi.org',
-      [javascriptPromptConstants.questionNames.BASE_DETAILS.AUTHOR_URL]: 'https://matt.travi.org',
       [javascriptPromptConstants.questionNames.BASE_DETAILS.NODE_VERSION_CATEGORY]: 'LTS',
       [javascriptPromptConstants.questionNames.BASE_DETAILS.PROJECT_TYPE]: jsProjectType,
       [javascriptPromptConstants.questionNames.PROJECT_TYPE_PLUGIN.PROJECT_TYPE_CHOICE]: 'form8ion Plugin',
