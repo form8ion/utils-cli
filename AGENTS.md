@@ -97,10 +97,18 @@ defines the prompt.
 
 * `@form8ion/project` owns project scaffold prompt IDs and question names.
 * `@form8ion/github` owns GitHub-related prompt IDs and question names.
-* `@form8ion/javascript` owns JavaScript prompt questions and answer keys.
+* `@form8ion/javascript` owns JavaScript prompt IDs and question names.
 
 This repository should consume those public contracts.
 Do not duplicate prompt constants locally unless there is no upstream export.
+
+Upstream scaffolders resolve prompts by calling an injected `prompt`
+function (shape `({id, questions}) => answers`) rather than by reading a
+`decisions` scaffold option. `prompt` must be supplied through
+`dependencies`, not as an option alongside `projectRoot`/`configs`/etc.
+A scaffolder silently ignoring a `decisions` option (rather than erroring)
+is a sign this contract was missed — check the plugin's own option
+validator/schema when a scaffold call stops resolving answers as expected.
 
 ### Prompt Consumer Pattern
 
@@ -109,6 +117,13 @@ When adapting prompt behavior:
 * destructure `ids` and `questionNames` from the upstream `promptConstants`
 * switch on `id`
 * answer only the prompts this CLI intentionally owns
+* hardcode form8ion-specific defaults inline within the relevant `case`,
+  merged with the caller-supplied `decisions` (see `getProjectPrompt`'s
+  `BASE_DETAILS` case) — don't pre-merge hardcoded answers into a
+  `decisions`-like object outside the adapter and forward it uniformly to
+  every prompt ID; that hides which prompts form8ion actually overrides and
+  makes it easy to leak defaults into prompts that were never meant to
+  receive them
 * delegate other interactive prompts through the existing prompt utility when
   appropriate
 * throw on unknown prompt IDs rather than silently swallowing them
