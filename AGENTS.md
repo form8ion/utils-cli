@@ -221,6 +221,15 @@ npm test
 * `src/commands/common/enhanced-plugins.js`
 * `src/commands/common/prompts.js`
 * `test/integration/features/javascript/scaffold.feature`
-* `/Users/travi/development/form8ion/project/AGENTS.md`
-* `/Users/travi/development/form8ion/project/.github/copilot-instructions.md`
-* `/Users/travi/development/form8ion/javascript/.github/copilot-instructions.md`
+* [form8ion/project `AGENTS.md`][project-agents] — `beta` branch (large
+  refactor in progress there, not yet on `master`)
+* [form8ion/project `copilot-instructions.md`][project-copilot] — `beta`
+  branch
+* [form8ion/javascript `copilot-instructions.md`][javascript-copilot] —
+  `beta` branch
+
+[project-agents]: https://github.com/form8ion/project/blob/beta/AGENTS.md
+
+[project-copilot]: https://github.com/form8ion/project/blob/beta/.github/copilot-instructions.md
+
+[javascript-copilot]: https://github.com/form8ion/javascript/blob/beta/.github/copilot-instructions.md
