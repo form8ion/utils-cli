@@ -104,7 +104,7 @@
     "debug": "4.4.3",
     "deep-equal": "2.2.3",
     "execa": "10.0.1",
-    "gplint": "2.5.2",
+    "gplint": "2.6.0",
     "http-status-codes": "2.3.0",
     "husky": "9.1.7",
     "js-yaml": "5.4.1",
